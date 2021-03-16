@@ -8,17 +8,17 @@ using System.Runtime.InteropServices;
 
 namespace SDRSharp.Tetra
 {
-  public static class NativeMethods
-  {
-    private const string LibTetraDecoder = "tetraVoiceDec";
+    public static class NativeMethods
+    {
+        private const string LibTetraDecoder = "tetraVoiceDec";
 
-    [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
-    public static extern unsafe void* tetra_decode_init();
+        [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe void* tetra_decode_init();
 
-    [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
-    public static extern unsafe int tetra_cdec(int fp, byte* inp, short* outp, int hs);
+        [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe int tetra_cdec(int fp, byte* inp, short* outp, int hs);
 
-    [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
-    public static extern unsafe int tetra_sdec(short* inp, short* outp, void* chStruct);
-  }
+        [DllImport("tetraVoiceDec", CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe int tetra_sdec(short* inp, short* outp, void* chStruct);
+    }
 }

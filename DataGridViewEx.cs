@@ -8,8 +8,8 @@ using System.Windows.Forms;
 
 namespace SDRSharp.Tetra
 {
-  public class DataGridViewEx : DataGridView
-  {
-    public DataGridViewEx() => this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-  }
+    public class DataGridViewEx : DataGridView
+    {
+        public DataGridViewEx() => this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+    }
 }

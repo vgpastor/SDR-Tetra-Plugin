@@ -10,23 +10,23 @@ using System.Text;
 
 namespace SDRSharp.Tetra
 {
-  internal class TextFile
-  {
-    public void Write(string line, string path)
+    internal class TextFile
     {
-      using (StreamWriter streamWriter = new StreamWriter(path, true, Encoding.Default))
-        streamWriter.WriteLine(line);
-    }
+        public void Write(string line, string path)
+        {
+            using (StreamWriter streamWriter = new StreamWriter(path, true, Encoding.Default))
+                streamWriter.WriteLine(line);
+        }
 
-    public List<string> Read(string path)
-    {
-      List<string> stringList = new List<string>();
-      using (StreamReader streamReader = new StreamReader(path, Encoding.Default))
-      {
-        while (streamReader.Peek() >= 0)
-          stringList.Add(streamReader.ReadLine());
-      }
-      return stringList;
+        public List<string> Read(string path)
+        {
+            List<string> stringList = new List<string>();
+            using (StreamReader streamReader = new StreamReader(path, Encoding.Default))
+            {
+                while (streamReader.Peek() >= 0)
+                    stringList.Add(streamReader.ReadLine());
+            }
+            return stringList;
+        }
     }
-  }
 }

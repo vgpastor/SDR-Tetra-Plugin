@@ -10,18 +10,18 @@ using System.Collections.Generic;
 
 namespace SDRSharp.Tetra
 {
-  internal class MacLevel
-  {
-    private LlcLevel _llc = new LlcLevel();
-    public ChannelType DownLinkChannelType;
-    public ChannelType UpLinkChannelType;
-    private UnsafeBuffer[] _tempBuffers = new UnsafeBuffer[4];
-    private unsafe byte*[] _tempBuffersPtr = new byte*[4];
-    private int[] _writeAddress = new int[4];
-    private int[] _fragmentsEncription = new int[4];
-    private ReceivedData[] _fragmentsHeader = new ReceivedData[4];
-    private readonly Rules[] _syncInfoRulesTMO = new Rules[14]
+    internal class MacLevel
     {
+        private LlcLevel _llc = new LlcLevel();
+        public ChannelType DownLinkChannelType;
+        public ChannelType UpLinkChannelType;
+        private UnsafeBuffer[] _tempBuffers = new UnsafeBuffer[4];
+        private unsafe byte*[] _tempBuffersPtr = new byte*[4];
+        private int[] _writeAddress = new int[4];
+        private int[] _fragmentsEncription = new int[4];
+        private ReceivedData[] _fragmentsHeader = new ReceivedData[4];
+        private readonly Rules[] _syncInfoRulesTMO = new Rules[14]
+        {
       new Rules(GlobalNames.ColorCode, 6),
       new Rules(GlobalNames.TimeSlot, 2),
       new Rules(GlobalNames.Frame, 5),
@@ -36,9 +36,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.NeighbourCellBroadcast, 2),
       new Rules(GlobalNames.CellServiceLevel, 2),
       new Rules(GlobalNames.LateEntryInfo, 1)
-    };
-    private readonly Rules[] _dmacSyncInfoRulesDMO = new Rules[8]
-    {
+        };
+        private readonly Rules[] _dmacSyncInfoRulesDMO = new Rules[8]
+        {
       new Rules(GlobalNames.Communication_type, 2),
       new Rules(GlobalNames.Master_slave_link_flag, 1),
       new Rules(GlobalNames.Gateway_generated_message_flag, 1),
@@ -47,9 +47,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Frame, 5),
       new Rules(GlobalNames.Air_interface_encryption, 2),
       new Rules(GlobalNames.Reserved, 39)
-    };
-    private readonly Rules[] _dpresSyncInfoRules = new Rules[21]
-    {
+        };
+        private readonly Rules[] _dpresSyncInfoRules = new Rules[21]
+        {
       new Rules(GlobalNames.Repeater_Communication_type, 2),
       new Rules(GlobalNames.Repeater_M_DMO_flag, 1),
       new Rules(GlobalNames.Reserved, 2, RulesType.Switch, 241, 1),
@@ -71,9 +71,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Values_of_DT_254, 3, RulesType.Switch, 241, 1),
       new Rules(GlobalNames.Repeater_dual_watch_synchronization_flag, 1),
       new Rules(GlobalNames.Reserved, 5, RulesType.Switch, 241, 1)
-    };
-    private readonly Rules[] _dmacSyncInfoHalfSlotRules = new Rules[12]
-    {
+        };
+        private readonly Rules[] _dmacSyncInfoHalfSlotRules = new Rules[12]
+        {
       new Rules(GlobalNames.Repeater_address, 10),
       new Rules(GlobalNames.Fill_bit, 1),
       new Rules(GlobalNames.Fragmentation_flag, 1),
@@ -86,9 +86,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.MCC, 10),
       new Rules(GlobalNames.MNC, 14),
       new Rules(GlobalNames.Message_type, 5)
-    };
-    private readonly Rules[] _dpresSyncInfoHalfSlotRules = new Rules[40]
-    {
+        };
+        private readonly Rules[] _dpresSyncInfoHalfSlotRules = new Rules[40]
+        {
       new Rules(GlobalNames.Repeater_Gateway_address, 10, RulesType.Switch, 241, 1),
       new Rules(GlobalNames.Repeater_MCC, 10, RulesType.Switch, 241, 1),
       new Rules(GlobalNames.Repeater_MNC, 14, RulesType.Switch, 241, 1),
@@ -129,8 +129,8 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Repeater_Usage_SSI, 24, RulesType.Switch, 260, 10),
       new Rules(GlobalNames.Repeater_Usage_SSI, 24, RulesType.Switch, 260, 11),
       new Rules(GlobalNames.Repeater_Usage_SSI2, 24, RulesType.Switch, 260, 11)
-    };
-    private readonly Dictionary<MacLevel.AccessAssign, int> _aachLength = new Dictionary<MacLevel.AccessAssign, int>()
+        };
+        private readonly Dictionary<MacLevel.AccessAssign, int> _aachLength = new Dictionary<MacLevel.AccessAssign, int>()
     {
       {
         MacLevel.AccessAssign.Header,
@@ -145,8 +145,8 @@ namespace SDRSharp.Tetra
         6
       }
     };
-    private readonly Rules[] _sysInfoRules = new Rules[35]
-    {
+        private readonly Rules[] _sysInfoRules = new Rules[35]
+        {
       new Rules(GlobalNames.Main_Carrier, 12),
       new Rules(GlobalNames.Frequency_Band, 4),
       new Rules(GlobalNames.Offset, 2),
@@ -182,9 +182,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.SNDCP_Service, 1),
       new Rules(GlobalNames.Air_interface_encryption, 1),
       new Rules(GlobalNames.Advanced_link_supported, 1)
-    };
-    private readonly Rules[] _accessDefineRules = new Rules[12]
-    {
+        };
+        private readonly Rules[] _accessDefineRules = new Rules[12]
+        {
       new Rules(GlobalNames.Common_or_assigned, 1),
       new Rules(GlobalNames.Access_code, 2),
       new Rules(GlobalNames.IMM, 4),
@@ -197,21 +197,21 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Subscriber_class, 16, RulesType.Switch, 38, 1),
       new Rules(GlobalNames.GSSI, 24, RulesType.Switch, 38, 2),
       new Rules(GlobalNames.Filler_bits, 3)
-    };
-    private readonly Rules[] _macEndRules = new Rules[5]
-    {
+        };
+        private readonly Rules[] _macEndRules = new Rules[5]
+        {
       new Rules(GlobalNames.Fill_bit, 1),
       new Rules(GlobalNames.Position_of_grant, 1),
       new Rules(GlobalNames.Length_indication, 6),
       new Rules(GlobalNames.Slot_granting_flag, 1, RulesType.Presence_bit, 1),
       new Rules(GlobalNames.Slot_granting_element, 8)
-    };
-    private readonly Rules[] _dmacEndRules = new Rules[1]
-    {
+        };
+        private readonly Rules[] _dmacEndRules = new Rules[1]
+        {
       new Rules(GlobalNames.Fill_bit, 1)
-    };
-    private readonly Rules[] _dmacDataRules = new Rules[13]
-    {
+        };
+        private readonly Rules[] _dmacDataRules = new Rules[13]
+        {
       new Rules(GlobalNames.Fill_bit, 1),
       new Rules(GlobalNames.Second_half_slot_stolen, 1),
       new Rules(GlobalNames.Fragmentation_flag, 1),
@@ -225,9 +225,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.MCC, 10),
       new Rules(GlobalNames.MNC, 14),
       new Rules(GlobalNames.Message_type, 5)
-    };
-    private readonly Rules[] _macResourceRules = new Rules[20]
-    {
+        };
+        private readonly Rules[] _macResourceRules = new Rules[20]
+        {
       new Rules(GlobalNames.Fill_bit, 1),
       new Rules(GlobalNames.Position_of_grant, 1),
       new Rules(GlobalNames.Encryption_mode, 2),
@@ -248,9 +248,9 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Power_control_element, 4),
       new Rules(GlobalNames.Slot_granting_flag, 1, RulesType.Presence_bit, 1),
       new Rules(GlobalNames.Slot_granting_element, 8)
-    };
-    private readonly Rules[] _channelAllocationRules = new Rules[30]
-    {
+        };
+        private readonly Rules[] _channelAllocationRules = new Rules[30]
+        {
       new Rules(GlobalNames.Channel_allocation_flag, 1, RulesType.Options_bit),
       new Rules(GlobalNames.Allocation_type, 2),
       new Rules(GlobalNames.Timeslot_assigned, 4),
@@ -281,436 +281,436 @@ namespace SDRSharp.Tetra
       new Rules(GlobalNames.Conditional_element_B_flag, 1, RulesType.Presence_bit, 1),
       new Rules(GlobalNames.Conditional_element_B, 16),
       new Rules(GlobalNames.Further_augmentation_flag, 1)
-    };
-    private readonly Rules[] _uSignalRules = new Rules[1]
-    {
+        };
+        private readonly Rules[] _uSignalRules = new Rules[1]
+        {
       new Rules(GlobalNames.Second_half_slot_stolen, 1)
-    };
+        };
 
-    public int Field1 { get; private set; }
+        public int Field1 { get; private set; }
 
-    public int Field2 { get; private set; }
+        public int Field2 { get; private set; }
 
-    public bool HalfSlotStolen { get; private set; }
+        public bool HalfSlotStolen { get; private set; }
 
-    public unsafe MacLevel()
-    {
-      for (int index = 0; index < 4; ++index)
-      {
-        this._fragmentsHeader[index] = new ReceivedData();
-        this._tempBuffers[index] = UnsafeBuffer.Create(4096, 1);
-        this._tempBuffersPtr[index] = (byte*) (void*) this._tempBuffers[index];
-      }
-    }
-
-    public unsafe void AccessAsignPDU(LogicChannel channelData)
-    {
-      int offset1 = 0;
-      int length1 = this._aachLength[MacLevel.AccessAssign.Header];
-      int int32_1 = TetraUtils.BitsToInt32(channelData.Ptr, offset1, length1);
-      int offset2 = offset1 + length1;
-      int length2 = this._aachLength[MacLevel.AccessAssign.Field1];
-      int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, length2);
-      int offset3 = offset2 + length2;
-      int length3 = this._aachLength[MacLevel.AccessAssign.Field2];
-      int int32_3 = TetraUtils.BitsToInt32(channelData.Ptr, offset3, length3);
-      this.Field1 = int32_2;
-      this.Field2 = int32_3;
-      if (channelData.Frame == 18)
-      {
-        this.DownLinkChannelType = ChannelType.Common;
-      }
-      else
-      {
-        switch (int32_1)
+        public unsafe MacLevel()
         {
-          case 0:
-            this.DownLinkChannelType = ChannelType.Common;
-            break;
-          case 1:
-          case 2:
-          case 3:
-            switch (int32_2)
+            for (int index = 0; index < 4; ++index)
             {
-              case 0:
-                this.DownLinkChannelType = ChannelType.Unalloc;
-                return;
-              case 1:
-                this.DownLinkChannelType = ChannelType.Assigned;
-                return;
-              case 2:
+                this._fragmentsHeader[index] = new ReceivedData();
+                this._tempBuffers[index] = UnsafeBuffer.Create(4096, 1);
+                this._tempBuffersPtr[index] = (byte*)(void*)this._tempBuffers[index];
+            }
+        }
+
+        public unsafe void AccessAsignPDU(LogicChannel channelData)
+        {
+            int offset1 = 0;
+            int length1 = this._aachLength[MacLevel.AccessAssign.Header];
+            int int32_1 = TetraUtils.BitsToInt32(channelData.Ptr, offset1, length1);
+            int offset2 = offset1 + length1;
+            int length2 = this._aachLength[MacLevel.AccessAssign.Field1];
+            int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, length2);
+            int offset3 = offset2 + length2;
+            int length3 = this._aachLength[MacLevel.AccessAssign.Field2];
+            int int32_3 = TetraUtils.BitsToInt32(channelData.Ptr, offset3, length3);
+            this.Field1 = int32_2;
+            this.Field2 = int32_3;
+            if (channelData.Frame == 18)
+            {
                 this.DownLinkChannelType = ChannelType.Common;
-                return;
-              case 3:
-                this.DownLinkChannelType = ChannelType.Reserved;
-                return;
-              default:
-                this.DownLinkChannelType = ChannelType.Traffic;
-                return;
             }
-        }
-      }
-    }
-
-    public void ResetAACH()
-    {
-      this.Field1 = 0;
-      this.DownLinkChannelType = ChannelType.Common;
-      this.Field2 = 0;
-      this.UpLinkChannelType = ChannelType.Common;
-    }
-
-    public unsafe void UsignalPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      this.HalfSlotStolen = (uint) TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U;
-      ++offset;
-    }
-
-    public unsafe void SyncPDU(LogicChannel channelData, ReceivedData result)
-    {
-      int length1 = 4;
-      int offset1 = 0;
-      int int32_1 = TetraUtils.BitsToInt32(channelData.Ptr, offset1, length1);
-      int offset2 = offset1 + length1;
-      result.SetValue(GlobalNames.SystemCode, int32_1);
-      switch (int32_1)
-      {
-        case 12:
-        case 13:
-          int length2 = 2;
-          int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, length2);
-          int offset3 = offset2 + length2;
-          result.SetValue(GlobalNames.SYNC_PDU_type, int32_2);
-          int num;
-          if (int32_2 != 0)
-          {
-            if (int32_2 == 1)
+            else
             {
-              num = GlobalFunction.ParseParams(channelData, offset3, this._dpresSyncInfoRules, result);
-              break;
+                switch (int32_1)
+                {
+                    case 0:
+                        this.DownLinkChannelType = ChannelType.Common;
+                        break;
+                    case 1:
+                    case 2:
+                    case 3:
+                        switch (int32_2)
+                        {
+                            case 0:
+                                this.DownLinkChannelType = ChannelType.Unalloc;
+                                return;
+                            case 1:
+                                this.DownLinkChannelType = ChannelType.Assigned;
+                                return;
+                            case 2:
+                                this.DownLinkChannelType = ChannelType.Common;
+                                return;
+                            case 3:
+                                this.DownLinkChannelType = ChannelType.Reserved;
+                                return;
+                            default:
+                                this.DownLinkChannelType = ChannelType.Traffic;
+                                return;
+                        }
+                }
             }
-            result.SetValue(GlobalNames.UnknowData, 1);
-            break;
-          }
-          num = GlobalFunction.ParseParams(channelData, offset3, this._dmacSyncInfoRulesDMO, result);
-          break;
-        default:
-          GlobalFunction.ParseParams(channelData, offset2, this._syncInfoRulesTMO, result);
-          break;
-      }
-    }
+        }
 
-    public unsafe void SyncPDUHalfSlot(LogicChannel channelData, ReceivedData result)
-    {
-      int num1 = -1;
-      int offset1 = 0;
-      if (!result.TryGetValue(GlobalNames.SYNC_PDU_type, ref num1))
-        return;
-      switch (num1)
-      {
-        case 0:
-          int offset2 = GlobalFunction.ParseParams(channelData, offset1, this._dmacSyncInfoHalfSlotRules, result);
-          int num2 = channelData.Length - offset2;
-          if (result.Value(GlobalNames.Fill_bit) != 0)
-            num2 = this.CalcRealLength(channelData.Ptr, offset2, num2);
-          if (result.Value(GlobalNames.Fragmentation_flag) != 1)
-            break;
-          this.CreateFraqmentsBuffer(channelData, offset2, num2, result);
-          break;
-        case 1:
-          GlobalFunction.ParseParams(channelData, 0, this._dpresSyncInfoHalfSlotRules, result);
-          break;
-        default:
-          result.SetValue(GlobalNames.UnknowData, 1);
-          break;
-      }
-    }
-
-    public unsafe int SysInfoPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      byte num = TetraUtils.BitsToByte(channelData.Ptr, offset, 2);
-      result.SetValue(GlobalNames.MAC_Broadcast_Type, (int) num);
-      offset += 2;
-      switch (num)
-      {
-        case 0:
-          offset = GlobalFunction.ParseParams(channelData, offset, this._sysInfoRules, result);
-          break;
-        case 1:
-          offset = GlobalFunction.ParseParams(channelData, offset, this._accessDefineRules, result);
-          break;
-      }
-      return offset;
-    }
-
-    public unsafe void TmoParseMacPDU(LogicChannel channelData, List<ReceivedData> result)
-    {
-      int num1 = 16;
-      int num2 = 0;
-      bool flag = false;
-      for (int index = 0; index < 5; ++index)
-      {
-        int offset1 = num2;
-        ReceivedData result1 = new ReceivedData();
-        result1.Add(GlobalNames.CurrTimeSlot, channelData.TimeSlot);
-        MAC_PDU_Type int32_1 = (MAC_PDU_Type) TetraUtils.BitsToInt32(channelData.Ptr, offset1, 2);
-        int offset2 = offset1 + 2;
-        result1.Add(GlobalNames.MAC_PDU_Type, (int) int32_1);
-        switch (int32_1)
+        public void ResetAACH()
         {
-          case MAC_PDU_Type.MAC_resource:
-            this.ResourcePDU(channelData, offset2, result1);
-            num2 += result1.Value(GlobalNames.Length_indication) * 8;
-            break;
-          case MAC_PDU_Type.MAC_frag:
-            int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, 1);
-            int offset3 = offset2 + 1;
-            if (int32_2 == 0)
+            this.Field1 = 0;
+            this.DownLinkChannelType = ChannelType.Common;
+            this.Field2 = 0;
+            this.UpLinkChannelType = ChannelType.Common;
+        }
+
+        public unsafe void UsignalPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            this.HalfSlotStolen = (uint)TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U;
+            ++offset;
+        }
+
+        public unsafe void SyncPDU(LogicChannel channelData, ReceivedData result)
+        {
+            int length1 = 4;
+            int offset1 = 0;
+            int int32_1 = TetraUtils.BitsToInt32(channelData.Ptr, offset1, length1);
+            int offset2 = offset1 + length1;
+            result.SetValue(GlobalNames.SystemCode, int32_1);
+            switch (int32_1)
             {
-              this.MacFraqPDU(channelData, offset3, result1);
-              flag = true;
-              break;
+                case 12:
+                case 13:
+                    int length2 = 2;
+                    int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, length2);
+                    int offset3 = offset2 + length2;
+                    result.SetValue(GlobalNames.SYNC_PDU_type, int32_2);
+                    int num;
+                    if (int32_2 != 0)
+                    {
+                        if (int32_2 == 1)
+                        {
+                            num = GlobalFunction.ParseParams(channelData, offset3, this._dpresSyncInfoRules, result);
+                            break;
+                        }
+                        result.SetValue(GlobalNames.UnknowData, 1);
+                        break;
+                    }
+                    num = GlobalFunction.ParseParams(channelData, offset3, this._dmacSyncInfoRulesDMO, result);
+                    break;
+                default:
+                    GlobalFunction.ParseParams(channelData, offset2, this._syncInfoRulesTMO, result);
+                    break;
             }
-            this.MacEndPDU(channelData, offset3, result1);
-            num2 += result1.Value(GlobalNames.Length_indication) * 8;
-            break;
-          case MAC_PDU_Type.Broadcast:
-            num2 = this.SysInfoPDU(channelData, offset2, result1);
-            break;
-          case MAC_PDU_Type.MAC_U_Signal:
-            if (channelData.Length == 124)
+        }
+
+        public unsafe void SyncPDUHalfSlot(LogicChannel channelData, ReceivedData result)
+        {
+            int num1 = -1;
+            int offset1 = 0;
+            if (!result.TryGetValue(GlobalNames.SYNC_PDU_type, ref num1))
+                return;
+            switch (num1)
             {
-              this.UsignalPDU(channelData, offset2, result1);
-              flag = true;
-              break;
+                case 0:
+                    int offset2 = GlobalFunction.ParseParams(channelData, offset1, this._dmacSyncInfoHalfSlotRules, result);
+                    int num2 = channelData.Length - offset2;
+                    if (result.Value(GlobalNames.Fill_bit) != 0)
+                        num2 = this.CalcRealLength(channelData.Ptr, offset2, num2);
+                    if (result.Value(GlobalNames.Fragmentation_flag) != 1)
+                        break;
+                    this.CreateFraqmentsBuffer(channelData, offset2, num2, result);
+                    break;
+                case 1:
+                    GlobalFunction.ParseParams(channelData, 0, this._dpresSyncInfoHalfSlotRules, result);
+                    break;
+                default:
+                    result.SetValue(GlobalNames.UnknowData, 1);
+                    break;
             }
-            flag = true;
-            break;
         }
-        int num3 = result1.Contains(GlobalNames.Null_pdu) ? 1 : (result1.Contains(GlobalNames.OutOfBuffer) ? 1 : 0);
-        if (num3 != 0)
-          flag = true;
-        if (num3 == 0)
-          result.Add(result1);
-        if (num2 >= channelData.Length - num1 | flag)
-          break;
-      }
-    }
 
-    public unsafe void ResourcePDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      int num1 = offset - 2;
-      offset = GlobalFunction.ParseParams(channelData, offset, this._macResourceRules, result);
-      int num2 = result.Value(GlobalNames.Encryption_mode);
-      int num3 = result.Value(GlobalNames.Length_indication);
-      this.HalfSlotStolen = num3 == 62 || num3 == 63;
-      if (num3 > 58 && num3 < 62 || (num3 == 0 || result.Value(GlobalNames.Address_type) == 0))
-      {
-        result.Add(GlobalNames.Null_pdu, 1);
-      }
-      else
-      {
-        if (num2 != 0)
-          return;
-        offset = GlobalFunction.ParseParams(channelData, offset, this._channelAllocationRules, result);
-        if (num3 != 63)
+        public unsafe int SysInfoPDU(LogicChannel channelData, int offset, ReceivedData result)
         {
-          this._llc.Parse(channelData, offset, result);
+            byte num = TetraUtils.BitsToByte(channelData.Ptr, offset, 2);
+            result.SetValue(GlobalNames.MAC_Broadcast_Type, (int)num);
+            offset += 2;
+            switch (num)
+            {
+                case 0:
+                    offset = GlobalFunction.ParseParams(channelData, offset, this._sysInfoRules, result);
+                    break;
+                case 1:
+                    offset = GlobalFunction.ParseParams(channelData, offset, this._accessDefineRules, result);
+                    break;
+            }
+            return offset;
         }
-        else
-        {
-          int num4 = Math.Min(num3 * 8 - (offset - num1), channelData.Length - offset);
-          if (result.Value(GlobalNames.Fill_bit) != 0)
-            num4 = this.CalcRealLength(channelData.Ptr, offset, num4);
-          if (num4 < 0)
-            result.Add(GlobalNames.UnknowData, 1);
-          else
-            this.CreateFraqmentsBuffer(channelData, offset, num4, result);
-        }
-      }
-    }
 
-    public unsafe void MacEndPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      int num1 = offset - 3;
-      offset = GlobalFunction.ParseParams(channelData, offset, this._macEndRules, result);
-      if (this.FraqmentsBufferIsEmpty(channelData.TimeSlot))
-        return;
-      offset = GlobalFunction.ParseParams(channelData, offset, this._channelAllocationRules, result);
-      int num2 = result.Value(GlobalNames.Length_indication);
-      int num3 = Math.Min(num2 * 8 - (offset - num1), channelData.Length - offset);
-      if (num2 > 58)
-      {
-        result.Add(GlobalNames.Null_pdu, 1);
-      }
-      else
-      {
-        if (result.Value(GlobalNames.Fill_bit) != 0)
-          num3 = this.CalcRealLength(channelData.Ptr, offset, num3);
-        if (num3 < 0)
+        public unsafe void TmoParseMacPDU(LogicChannel channelData, List<ReceivedData> result)
         {
-          result.Add(GlobalNames.UnknowData, 1);
+            int num1 = 16;
+            int num2 = 0;
+            bool flag = false;
+            for (int index = 0; index < 5; ++index)
+            {
+                int offset1 = num2;
+                ReceivedData result1 = new ReceivedData();
+                result1.Add(GlobalNames.CurrTimeSlot, channelData.TimeSlot);
+                MAC_PDU_Type int32_1 = (MAC_PDU_Type)TetraUtils.BitsToInt32(channelData.Ptr, offset1, 2);
+                int offset2 = offset1 + 2;
+                result1.Add(GlobalNames.MAC_PDU_Type, (int)int32_1);
+                switch (int32_1)
+                {
+                    case MAC_PDU_Type.MAC_resource:
+                        this.ResourcePDU(channelData, offset2, result1);
+                        num2 += result1.Value(GlobalNames.Length_indication) * 8;
+                        break;
+                    case MAC_PDU_Type.MAC_frag:
+                        int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, 1);
+                        int offset3 = offset2 + 1;
+                        if (int32_2 == 0)
+                        {
+                            this.MacFraqPDU(channelData, offset3, result1);
+                            flag = true;
+                            break;
+                        }
+                        this.MacEndPDU(channelData, offset3, result1);
+                        num2 += result1.Value(GlobalNames.Length_indication) * 8;
+                        break;
+                    case MAC_PDU_Type.Broadcast:
+                        num2 = this.SysInfoPDU(channelData, offset2, result1);
+                        break;
+                    case MAC_PDU_Type.MAC_U_Signal:
+                        if (channelData.Length == 124)
+                        {
+                            this.UsignalPDU(channelData, offset2, result1);
+                            flag = true;
+                            break;
+                        }
+                        flag = true;
+                        break;
+                }
+                int num3 = result1.Contains(GlobalNames.Null_pdu) ? 1 : (result1.Contains(GlobalNames.OutOfBuffer) ? 1 : 0);
+                if (num3 != 0)
+                    flag = true;
+                if (num3 == 0)
+                    result.Add(result1);
+                if (num2 >= channelData.Length - num1 | flag)
+                    break;
+            }
         }
-        else
+
+        public unsafe void ResourcePDU(LogicChannel channelData, int offset, ReceivedData result)
         {
-          this.AddFraqmentsToBuffer(channelData, offset, num3);
-          LogicChannel fragmentedBuffer = this.GetDeFragmentedBuffer(channelData, result);
-          if (fragmentedBuffer.Length == 0)
-          {
-            result.Add(GlobalNames.Null_pdu, 1);
-          }
-          else
-          {
+            int num1 = offset - 2;
+            offset = GlobalFunction.ParseParams(channelData, offset, this._macResourceRules, result);
+            int num2 = result.Value(GlobalNames.Encryption_mode);
+            int num3 = result.Value(GlobalNames.Length_indication);
+            this.HalfSlotStolen = num3 == 62 || num3 == 63;
+            if (num3 > 58 && num3 < 62 || (num3 == 0 || result.Value(GlobalNames.Address_type) == 0))
+            {
+                result.Add(GlobalNames.Null_pdu, 1);
+            }
+            else
+            {
+                if (num2 != 0)
+                    return;
+                offset = GlobalFunction.ParseParams(channelData, offset, this._channelAllocationRules, result);
+                if (num3 != 63)
+                {
+                    this._llc.Parse(channelData, offset, result);
+                }
+                else
+                {
+                    int num4 = Math.Min(num3 * 8 - (offset - num1), channelData.Length - offset);
+                    if (result.Value(GlobalNames.Fill_bit) != 0)
+                        num4 = this.CalcRealLength(channelData.Ptr, offset, num4);
+                    if (num4 < 0)
+                        result.Add(GlobalNames.UnknowData, 1);
+                    else
+                        this.CreateFraqmentsBuffer(channelData, offset, num4, result);
+                }
+            }
+        }
+
+        public unsafe void MacEndPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            int num1 = offset - 3;
+            offset = GlobalFunction.ParseParams(channelData, offset, this._macEndRules, result);
+            if (this.FraqmentsBufferIsEmpty(channelData.TimeSlot))
+                return;
+            offset = GlobalFunction.ParseParams(channelData, offset, this._channelAllocationRules, result);
+            int num2 = result.Value(GlobalNames.Length_indication);
+            int num3 = Math.Min(num2 * 8 - (offset - num1), channelData.Length - offset);
+            if (num2 > 58)
+            {
+                result.Add(GlobalNames.Null_pdu, 1);
+            }
+            else
+            {
+                if (result.Value(GlobalNames.Fill_bit) != 0)
+                    num3 = this.CalcRealLength(channelData.Ptr, offset, num3);
+                if (num3 < 0)
+                {
+                    result.Add(GlobalNames.UnknowData, 1);
+                }
+                else
+                {
+                    this.AddFraqmentsToBuffer(channelData, offset, num3);
+                    LogicChannel fragmentedBuffer = this.GetDeFragmentedBuffer(channelData, result);
+                    if (fragmentedBuffer.Length == 0)
+                    {
+                        result.Add(GlobalNames.Null_pdu, 1);
+                    }
+                    else
+                    {
+                        offset = 0;
+                        this._llc.Parse(fragmentedBuffer, offset, result);
+                    }
+                }
+            }
+        }
+
+        public unsafe void MacFraqPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            if (this.FraqmentsBufferIsEmpty(channelData.TimeSlot))
+                return;
+            int num1 = (uint)TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U ? 1 : 0;
+            ++offset;
+            int num2 = channelData.Length - offset;
+            if (num1 != 0)
+                num2 = this.CalcRealLength(channelData.Ptr, offset, num2);
+            if (num2 < 0)
+                result.Add(GlobalNames.UnknowData, 1);
+            else
+                this.AddFraqmentsToBuffer(channelData, offset, num2);
+        }
+
+        public unsafe void DmoParseMacPDU(LogicChannel channelData, List<ReceivedData> result)
+        {
+            int offset1 = 0;
+            ReceivedData result1 = new ReceivedData();
+            result1.Add(GlobalNames.CurrTimeSlot, channelData.TimeSlot);
+            MAC_PDU_Type int32_1 = (MAC_PDU_Type)TetraUtils.BitsToInt32(channelData.Ptr, offset1, 2);
+            int offset2 = offset1 + 2;
+            result1.Add(GlobalNames.MAC_PDU_Type, (int)int32_1);
+            switch (int32_1)
+            {
+                case MAC_PDU_Type.MAC_resource:
+                    this.DmacDataPDU(channelData, offset2, result1);
+                    break;
+                case MAC_PDU_Type.MAC_frag:
+                    int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, 1);
+                    int offset3 = offset2 + 1;
+                    if (int32_2 == 0)
+                    {
+                        this.DmacFraqPDU(channelData, offset3, result1);
+                        break;
+                    }
+                    this.DmacEndPDU(channelData, offset3, result1);
+                    break;
+            }
+            result.Add(result1);
+        }
+
+        public unsafe void DmacDataPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            offset = GlobalFunction.ParseParams(channelData, offset, this._dmacDataRules, result);
+            int num = channelData.Length - offset;
+            if (result.Value(GlobalNames.Fill_bit) != 0)
+                num = this.CalcRealLength(channelData.Ptr, offset, num);
+            this.HalfSlotStolen = result.Value(GlobalNames.Second_half_slot_stolen) == 1;
+            if (result.Value(GlobalNames.Fragmentation_flag) == 1)
+                this.CreateFraqmentsBuffer(channelData, offset, num, result);
+            else
+                result.Value(GlobalNames.Null_pdu);
+        }
+
+        public unsafe void DmacEndPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            offset = GlobalFunction.ParseParams(channelData, offset, this._dmacEndRules, result);
+            int num = channelData.Length - offset;
+            if (result.Value(GlobalNames.Fill_bit) != 0)
+                num = this.CalcRealLength(channelData.Ptr, offset, num);
+            this.AddFraqmentsToBuffer(channelData, offset, num);
+            LogicChannel fragmentedBuffer = this.GetDeFragmentedBuffer(channelData, result);
             offset = 0;
-            this._llc.Parse(fragmentedBuffer, offset, result);
-          }
+            int length = fragmentedBuffer.Length;
         }
-      }
-    }
 
-    public unsafe void MacFraqPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      if (this.FraqmentsBufferIsEmpty(channelData.TimeSlot))
-        return;
-      int num1 = (uint) TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U ? 1 : 0;
-      ++offset;
-      int num2 = channelData.Length - offset;
-      if (num1 != 0)
-        num2 = this.CalcRealLength(channelData.Ptr, offset, num2);
-      if (num2 < 0)
-        result.Add(GlobalNames.UnknowData, 1);
-      else
-        this.AddFraqmentsToBuffer(channelData, offset, num2);
-    }
+        public unsafe void DmacFraqPDU(LogicChannel channelData, int offset, ReceivedData result)
+        {
+            int num1 = (uint)TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U ? 1 : 0;
+            ++offset;
+            int num2 = channelData.Length - offset;
+            if (num1 != 0)
+                num2 = this.CalcRealLength(channelData.Ptr, offset, num2);
+            this.AddFraqmentsToBuffer(channelData, offset, num2);
+        }
 
-    public unsafe void DmoParseMacPDU(LogicChannel channelData, List<ReceivedData> result)
-    {
-      int offset1 = 0;
-      ReceivedData result1 = new ReceivedData();
-      result1.Add(GlobalNames.CurrTimeSlot, channelData.TimeSlot);
-      MAC_PDU_Type int32_1 = (MAC_PDU_Type) TetraUtils.BitsToInt32(channelData.Ptr, offset1, 2);
-      int offset2 = offset1 + 2;
-      result1.Add(GlobalNames.MAC_PDU_Type, (int) int32_1);
-      switch (int32_1)
-      {
-        case MAC_PDU_Type.MAC_resource:
-          this.DmacDataPDU(channelData, offset2, result1);
-          break;
-        case MAC_PDU_Type.MAC_frag:
-          int int32_2 = TetraUtils.BitsToInt32(channelData.Ptr, offset2, 1);
-          int offset3 = offset2 + 1;
-          if (int32_2 == 0)
-          {
-            this.DmacFraqPDU(channelData, offset3, result1);
-            break;
-          }
-          this.DmacEndPDU(channelData, offset3, result1);
-          break;
-      }
-      result.Add(result1);
-    }
+        private unsafe int CalcRealLength(byte* buffer, int offset, int currentLength)
+        {
+            int index = offset + currentLength - 1;
+            while (index > offset && buffer[index] == (byte)0)
+                --index;
+            return index - offset;
+        }
 
-    public unsafe void DmacDataPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      offset = GlobalFunction.ParseParams(channelData, offset, this._dmacDataRules, result);
-      int num = channelData.Length - offset;
-      if (result.Value(GlobalNames.Fill_bit) != 0)
-        num = this.CalcRealLength(channelData.Ptr, offset, num);
-      this.HalfSlotStolen = result.Value(GlobalNames.Second_half_slot_stolen) == 1;
-      if (result.Value(GlobalNames.Fragmentation_flag) == 1)
-        this.CreateFraqmentsBuffer(channelData, offset, num, result);
-      else
-        result.Value(GlobalNames.Null_pdu);
-    }
+        private unsafe void CreateFraqmentsBuffer(
+          LogicChannel buffer,
+          int offset,
+          int length,
+          ReceivedData header)
+        {
+            int index1 = buffer.TimeSlot - 1;
+            if (this._writeAddress[index1] + length >= this._tempBuffers[index1].Length)
+                return;
+            Utils.Memcpy((void*)this._tempBuffersPtr[index1], (void*)(buffer.Ptr + offset), length);
+            this._writeAddress[index1] = length;
+            if (header == null)
+                return;
+            for (int index2 = 0; index2 < header.Data.Length; ++index2)
+                this._fragmentsHeader[index1].Data[index2] = header.Data[index2];
+        }
 
-    public unsafe void DmacEndPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      offset = GlobalFunction.ParseParams(channelData, offset, this._dmacEndRules, result);
-      int num = channelData.Length - offset;
-      if (result.Value(GlobalNames.Fill_bit) != 0)
-        num = this.CalcRealLength(channelData.Ptr, offset, num);
-      this.AddFraqmentsToBuffer(channelData, offset, num);
-      LogicChannel fragmentedBuffer = this.GetDeFragmentedBuffer(channelData, result);
-      offset = 0;
-      int length = fragmentedBuffer.Length;
-    }
+        private unsafe void AddFraqmentsToBuffer(LogicChannel buffer, int offset, int length)
+        {
+            int index = buffer.TimeSlot - 1;
+            if (this._writeAddress[index] == 0 || this._writeAddress[index] + length >= this._tempBuffers[index].Length)
+                return;
+            Utils.Memcpy((void*)(this._tempBuffersPtr[index] + this._writeAddress[index]), (void*)(buffer.Ptr + offset), length);
+            this._writeAddress[index] += length;
+        }
 
-    public unsafe void DmacFraqPDU(LogicChannel channelData, int offset, ReceivedData result)
-    {
-      int num1 = (uint) TetraUtils.BitsToInt32(channelData.Ptr, offset, 1) > 0U ? 1 : 0;
-      ++offset;
-      int num2 = channelData.Length - offset;
-      if (num1 != 0)
-        num2 = this.CalcRealLength(channelData.Ptr, offset, num2);
-      this.AddFraqmentsToBuffer(channelData, offset, num2);
-    }
+        private bool FraqmentsBufferIsEmpty(int timeSlot) => this._writeAddress[timeSlot - 1] == 0;
 
-    private unsafe int CalcRealLength(byte* buffer, int offset, int currentLength)
-    {
-      int index = offset + currentLength - 1;
-      while (index > offset && buffer[index] == (byte) 0)
-        --index;
-      return index - offset;
-    }
+        private unsafe LogicChannel GetDeFragmentedBuffer(
+          LogicChannel channelData,
+          ReceivedData header)
+        {
+            int index = channelData.TimeSlot - 1;
+            LogicChannel logicChannel = new LogicChannel();
+            logicChannel.Ptr = this._tempBuffersPtr[index];
+            logicChannel.Length = this._writeAddress[index];
+            logicChannel.CrcIsOk = true;
+            logicChannel.TimeSlot = channelData.TimeSlot;
+            logicChannel.Frame = channelData.Frame;
+            GlobalNames name1 = GlobalNames.Encryption_mode;
+            if (this._fragmentsHeader[index].Contains(name1))
+                header.Add(name1, this._fragmentsHeader[index].Value(name1));
+            GlobalNames name2 = GlobalNames.Address_type;
+            if (this._fragmentsHeader[index].Contains(name2))
+                header.Add(name2, this._fragmentsHeader[index].Value(name2));
+            GlobalNames name3 = GlobalNames.SSI;
+            if (this._fragmentsHeader[index].Contains(name3))
+                header.Add(name3, this._fragmentsHeader[index].Value(name3));
+            this._fragmentsHeader[index].Clear();
+            this._writeAddress[index] = 0;
+            return logicChannel;
+        }
 
-    private unsafe void CreateFraqmentsBuffer(
-      LogicChannel buffer,
-      int offset,
-      int length,
-      ReceivedData header)
-    {
-      int index1 = buffer.TimeSlot - 1;
-      if (this._writeAddress[index1] + length >= this._tempBuffers[index1].Length)
-        return;
-      Utils.Memcpy((void*) this._tempBuffersPtr[index1], (void*) (buffer.Ptr + offset), length);
-      this._writeAddress[index1] = length;
-      if (header == null)
-        return;
-      for (int index2 = 0; index2 < header.Data.Length; ++index2)
-        this._fragmentsHeader[index1].Data[index2] = header.Data[index2];
+        public enum AccessAssign
+        {
+            Header,
+            Field1,
+            Field2,
+        }
     }
-
-    private unsafe void AddFraqmentsToBuffer(LogicChannel buffer, int offset, int length)
-    {
-      int index = buffer.TimeSlot - 1;
-      if (this._writeAddress[index] == 0 || this._writeAddress[index] + length >= this._tempBuffers[index].Length)
-        return;
-      Utils.Memcpy((void*) (this._tempBuffersPtr[index] + this._writeAddress[index]), (void*) (buffer.Ptr + offset), length);
-      this._writeAddress[index] += length;
-    }
-
-    private bool FraqmentsBufferIsEmpty(int timeSlot) => this._writeAddress[timeSlot - 1] == 0;
-
-    private unsafe LogicChannel GetDeFragmentedBuffer(
-      LogicChannel channelData,
-      ReceivedData header)
-    {
-      int index = channelData.TimeSlot - 1;
-      LogicChannel logicChannel = new LogicChannel();
-      logicChannel.Ptr = this._tempBuffersPtr[index];
-      logicChannel.Length = this._writeAddress[index];
-      logicChannel.CrcIsOk = true;
-      logicChannel.TimeSlot = channelData.TimeSlot;
-      logicChannel.Frame = channelData.Frame;
-      GlobalNames name1 = GlobalNames.Encryption_mode;
-      if (this._fragmentsHeader[index].Contains(name1))
-        header.Add(name1, this._fragmentsHeader[index].Value(name1));
-      GlobalNames name2 = GlobalNames.Address_type;
-      if (this._fragmentsHeader[index].Contains(name2))
-        header.Add(name2, this._fragmentsHeader[index].Value(name2));
-      GlobalNames name3 = GlobalNames.SSI;
-      if (this._fragmentsHeader[index].Contains(name3))
-        header.Add(name3, this._fragmentsHeader[index].Value(name3));
-      this._fragmentsHeader[index].Clear();
-      this._writeAddress[index] = 0;
-      return logicChannel;
-    }
-
-    public enum AccessAssign
-    {
-      Header,
-      Field1,
-      Field2,
-    }
-  }
 }

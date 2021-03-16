@@ -6,29 +6,29 @@
 
 namespace SDRSharp.Tetra
 {
-  public struct Rules
-  {
-    public GlobalNames GlobalName;
-    public int Length;
-    public RulesType Type;
-    public int Ext1;
-    public int Ext2;
-    public int Ext3;
-
-    public Rules(
-      GlobalNames globalName,
-      int length,
-      RulesType type = RulesType.Direct,
-      int ext1 = 0,
-      int ext2 = 0,
-      int ext3 = 0)
+    public struct Rules
     {
-      this.GlobalName = globalName;
-      this.Length = length;
-      this.Type = type;
-      this.Ext1 = ext1;
-      this.Ext2 = ext2;
-      this.Ext3 = ext3;
+        public GlobalNames GlobalName;
+        public int Length;
+        public RulesType Type;
+        public int Ext1;
+        public int Ext2;
+        public int Ext3;
+
+        public Rules(
+          GlobalNames globalName,
+          int length,
+          RulesType type = RulesType.Direct,
+          int ext1 = 0,
+          int ext2 = 0,
+          int ext3 = 0)
+        {
+            this.GlobalName = globalName;
+            this.Length = length;
+            this.Type = type;
+            this.Ext1 = ext1;
+            this.Ext2 = ext2;
+            this.Ext3 = ext3;
+        }
     }
-  }
 }

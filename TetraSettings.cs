@@ -8,32 +8,32 @@ using System.Collections.Generic;
 
 namespace SDRSharp.Tetra
 {
-  public class TetraSettings
-  {
-    public string LogFileNameRules { get; set; }
+    public class TetraSettings
+    {
+        public string LogFileNameRules { get; set; }
 
-    public string LogWriteFolder { get; set; }
+        public string LogWriteFolder { get; set; }
 
-    public string LogEntryRules { get; set; }
+        public string LogEntryRules { get; set; }
 
-    public string LogSeparator { get; set; }
+        public string LogSeparator { get; set; }
 
-    public bool LogEnabled { get; set; }
+        public bool LogEnabled { get; set; }
 
-    public int BlockedLevel { get; set; }
+        public int BlockedLevel { get; set; }
 
-    public bool TopMostInfo { get; set; }
+        public bool TopMostInfo { get; set; }
 
-    public List<GroupsEntries> NetworkBase { get; set; }
+        public List<GroupsEntries> NetworkBase { get; set; }
 
-    public bool AutoPlay { get; set; }
+        public bool AutoPlay { get; set; }
 
-    public bool IgnoreEncodedSpeech { get; set; }
+        public bool IgnoreEncodedSpeech { get; set; }
 
-    public bool UdpEnabled { get; set; }
+        public bool UdpEnabled { get; set; }
 
-    public int UdpPort { get; set; }
+        public int UdpPort { get; set; }
 
-    public bool AfcDisabled { get; set; }
-  }
+        public bool AfcDisabled { get; set; }
+    }
 }

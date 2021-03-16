@@ -2,8 +2,7 @@
   "profiles": {
     "SDRSharp.Plugin.Tetra": {
       "commandName": "Executable",
-      "executablePath": "..\\\\..\\\\bin\\\\SDRSharp.exe",
-      "workingDirectory": "..\\$(Configuration)\\net5.0-windows\\"
+      "executablePath": "E:\\RADIO\\sdrplugins\\bin\\SDRSharp.exe"
     }
   }
 }

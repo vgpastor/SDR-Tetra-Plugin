@@ -8,33 +8,33 @@ using SDRSharp.Radio;
 
 namespace SDRSharp.Tetra
 {
-  public class IFProcessor : IIQProcessor, IStreamProcessor, IBaseProcessor
-  {
-    private double _sampleRate;
-    private bool _enabled;
-
-    public event IFProcessor.IQReadyDelegate IQReady;
-
-    public double SampleRate
+    public class IFProcessor : IIQProcessor, IStreamProcessor, IBaseProcessor
     {
-      get => this._sampleRate;
-      set => this._sampleRate = value;
-    }
+        private double _sampleRate;
+        private bool _enabled;
 
-    public bool Enabled
-    {
-      get => this._enabled;
-      set => this._enabled = value;
-    }
+        public event IFProcessor.IQReadyDelegate IQReady;
 
-    public unsafe void Process(Complex* buffer, int length)
-    {
-      IFProcessor.IQReadyDelegate iqReady = this.IQReady;
-      if (iqReady == null)
-        return;
-      iqReady(buffer, this._sampleRate, length);
-    }
+        public double SampleRate
+        {
+            get => this._sampleRate;
+            set => this._sampleRate = value;
+        }
 
-    public unsafe delegate void IQReadyDelegate(Complex* buffer, double samplerate, int length);
-  }
+        public bool Enabled
+        {
+            get => this._enabled;
+            set => this._enabled = value;
+        }
+
+        public unsafe void Process(Complex* buffer, int length)
+        {
+            IFProcessor.IQReadyDelegate iqReady = this.IQReady;
+            if (iqReady == null)
+                return;
+            iqReady(buffer, this._sampleRate, length);
+        }
+
+        public unsafe delegate void IQReadyDelegate(Complex* buffer, double samplerate, int length);
+    }
 }

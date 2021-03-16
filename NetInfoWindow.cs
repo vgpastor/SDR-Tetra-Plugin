@@ -642,750 +642,1079 @@ namespace SDRSharp.Tetra
 
     private void InitializeComponent()
     {
-      this.components = (IContainer) new Container();
-      DataGridViewCellStyle gridViewCellStyle1 = new DataGridViewCellStyle();
-      DataGridViewCellStyle gridViewCellStyle2 = new DataGridViewCellStyle();
-      DataGridViewCellStyle gridViewCellStyle3 = new DataGridViewCellStyle();
-      DataGridViewCellStyle gridViewCellStyle4 = new DataGridViewCellStyle();
-      this.timeOutTimer = new Timer(this.components);
-      this.tabControl1 = new TabControl();
-      this.callsTabPage = new TabPage();
-      this.splitContainer2 = new SplitContainer();
-      this.callsDataGridView = new DataGridViewEx();
-      this.callIDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.Type = new DataGridViewTextBoxColumn();
-      this.From = new DataGridViewTextBoxColumn();
-      this.To = new DataGridViewTextBoxColumn();
-      this.Carrier = new DataGridViewTextBoxColumn();
-      this.assignedSlotDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.encryptedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.duplexDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.callsBindingSource = new BindingSource(this.components);
-      this.callsTextBox = new TextBox();
-      this.groupTabPage = new TabPage();
-      this.groupDataGridView = new DataGridViewEx();
-      this.gSSIDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-      this.priorityDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-      this.nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-      this.groupBindingSource = new BindingSource(this.components);
-      this.cellTabPage = new TabPage();
-      this.cellDataGridView = new DataGridView();
-      this.parameterDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.valueDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.commentDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cellBindingSource = new BindingSource(this.components);
-      this.neighbourTabPage = new TabPage();
-      this.neighbourBindingSource = new BindingSource(this.components);
-      this.parameterDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-      this.Cell1 = new DataGridViewTextBoxColumn();
-      this.Cell2 = new DataGridViewTextBoxColumn();
-      this.Cell3 = new DataGridViewTextBoxColumn();
-      this.Cell4 = new DataGridViewTextBoxColumn();
-      this.Cell5 = new DataGridViewTextBoxColumn();
-      this.Cell6 = new DataGridViewTextBoxColumn();
-      this.Cell7 = new DataGridViewTextBoxColumn();
-      this.Cell8 = new DataGridViewTextBoxColumn();
-      this.Cell9 = new DataGridViewTextBoxColumn();
-      this.Cell10 = new DataGridViewTextBoxColumn();
-      this.Cell11 = new DataGridViewTextBoxColumn();
-      this.Cell12 = new DataGridViewTextBoxColumn();
-      this.Cell13 = new DataGridViewTextBoxColumn();
-      this.Cell14 = new DataGridViewTextBoxColumn();
-      this.Cell15 = new DataGridViewTextBoxColumn();
-      this.Cell16 = new DataGridViewTextBoxColumn();
-      this.Cell17 = new DataGridViewTextBoxColumn();
-      this.Cell18 = new DataGridViewTextBoxColumn();
-      this.Cell19 = new DataGridViewTextBoxColumn();
-      this.Cell20 = new DataGridViewTextBoxColumn();
-      this.Cell21 = new DataGridViewTextBoxColumn();
-      this.Cell22 = new DataGridViewTextBoxColumn();
-      this.Cell23 = new DataGridViewTextBoxColumn();
-      this.Cell24 = new DataGridViewTextBoxColumn();
-      this.Cell25 = new DataGridViewTextBoxColumn();
-      this.Cell26 = new DataGridViewTextBoxColumn();
-      this.Cell27 = new DataGridViewTextBoxColumn();
-      this.Cell28 = new DataGridViewTextBoxColumn();
-      this.Cell29 = new DataGridViewTextBoxColumn();
-      this.Cell30 = new DataGridViewTextBoxColumn();
-      this.Cell31 = new DataGridViewTextBoxColumn();
-      this.Cell32 = new DataGridViewTextBoxColumn();
-      this.checkBox1 = new CheckBox();
-      this.cell32DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell31DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell30DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell29DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell28DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell27DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell26DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell25DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell24DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell23DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell22DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell21DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell20DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell19DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell18DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell17DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell16DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell15DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell14DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell13DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell12DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell11DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell10DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell9DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell8DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell7DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell6DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell5DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell4DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell3DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell2DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.cell1DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-      this.parameterDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-      this.neighbourDataGridView = new DataGridViewEx();
-      this.tabControl1.SuspendLayout();
-      this.callsTabPage.SuspendLayout();
-      this.splitContainer2.BeginInit();
-      this.splitContainer2.Panel1.SuspendLayout();
-      this.splitContainer2.Panel2.SuspendLayout();
-      this.splitContainer2.SuspendLayout();
-      ((ISupportInitialize) this.callsDataGridView).BeginInit();
-      ((ISupportInitialize) this.callsBindingSource).BeginInit();
-      this.groupTabPage.SuspendLayout();
-      ((ISupportInitialize) this.groupDataGridView).BeginInit();
-      ((ISupportInitialize) this.groupBindingSource).BeginInit();
-      this.cellTabPage.SuspendLayout();
-      ((ISupportInitialize) this.cellDataGridView).BeginInit();
-      ((ISupportInitialize) this.cellBindingSource).BeginInit();
-      this.neighbourTabPage.SuspendLayout();
-      ((ISupportInitialize) this.neighbourBindingSource).BeginInit();
-      ((ISupportInitialize) this.neighbourDataGridView).BeginInit();
-      this.SuspendLayout();
-      this.timeOutTimer.Enabled = true;
-      this.timeOutTimer.Interval = 50;
-      this.tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-      this.tabControl1.Controls.Add((Control) this.callsTabPage);
-      this.tabControl1.Controls.Add((Control) this.groupTabPage);
-      this.tabControl1.Controls.Add((Control) this.cellTabPage);
-      this.tabControl1.Controls.Add((Control) this.neighbourTabPage);
-      this.tabControl1.Location = new Point(12, 12);
-      this.tabControl1.Name = "tabControl1";
-      this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new Size(542, 426);
-      this.tabControl1.TabIndex = 23;
-      this.callsTabPage.Controls.Add((Control) this.splitContainer2);
-      this.callsTabPage.Location = new Point(4, 22);
-      this.callsTabPage.Name = "callsTabPage";
-      this.callsTabPage.Padding = new Padding(3);
-      this.callsTabPage.Size = new Size(534, 400);
-      this.callsTabPage.TabIndex = 0;
-      this.callsTabPage.Text = "Calls";
-      this.callsTabPage.UseVisualStyleBackColor = true;
-      this.splitContainer2.BorderStyle = BorderStyle.FixedSingle;
-      this.splitContainer2.Dock = DockStyle.Fill;
-      this.splitContainer2.Location = new Point(3, 3);
-      this.splitContainer2.Name = "splitContainer2";
-      this.splitContainer2.Orientation = Orientation.Horizontal;
-      this.splitContainer2.Panel1.Controls.Add((Control) this.callsDataGridView);
-      this.splitContainer2.Panel2.Controls.Add((Control) this.callsTextBox);
-      this.splitContainer2.Size = new Size(528, 394);
-      this.splitContainer2.SplitterDistance = 235;
-      this.splitContainer2.TabIndex = 25;
-      this.callsDataGridView.AllowUserToAddRows = false;
-      this.callsDataGridView.AllowUserToDeleteRows = false;
-      this.callsDataGridView.AllowUserToOrderColumns = true;
-      gridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular, GraphicsUnit.Point, (byte) 204);
-      this.callsDataGridView.AlternatingRowsDefaultCellStyle = gridViewCellStyle1;
-      this.callsDataGridView.AutoGenerateColumns = false;
-      this.callsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.callsDataGridView.Columns.AddRange((DataGridViewColumn) this.callIDDataGridViewTextBoxColumn, (DataGridViewColumn) this.Type, (DataGridViewColumn) this.From, (DataGridViewColumn) this.To, (DataGridViewColumn) this.Carrier, (DataGridViewColumn) this.assignedSlotDataGridViewTextBoxColumn, (DataGridViewColumn) this.encryptedDataGridViewTextBoxColumn, (DataGridViewColumn) this.duplexDataGridViewTextBoxColumn);
-      this.callsDataGridView.DataSource = (object) this.callsBindingSource;
-      gridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-      gridViewCellStyle2.BackColor = SystemColors.Window;
-      gridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular, GraphicsUnit.Point, (byte) 204);
-      gridViewCellStyle2.ForeColor = SystemColors.ControlText;
-      gridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-      gridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-      gridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-      this.callsDataGridView.DefaultCellStyle = gridViewCellStyle2;
-      this.callsDataGridView.Dock = DockStyle.Fill;
-      this.callsDataGridView.Location = new Point(0, 0);
-      this.callsDataGridView.Name = "callsDataGridView";
-      this.callsDataGridView.ReadOnly = true;
-      this.callsDataGridView.RowHeadersVisible = false;
-      this.callsDataGridView.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
-      this.callsDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.Blue;
-      this.callsDataGridView.ShowCellErrors = false;
-      this.callsDataGridView.ShowRowErrors = false;
-      this.callsDataGridView.Size = new Size(526, 233);
-      this.callsDataGridView.TabIndex = 0;
-      this.callsDataGridView.VirtualMode = true;
-      this.callIDDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.callIDDataGridViewTextBoxColumn.DataPropertyName = "CallID";
-      this.callIDDataGridViewTextBoxColumn.HeaderText = "Call ID";
-      this.callIDDataGridViewTextBoxColumn.MinimumWidth = 60;
-      this.callIDDataGridViewTextBoxColumn.Name = "callIDDataGridViewTextBoxColumn";
-      this.callIDDataGridViewTextBoxColumn.ReadOnly = true;
-      this.callIDDataGridViewTextBoxColumn.Width = 63;
-      this.Type.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.Type.DataPropertyName = "Type";
-      this.Type.HeaderText = "Type";
-      this.Type.MinimumWidth = 60;
-      this.Type.Name = "Type";
-      this.Type.ReadOnly = true;
-      this.Type.Width = 60;
-      this.From.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.From.DataPropertyName = "From";
-      this.From.HeaderText = "From";
-      this.From.MinimumWidth = 60;
-      this.From.Name = "From";
-      this.From.ReadOnly = true;
-      this.From.Width = 60;
-      this.To.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.To.DataPropertyName = "To";
-      this.To.HeaderText = "To";
-      this.To.MinimumWidth = 60;
-      this.To.Name = "To";
-      this.To.ReadOnly = true;
-      this.To.Width = 60;
-      this.Carrier.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.Carrier.DataPropertyName = "Carrier";
-      this.Carrier.HeaderText = "Carrier";
-      this.Carrier.MinimumWidth = 60;
-      this.Carrier.Name = "Carrier";
-      this.Carrier.ReadOnly = true;
-      this.Carrier.SortMode = DataGridViewColumnSortMode.NotSortable;
-      this.Carrier.Width = 60;
-      this.assignedSlotDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.assignedSlotDataGridViewTextBoxColumn.DataPropertyName = "AssignedSlot";
-      this.assignedSlotDataGridViewTextBoxColumn.HeaderText = "Time slot";
-      this.assignedSlotDataGridViewTextBoxColumn.MinimumWidth = 60;
-      this.assignedSlotDataGridViewTextBoxColumn.Name = "assignedSlotDataGridViewTextBoxColumn";
-      this.assignedSlotDataGridViewTextBoxColumn.ReadOnly = true;
-      this.assignedSlotDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-      this.assignedSlotDataGridViewTextBoxColumn.Width = 60;
-      this.encryptedDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.encryptedDataGridViewTextBoxColumn.DataPropertyName = "Encrypted";
-      this.encryptedDataGridViewTextBoxColumn.HeaderText = "Encrypted";
-      this.encryptedDataGridViewTextBoxColumn.MinimumWidth = 60;
-      this.encryptedDataGridViewTextBoxColumn.Name = "encryptedDataGridViewTextBoxColumn";
-      this.encryptedDataGridViewTextBoxColumn.ReadOnly = true;
-      this.encryptedDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-      this.encryptedDataGridViewTextBoxColumn.Width = 61;
-      this.duplexDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      this.duplexDataGridViewTextBoxColumn.DataPropertyName = "Duplex";
-      this.duplexDataGridViewTextBoxColumn.HeaderText = "Duplex";
-      this.duplexDataGridViewTextBoxColumn.MinimumWidth = 60;
-      this.duplexDataGridViewTextBoxColumn.Name = "duplexDataGridViewTextBoxColumn";
-      this.duplexDataGridViewTextBoxColumn.ReadOnly = true;
-      this.duplexDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-      this.callsBindingSource.AllowNew = false;
-      this.callsBindingSource.DataSource = (object) typeof (CallsDisplay);
-      this.callsTextBox.AcceptsReturn = true;
-      this.callsTextBox.AcceptsTab = true;
-      this.callsTextBox.BorderStyle = BorderStyle.None;
-      this.callsTextBox.Dock = DockStyle.Fill;
-      this.callsTextBox.Font = new Font("Microsoft Sans Serif", 8.25f);
-      this.callsTextBox.Location = new Point(0, 0);
-      this.callsTextBox.Multiline = true;
-      this.callsTextBox.Name = "callsTextBox";
-      this.callsTextBox.ReadOnly = true;
-      this.callsTextBox.ScrollBars = ScrollBars.Both;
-      this.callsTextBox.Size = new Size(526, 153);
-      this.callsTextBox.TabIndex = 23;
-      this.callsTextBox.WordWrap = false;
-      this.groupTabPage.Controls.Add((Control) this.groupDataGridView);
-      this.groupTabPage.Location = new Point(4, 22);
-      this.groupTabPage.Name = "groupTabPage";
-      this.groupTabPage.Padding = new Padding(3);
-      this.groupTabPage.Size = new Size(534, 400);
-      this.groupTabPage.TabIndex = 3;
-      this.groupTabPage.Text = "Groups";
-      this.groupTabPage.UseVisualStyleBackColor = true;
-      this.groupDataGridView.AutoGenerateColumns = false;
-      this.groupDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.groupDataGridView.Columns.AddRange((DataGridViewColumn) this.gSSIDataGridViewTextBoxColumn1, (DataGridViewColumn) this.priorityDataGridViewTextBoxColumn1, (DataGridViewColumn) this.nameDataGridViewTextBoxColumn1);
-      this.groupDataGridView.DataSource = (object) this.groupBindingSource;
-      this.groupDataGridView.Dock = DockStyle.Fill;
-      this.groupDataGridView.Location = new Point(3, 3);
-      this.groupDataGridView.Name = "groupDataGridView";
-      this.groupDataGridView.RowHeadersVisible = false;
-      this.groupDataGridView.Size = new Size(528, 394);
-      this.groupDataGridView.TabIndex = 0;
-      this.gSSIDataGridViewTextBoxColumn1.DataPropertyName = "GSSI";
-      this.gSSIDataGridViewTextBoxColumn1.HeaderText = "GSSI";
-      this.gSSIDataGridViewTextBoxColumn1.Name = "gSSIDataGridViewTextBoxColumn1";
-      this.priorityDataGridViewTextBoxColumn1.DataPropertyName = "Priority";
-      this.priorityDataGridViewTextBoxColumn1.HeaderText = "Priority";
-      this.priorityDataGridViewTextBoxColumn1.Name = "priorityDataGridViewTextBoxColumn1";
-      this.priorityDataGridViewTextBoxColumn1.Width = 50;
-      this.nameDataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-      this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-      this.nameDataGridViewTextBoxColumn1.MinimumWidth = 100;
-      this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-      this.groupBindingSource.AllowNew = false;
-      this.groupBindingSource.DataSource = (object) typeof (GroupDisplay);
-      this.cellTabPage.Controls.Add((Control) this.cellDataGridView);
-      this.cellTabPage.Location = new Point(4, 22);
-      this.cellTabPage.Name = "cellTabPage";
-      this.cellTabPage.Padding = new Padding(3);
-      this.cellTabPage.Size = new Size(534, 400);
-      this.cellTabPage.TabIndex = 2;
-      this.cellTabPage.Text = "Current cell";
-      this.cellTabPage.UseVisualStyleBackColor = true;
-      this.cellDataGridView.AutoGenerateColumns = false;
-      this.cellDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.cellDataGridView.Columns.AddRange((DataGridViewColumn) this.parameterDataGridViewTextBoxColumn, (DataGridViewColumn) this.valueDataGridViewTextBoxColumn, (DataGridViewColumn) this.commentDataGridViewTextBoxColumn);
-      this.cellDataGridView.DataSource = (object) this.cellBindingSource;
-      this.cellDataGridView.Dock = DockStyle.Fill;
-      this.cellDataGridView.Location = new Point(3, 3);
-      this.cellDataGridView.Name = "cellDataGridView";
-      this.cellDataGridView.RowHeadersVisible = false;
-      this.cellDataGridView.Size = new Size(528, 394);
-      this.cellDataGridView.TabIndex = 0;
-      this.parameterDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.parameterDataGridViewTextBoxColumn.DataPropertyName = "Parameter";
-      this.parameterDataGridViewTextBoxColumn.HeaderText = "Parameter";
-      this.parameterDataGridViewTextBoxColumn.MinimumWidth = 100;
-      this.parameterDataGridViewTextBoxColumn.Name = "parameterDataGridViewTextBoxColumn";
-      this.valueDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-      this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-      this.valueDataGridViewTextBoxColumn.MinimumWidth = 40;
-      this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-      this.valueDataGridViewTextBoxColumn.Width = 59;
-      this.commentDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-      this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-      this.commentDataGridViewTextBoxColumn.MinimumWidth = 100;
-      this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
-      this.cellBindingSource.AllowNew = false;
-      this.cellBindingSource.DataSource = (object) typeof (CellDisplay);
-      this.neighbourTabPage.Controls.Add((Control) this.neighbourDataGridView);
-      this.neighbourTabPage.Location = new Point(4, 22);
-      this.neighbourTabPage.Name = "neighbourTabPage";
-      this.neighbourTabPage.Padding = new Padding(3);
-      this.neighbourTabPage.Size = new Size(534, 400);
-      this.neighbourTabPage.TabIndex = 1;
-      this.neighbourTabPage.Text = "Neighbour cell";
-      this.neighbourTabPage.UseVisualStyleBackColor = true;
-      this.neighbourBindingSource.AllowNew = false;
-      this.neighbourBindingSource.DataSource = (object) typeof (NeighbourDisplay);
-      this.parameterDataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-      this.parameterDataGridViewTextBoxColumn1.DataPropertyName = "Parameter";
-      this.parameterDataGridViewTextBoxColumn1.HeaderText = "Parameter";
-      this.parameterDataGridViewTextBoxColumn1.Name = "parameterDataGridViewTextBoxColumn1";
-      this.parameterDataGridViewTextBoxColumn1.ReadOnly = true;
-      this.parameterDataGridViewTextBoxColumn1.SortMode = DataGridViewColumnSortMode.NotSortable;
-      this.parameterDataGridViewTextBoxColumn1.Width = 5;
-      this.Cell1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell1.DataPropertyName = "Cell1";
-      this.Cell1.HeaderText = "Cell1";
-      this.Cell1.Name = "Cell1";
-      this.Cell1.ReadOnly = true;
-      this.Cell1.Width = 5;
-      this.Cell2.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell2.DataPropertyName = "Cell2";
-      this.Cell2.HeaderText = "Cell2";
-      this.Cell2.Name = "Cell2";
-      this.Cell2.ReadOnly = true;
-      this.Cell2.Width = 5;
-      this.Cell3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell3.DataPropertyName = "Cell3";
-      this.Cell3.HeaderText = "Cell3";
-      this.Cell3.Name = "Cell3";
-      this.Cell3.ReadOnly = true;
-      this.Cell3.Width = 5;
-      this.Cell4.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell4.DataPropertyName = "Cell4";
-      this.Cell4.HeaderText = "Cell4";
-      this.Cell4.Name = "Cell4";
-      this.Cell4.ReadOnly = true;
-      this.Cell4.Width = 5;
-      this.Cell5.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell5.DataPropertyName = "Cell5";
-      this.Cell5.HeaderText = "Cell5";
-      this.Cell5.Name = "Cell5";
-      this.Cell5.ReadOnly = true;
-      this.Cell5.Width = 5;
-      this.Cell6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell6.DataPropertyName = "Cell6";
-      this.Cell6.HeaderText = "Cell6";
-      this.Cell6.Name = "Cell6";
-      this.Cell6.ReadOnly = true;
-      this.Cell6.Width = 5;
-      this.Cell7.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell7.DataPropertyName = "Cell7";
-      this.Cell7.HeaderText = "Cell7";
-      this.Cell7.Name = "Cell7";
-      this.Cell7.ReadOnly = true;
-      this.Cell7.Width = 5;
-      this.Cell8.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell8.DataPropertyName = "Cell8";
-      this.Cell8.HeaderText = "Cell8";
-      this.Cell8.Name = "Cell8";
-      this.Cell8.ReadOnly = true;
-      this.Cell8.Width = 5;
-      this.Cell9.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell9.DataPropertyName = "Cell9";
-      this.Cell9.HeaderText = "Cell9";
-      this.Cell9.Name = "Cell9";
-      this.Cell9.ReadOnly = true;
-      this.Cell9.Width = 5;
-      this.Cell10.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell10.DataPropertyName = "Cell10";
-      this.Cell10.HeaderText = "Cell10";
-      this.Cell10.Name = "Cell10";
-      this.Cell10.ReadOnly = true;
-      this.Cell10.Width = 5;
-      this.Cell11.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell11.DataPropertyName = "Cell11";
-      this.Cell11.HeaderText = "Cell11";
-      this.Cell11.Name = "Cell11";
-      this.Cell11.ReadOnly = true;
-      this.Cell11.Width = 5;
-      this.Cell12.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell12.DataPropertyName = "Cell12";
-      this.Cell12.HeaderText = "Cell12";
-      this.Cell12.Name = "Cell12";
-      this.Cell12.ReadOnly = true;
-      this.Cell12.Width = 5;
-      this.Cell13.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell13.DataPropertyName = "Cell13";
-      this.Cell13.HeaderText = "Cell13";
-      this.Cell13.Name = "Cell13";
-      this.Cell13.ReadOnly = true;
-      this.Cell13.Width = 5;
-      this.Cell14.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell14.DataPropertyName = "Cell14";
-      this.Cell14.HeaderText = "Cell14";
-      this.Cell14.Name = "Cell14";
-      this.Cell14.ReadOnly = true;
-      this.Cell14.Width = 5;
-      this.Cell15.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell15.DataPropertyName = "Cell15";
-      this.Cell15.HeaderText = "Cell15";
-      this.Cell15.Name = "Cell15";
-      this.Cell15.ReadOnly = true;
-      this.Cell15.Width = 5;
-      this.Cell16.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell16.DataPropertyName = "Cell16";
-      this.Cell16.HeaderText = "Cell16";
-      this.Cell16.Name = "Cell16";
-      this.Cell16.ReadOnly = true;
-      this.Cell16.Width = 5;
-      this.Cell17.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell17.DataPropertyName = "Cell17";
-      this.Cell17.HeaderText = "Cell17";
-      this.Cell17.Name = "Cell17";
-      this.Cell17.ReadOnly = true;
-      this.Cell17.Width = 5;
-      this.Cell18.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell18.DataPropertyName = "Cell18";
-      this.Cell18.HeaderText = "Cell18";
-      this.Cell18.Name = "Cell18";
-      this.Cell18.ReadOnly = true;
-      this.Cell18.Width = 5;
-      this.Cell19.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell19.DataPropertyName = "Cell19";
-      this.Cell19.HeaderText = "Cell19";
-      this.Cell19.Name = "Cell19";
-      this.Cell19.ReadOnly = true;
-      this.Cell19.Width = 5;
-      this.Cell20.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell20.DataPropertyName = "Cell20";
-      this.Cell20.HeaderText = "Cell20";
-      this.Cell20.Name = "Cell20";
-      this.Cell20.ReadOnly = true;
-      this.Cell20.Width = 5;
-      this.Cell21.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell21.DataPropertyName = "Cell21";
-      this.Cell21.HeaderText = "Cell21";
-      this.Cell21.Name = "Cell21";
-      this.Cell21.ReadOnly = true;
-      this.Cell21.Width = 5;
-      this.Cell22.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell22.DataPropertyName = "Cell22";
-      this.Cell22.HeaderText = "Cell22";
-      this.Cell22.Name = "Cell22";
-      this.Cell22.ReadOnly = true;
-      this.Cell22.Width = 5;
-      this.Cell23.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell23.DataPropertyName = "Cell23";
-      this.Cell23.HeaderText = "Cell23";
-      this.Cell23.Name = "Cell23";
-      this.Cell23.ReadOnly = true;
-      this.Cell23.Width = 5;
-      this.Cell24.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell24.DataPropertyName = "Cell24";
-      this.Cell24.HeaderText = "Cell24";
-      this.Cell24.Name = "Cell24";
-      this.Cell24.ReadOnly = true;
-      this.Cell24.Width = 5;
-      this.Cell25.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell25.DataPropertyName = "Cell25";
-      this.Cell25.HeaderText = "Cell25";
-      this.Cell25.Name = "Cell25";
-      this.Cell25.ReadOnly = true;
-      this.Cell25.Width = 5;
-      this.Cell26.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell26.DataPropertyName = "Cell26";
-      this.Cell26.HeaderText = "Cell26";
-      this.Cell26.Name = "Cell26";
-      this.Cell26.ReadOnly = true;
-      this.Cell26.Width = 5;
-      this.Cell27.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell27.DataPropertyName = "Cell27";
-      this.Cell27.HeaderText = "Cell27";
-      this.Cell27.Name = "Cell27";
-      this.Cell27.ReadOnly = true;
-      this.Cell27.Width = 5;
-      this.Cell28.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell28.DataPropertyName = "Cell28";
-      this.Cell28.HeaderText = "Cell28";
-      this.Cell28.Name = "Cell28";
-      this.Cell28.ReadOnly = true;
-      this.Cell28.Width = 5;
-      this.Cell29.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell29.DataPropertyName = "Cell29";
-      this.Cell29.HeaderText = "Cell29";
-      this.Cell29.Name = "Cell29";
-      this.Cell29.ReadOnly = true;
-      this.Cell29.Width = 5;
-      this.Cell30.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell30.DataPropertyName = "Cell30";
-      this.Cell30.HeaderText = "Cell30";
-      this.Cell30.Name = "Cell30";
-      this.Cell30.ReadOnly = true;
-      this.Cell30.Width = 5;
-      this.Cell31.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell31.DataPropertyName = "Cell31";
-      this.Cell31.HeaderText = "Cell31";
-      this.Cell31.Name = "Cell31";
-      this.Cell31.ReadOnly = true;
-      this.Cell31.Width = 5;
-      this.Cell32.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-      this.Cell32.DataPropertyName = "Cell32";
-      this.Cell32.HeaderText = "Cell32";
-      this.Cell32.Name = "Cell32";
-      this.Cell32.ReadOnly = true;
-      this.Cell32.Width = 5;
-      this.checkBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-      this.checkBox1.AutoSize = true;
-      this.checkBox1.Location = new Point(489, 11);
-      this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new Size(58, 17);
-      this.checkBox1.TabIndex = 27;
-      this.checkBox1.Text = "On top";
-      this.checkBox1.UseVisualStyleBackColor = true;
-      this.checkBox1.CheckedChanged += new EventHandler(this.CheckBox1_CheckedChanged);
-      this.cell32DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell32DataGridViewTextBoxColumn.DataPropertyName = "Cell32";
-      this.cell32DataGridViewTextBoxColumn.HeaderText = "32";
-      this.cell32DataGridViewTextBoxColumn.Name = "cell32DataGridViewTextBoxColumn";
-      this.cell32DataGridViewTextBoxColumn.Width = 44;
-      this.cell31DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell31DataGridViewTextBoxColumn.DataPropertyName = "Cell31";
-      this.cell31DataGridViewTextBoxColumn.HeaderText = "31";
-      this.cell31DataGridViewTextBoxColumn.Name = "cell31DataGridViewTextBoxColumn";
-      this.cell31DataGridViewTextBoxColumn.Width = 44;
-      this.cell30DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell30DataGridViewTextBoxColumn.DataPropertyName = "Cell30";
-      this.cell30DataGridViewTextBoxColumn.HeaderText = "30";
-      this.cell30DataGridViewTextBoxColumn.Name = "cell30DataGridViewTextBoxColumn";
-      this.cell30DataGridViewTextBoxColumn.Width = 44;
-      this.cell29DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell29DataGridViewTextBoxColumn.DataPropertyName = "Cell29";
-      this.cell29DataGridViewTextBoxColumn.HeaderText = "29";
-      this.cell29DataGridViewTextBoxColumn.Name = "cell29DataGridViewTextBoxColumn";
-      this.cell29DataGridViewTextBoxColumn.Width = 44;
-      this.cell28DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell28DataGridViewTextBoxColumn.DataPropertyName = "Cell28";
-      this.cell28DataGridViewTextBoxColumn.HeaderText = "28";
-      this.cell28DataGridViewTextBoxColumn.Name = "cell28DataGridViewTextBoxColumn";
-      this.cell28DataGridViewTextBoxColumn.Width = 44;
-      this.cell27DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell27DataGridViewTextBoxColumn.DataPropertyName = "Cell27";
-      this.cell27DataGridViewTextBoxColumn.HeaderText = "27";
-      this.cell27DataGridViewTextBoxColumn.Name = "cell27DataGridViewTextBoxColumn";
-      this.cell27DataGridViewTextBoxColumn.Width = 44;
-      this.cell26DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell26DataGridViewTextBoxColumn.DataPropertyName = "Cell26";
-      this.cell26DataGridViewTextBoxColumn.HeaderText = "26";
-      this.cell26DataGridViewTextBoxColumn.Name = "cell26DataGridViewTextBoxColumn";
-      this.cell26DataGridViewTextBoxColumn.Width = 44;
-      this.cell25DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell25DataGridViewTextBoxColumn.DataPropertyName = "Cell25";
-      this.cell25DataGridViewTextBoxColumn.HeaderText = "25";
-      this.cell25DataGridViewTextBoxColumn.Name = "cell25DataGridViewTextBoxColumn";
-      this.cell25DataGridViewTextBoxColumn.Width = 44;
-      this.cell24DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell24DataGridViewTextBoxColumn.DataPropertyName = "Cell24";
-      this.cell24DataGridViewTextBoxColumn.HeaderText = "24";
-      this.cell24DataGridViewTextBoxColumn.Name = "cell24DataGridViewTextBoxColumn";
-      this.cell24DataGridViewTextBoxColumn.Width = 44;
-      this.cell23DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell23DataGridViewTextBoxColumn.DataPropertyName = "Cell23";
-      this.cell23DataGridViewTextBoxColumn.HeaderText = "23";
-      this.cell23DataGridViewTextBoxColumn.Name = "cell23DataGridViewTextBoxColumn";
-      this.cell23DataGridViewTextBoxColumn.Width = 44;
-      this.cell22DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell22DataGridViewTextBoxColumn.DataPropertyName = "Cell22";
-      this.cell22DataGridViewTextBoxColumn.HeaderText = "22";
-      this.cell22DataGridViewTextBoxColumn.Name = "cell22DataGridViewTextBoxColumn";
-      this.cell22DataGridViewTextBoxColumn.Width = 44;
-      this.cell21DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell21DataGridViewTextBoxColumn.DataPropertyName = "Cell21";
-      this.cell21DataGridViewTextBoxColumn.HeaderText = "21";
-      this.cell21DataGridViewTextBoxColumn.Name = "cell21DataGridViewTextBoxColumn";
-      this.cell21DataGridViewTextBoxColumn.Width = 44;
-      this.cell20DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell20DataGridViewTextBoxColumn.DataPropertyName = "Cell20";
-      this.cell20DataGridViewTextBoxColumn.HeaderText = "20";
-      this.cell20DataGridViewTextBoxColumn.Name = "cell20DataGridViewTextBoxColumn";
-      this.cell20DataGridViewTextBoxColumn.Width = 44;
-      this.cell19DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell19DataGridViewTextBoxColumn.DataPropertyName = "Cell19";
-      this.cell19DataGridViewTextBoxColumn.HeaderText = "19";
-      this.cell19DataGridViewTextBoxColumn.Name = "cell19DataGridViewTextBoxColumn";
-      this.cell19DataGridViewTextBoxColumn.Width = 44;
-      this.cell18DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell18DataGridViewTextBoxColumn.DataPropertyName = "Cell18";
-      this.cell18DataGridViewTextBoxColumn.HeaderText = "18";
-      this.cell18DataGridViewTextBoxColumn.Name = "cell18DataGridViewTextBoxColumn";
-      this.cell18DataGridViewTextBoxColumn.Width = 44;
-      this.cell17DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell17DataGridViewTextBoxColumn.DataPropertyName = "Cell17";
-      this.cell17DataGridViewTextBoxColumn.HeaderText = "17";
-      this.cell17DataGridViewTextBoxColumn.Name = "cell17DataGridViewTextBoxColumn";
-      this.cell17DataGridViewTextBoxColumn.Width = 44;
-      this.cell16DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell16DataGridViewTextBoxColumn.DataPropertyName = "Cell16";
-      this.cell16DataGridViewTextBoxColumn.HeaderText = "16";
-      this.cell16DataGridViewTextBoxColumn.Name = "cell16DataGridViewTextBoxColumn";
-      this.cell16DataGridViewTextBoxColumn.Width = 44;
-      this.cell15DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell15DataGridViewTextBoxColumn.DataPropertyName = "Cell15";
-      this.cell15DataGridViewTextBoxColumn.HeaderText = "15";
-      this.cell15DataGridViewTextBoxColumn.Name = "cell15DataGridViewTextBoxColumn";
-      this.cell15DataGridViewTextBoxColumn.Width = 44;
-      this.cell14DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell14DataGridViewTextBoxColumn.DataPropertyName = "Cell14";
-      this.cell14DataGridViewTextBoxColumn.HeaderText = "14";
-      this.cell14DataGridViewTextBoxColumn.Name = "cell14DataGridViewTextBoxColumn";
-      this.cell14DataGridViewTextBoxColumn.Width = 44;
-      this.cell13DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell13DataGridViewTextBoxColumn.DataPropertyName = "Cell13";
-      this.cell13DataGridViewTextBoxColumn.HeaderText = "13";
-      this.cell13DataGridViewTextBoxColumn.Name = "cell13DataGridViewTextBoxColumn";
-      this.cell13DataGridViewTextBoxColumn.Width = 44;
-      this.cell12DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell12DataGridViewTextBoxColumn.DataPropertyName = "Cell12";
-      this.cell12DataGridViewTextBoxColumn.HeaderText = "12";
-      this.cell12DataGridViewTextBoxColumn.Name = "cell12DataGridViewTextBoxColumn";
-      this.cell12DataGridViewTextBoxColumn.Width = 44;
-      this.cell11DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell11DataGridViewTextBoxColumn.DataPropertyName = "Cell11";
-      this.cell11DataGridViewTextBoxColumn.HeaderText = "11";
-      this.cell11DataGridViewTextBoxColumn.Name = "cell11DataGridViewTextBoxColumn";
-      this.cell11DataGridViewTextBoxColumn.Width = 44;
-      this.cell10DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell10DataGridViewTextBoxColumn.DataPropertyName = "Cell10";
-      this.cell10DataGridViewTextBoxColumn.HeaderText = "10";
-      this.cell10DataGridViewTextBoxColumn.Name = "cell10DataGridViewTextBoxColumn";
-      this.cell10DataGridViewTextBoxColumn.Width = 44;
-      this.cell9DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell9DataGridViewTextBoxColumn.DataPropertyName = "Cell9";
-      this.cell9DataGridViewTextBoxColumn.HeaderText = "9";
-      this.cell9DataGridViewTextBoxColumn.Name = "cell9DataGridViewTextBoxColumn";
-      this.cell9DataGridViewTextBoxColumn.Width = 38;
-      this.cell8DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell8DataGridViewTextBoxColumn.DataPropertyName = "Cell8";
-      this.cell8DataGridViewTextBoxColumn.HeaderText = "8";
-      this.cell8DataGridViewTextBoxColumn.Name = "cell8DataGridViewTextBoxColumn";
-      this.cell8DataGridViewTextBoxColumn.Width = 38;
-      this.cell7DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell7DataGridViewTextBoxColumn.DataPropertyName = "Cell7";
-      this.cell7DataGridViewTextBoxColumn.HeaderText = "7";
-      this.cell7DataGridViewTextBoxColumn.Name = "cell7DataGridViewTextBoxColumn";
-      this.cell7DataGridViewTextBoxColumn.Width = 38;
-      this.cell6DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell6DataGridViewTextBoxColumn.DataPropertyName = "Cell6";
-      this.cell6DataGridViewTextBoxColumn.HeaderText = "6";
-      this.cell6DataGridViewTextBoxColumn.Name = "cell6DataGridViewTextBoxColumn";
-      this.cell6DataGridViewTextBoxColumn.Width = 38;
-      this.cell5DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell5DataGridViewTextBoxColumn.DataPropertyName = "Cell5";
-      this.cell5DataGridViewTextBoxColumn.HeaderText = "5";
-      this.cell5DataGridViewTextBoxColumn.Name = "cell5DataGridViewTextBoxColumn";
-      this.cell5DataGridViewTextBoxColumn.Width = 38;
-      this.cell4DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell4DataGridViewTextBoxColumn.DataPropertyName = "Cell4";
-      this.cell4DataGridViewTextBoxColumn.HeaderText = "4";
-      this.cell4DataGridViewTextBoxColumn.Name = "cell4DataGridViewTextBoxColumn";
-      this.cell4DataGridViewTextBoxColumn.Width = 38;
-      this.cell3DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell3DataGridViewTextBoxColumn.DataPropertyName = "Cell3";
-      this.cell3DataGridViewTextBoxColumn.HeaderText = "3";
-      this.cell3DataGridViewTextBoxColumn.Name = "cell3DataGridViewTextBoxColumn";
-      this.cell3DataGridViewTextBoxColumn.Width = 38;
-      this.cell2DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell2DataGridViewTextBoxColumn.DataPropertyName = "Cell2";
-      this.cell2DataGridViewTextBoxColumn.HeaderText = "2";
-      this.cell2DataGridViewTextBoxColumn.Name = "cell2DataGridViewTextBoxColumn";
-      this.cell2DataGridViewTextBoxColumn.Width = 38;
-      this.cell1DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.cell1DataGridViewTextBoxColumn.DataPropertyName = "Cell1";
-      this.cell1DataGridViewTextBoxColumn.HeaderText = "1";
-      this.cell1DataGridViewTextBoxColumn.Name = "cell1DataGridViewTextBoxColumn";
-      this.cell1DataGridViewTextBoxColumn.Width = 38;
-      this.parameterDataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-      this.parameterDataGridViewTextBoxColumn2.DataPropertyName = "Parameter";
-      this.parameterDataGridViewTextBoxColumn2.HeaderText = "";
-      this.parameterDataGridViewTextBoxColumn2.Name = "parameterDataGridViewTextBoxColumn2";
-      this.parameterDataGridViewTextBoxColumn2.Width = 19;
-      this.neighbourDataGridView.AllowDrop = true;
-      this.neighbourDataGridView.AutoGenerateColumns = false;
-      this.neighbourDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.neighbourDataGridView.Columns.AddRange((DataGridViewColumn) this.parameterDataGridViewTextBoxColumn2, (DataGridViewColumn) this.cell1DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell2DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell3DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell4DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell5DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell6DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell7DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell8DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell9DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell10DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell11DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell12DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell13DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell14DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell15DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell16DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell17DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell18DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell19DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell20DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell21DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell22DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell23DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell24DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell25DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell26DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell27DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell28DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell29DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell30DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell31DataGridViewTextBoxColumn, (DataGridViewColumn) this.cell32DataGridViewTextBoxColumn);
-      this.neighbourDataGridView.DataSource = (object) this.neighbourBindingSource;
-      this.neighbourDataGridView.Dock = DockStyle.Fill;
-      this.neighbourDataGridView.Location = new Point(3, 3);
-      this.neighbourDataGridView.Name = "neighbourDataGridView";
-      this.neighbourDataGridView.RowHeadersVisible = false;
-      this.neighbourDataGridView.Size = new Size(528, 394);
-      this.neighbourDataGridView.TabIndex = 0;
-      this.AutoScaleDimensions = new SizeF(6f, 13f);
-      this.AutoScaleMode = AutoScaleMode.Font;
-      this.ClientSize = new Size(566, 450);
-      this.Controls.Add((Control) this.checkBox1);
-      this.Controls.Add((Control) this.tabControl1);
-      this.DoubleBuffered = true;
-      this.MaximizeBox = false;
-      this.Name = nameof (NetInfoWindow);
-      this.Text = "Network Info";
-      this.tabControl1.ResumeLayout(false);
-      this.callsTabPage.ResumeLayout(false);
-      this.splitContainer2.Panel1.ResumeLayout(false);
-      this.splitContainer2.Panel2.ResumeLayout(false);
-      this.splitContainer2.Panel2.PerformLayout();
-      this.splitContainer2.EndInit();
-      this.splitContainer2.ResumeLayout(false);
-      ((ISupportInitialize) this.callsDataGridView).EndInit();
-      ((ISupportInitialize) this.callsBindingSource).EndInit();
-      this.groupTabPage.ResumeLayout(false);
-      ((ISupportInitialize) this.groupDataGridView).EndInit();
-      ((ISupportInitialize) this.groupBindingSource).EndInit();
-      this.cellTabPage.ResumeLayout(false);
-      ((ISupportInitialize) this.cellDataGridView).EndInit();
-      ((ISupportInitialize) this.cellBindingSource).EndInit();
-      this.neighbourTabPage.ResumeLayout(false);
-      ((ISupportInitialize) this.neighbourBindingSource).EndInit();
-      ((ISupportInitialize) this.neighbourDataGridView).EndInit();
-      this.ResumeLayout(false);
-      this.PerformLayout();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.timeOutTimer = new System.Windows.Forms.Timer(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.callsTabPage = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.callsDataGridView = new SDRSharp.Tetra.DataGridViewEx();
+            this.callIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Carrier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assignedSlotDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.encryptedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.duplexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.callsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.callsTextBox = new System.Windows.Forms.TextBox();
+            this.groupTabPage = new System.Windows.Forms.TabPage();
+            this.groupDataGridView = new SDRSharp.Tetra.DataGridViewEx();
+            this.gSSIDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priorityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cellTabPage = new System.Windows.Forms.TabPage();
+            this.cellDataGridView = new System.Windows.Forms.DataGridView();
+            this.parameterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cellBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.neighbourTabPage = new System.Windows.Forms.TabPage();
+            this.neighbourDataGridView = new SDRSharp.Tetra.DataGridViewEx();
+            this.parameterDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell6DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell7DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell8DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell9DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell10DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell11DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell12DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell13DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell14DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell15DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell16DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell17DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell18DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell19DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell20DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell21DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell22DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell23DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell24DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell25DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell26DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell27DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell28DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell29DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell30DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell31DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cell32DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.neighbourBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.parameterDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cell32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tabControl1.SuspendLayout();
+            this.callsTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.callsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.callsBindingSource)).BeginInit();
+            this.groupTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
+            this.cellTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cellDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cellBindingSource)).BeginInit();
+            this.neighbourTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.neighbourDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.neighbourBindingSource)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // timeOutTimer
+            // 
+            this.timeOutTimer.Enabled = true;
+            this.timeOutTimer.Interval = 50;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.callsTabPage);
+            this.tabControl1.Controls.Add(this.groupTabPage);
+            this.tabControl1.Controls.Add(this.cellTabPage);
+            this.tabControl1.Controls.Add(this.neighbourTabPage);
+            this.tabControl1.Location = new System.Drawing.Point(14, 14);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(632, 492);
+            this.tabControl1.TabIndex = 23;
+            // 
+            // callsTabPage
+            // 
+            this.callsTabPage.Controls.Add(this.splitContainer2);
+            this.callsTabPage.Location = new System.Drawing.Point(4, 24);
+            this.callsTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.callsTabPage.Name = "callsTabPage";
+            this.callsTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.callsTabPage.Size = new System.Drawing.Size(624, 464);
+            this.callsTabPage.TabIndex = 0;
+            this.callsTabPage.Text = "Calls";
+            this.callsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(4, 3);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.callsDataGridView);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.callsTextBox);
+            this.splitContainer2.Size = new System.Drawing.Size(616, 458);
+            this.splitContainer2.SplitterDistance = 273;
+            this.splitContainer2.SplitterWidth = 5;
+            this.splitContainer2.TabIndex = 25;
+            // 
+            // callsDataGridView
+            // 
+            this.callsDataGridView.AllowUserToAddRows = false;
+            this.callsDataGridView.AllowUserToDeleteRows = false;
+            this.callsDataGridView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.callsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.callsDataGridView.AutoGenerateColumns = false;
+            this.callsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.callsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.callIDDataGridViewTextBoxColumn,
+            this.Type,
+            this.From,
+            this.To,
+            this.Carrier,
+            this.assignedSlotDataGridViewTextBoxColumn,
+            this.encryptedDataGridViewTextBoxColumn,
+            this.duplexDataGridViewTextBoxColumn});
+            this.callsDataGridView.DataSource = this.callsBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.callsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.callsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.callsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.callsDataGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.callsDataGridView.Name = "callsDataGridView";
+            this.callsDataGridView.ReadOnly = true;
+            this.callsDataGridView.RowHeadersVisible = false;
+            this.callsDataGridView.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.callsDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Blue;
+            this.callsDataGridView.ShowCellErrors = false;
+            this.callsDataGridView.ShowRowErrors = false;
+            this.callsDataGridView.Size = new System.Drawing.Size(614, 271);
+            this.callsDataGridView.TabIndex = 0;
+            this.callsDataGridView.VirtualMode = true;
+            // 
+            // callIDDataGridViewTextBoxColumn
+            // 
+            this.callIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.callIDDataGridViewTextBoxColumn.DataPropertyName = "CallID";
+            this.callIDDataGridViewTextBoxColumn.HeaderText = "Call ID";
+            this.callIDDataGridViewTextBoxColumn.MinimumWidth = 60;
+            this.callIDDataGridViewTextBoxColumn.Name = "callIDDataGridViewTextBoxColumn";
+            this.callIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.callIDDataGridViewTextBoxColumn.Width = 66;
+            // 
+            // Type
+            // 
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Type";
+            this.Type.MinimumWidth = 60;
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 60;
+            // 
+            // From
+            // 
+            this.From.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.From.DataPropertyName = "From";
+            this.From.HeaderText = "From";
+            this.From.MinimumWidth = 60;
+            this.From.Name = "From";
+            this.From.ReadOnly = true;
+            this.From.Width = 60;
+            // 
+            // To
+            // 
+            this.To.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.To.DataPropertyName = "To";
+            this.To.HeaderText = "To";
+            this.To.MinimumWidth = 60;
+            this.To.Name = "To";
+            this.To.ReadOnly = true;
+            this.To.Width = 60;
+            // 
+            // Carrier
+            // 
+            this.Carrier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Carrier.DataPropertyName = "Carrier";
+            this.Carrier.HeaderText = "Carrier";
+            this.Carrier.MinimumWidth = 60;
+            this.Carrier.Name = "Carrier";
+            this.Carrier.ReadOnly = true;
+            this.Carrier.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Carrier.Width = 60;
+            // 
+            // assignedSlotDataGridViewTextBoxColumn
+            // 
+            this.assignedSlotDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.assignedSlotDataGridViewTextBoxColumn.DataPropertyName = "AssignedSlot";
+            this.assignedSlotDataGridViewTextBoxColumn.HeaderText = "Time slot";
+            this.assignedSlotDataGridViewTextBoxColumn.MinimumWidth = 60;
+            this.assignedSlotDataGridViewTextBoxColumn.Name = "assignedSlotDataGridViewTextBoxColumn";
+            this.assignedSlotDataGridViewTextBoxColumn.ReadOnly = true;
+            this.assignedSlotDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.assignedSlotDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // encryptedDataGridViewTextBoxColumn
+            // 
+            this.encryptedDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.encryptedDataGridViewTextBoxColumn.DataPropertyName = "Encrypted";
+            this.encryptedDataGridViewTextBoxColumn.HeaderText = "Encrypted";
+            this.encryptedDataGridViewTextBoxColumn.MinimumWidth = 60;
+            this.encryptedDataGridViewTextBoxColumn.Name = "encryptedDataGridViewTextBoxColumn";
+            this.encryptedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.encryptedDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.encryptedDataGridViewTextBoxColumn.Width = 66;
+            // 
+            // duplexDataGridViewTextBoxColumn
+            // 
+            this.duplexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.duplexDataGridViewTextBoxColumn.DataPropertyName = "Duplex";
+            this.duplexDataGridViewTextBoxColumn.HeaderText = "Duplex";
+            this.duplexDataGridViewTextBoxColumn.MinimumWidth = 60;
+            this.duplexDataGridViewTextBoxColumn.Name = "duplexDataGridViewTextBoxColumn";
+            this.duplexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.duplexDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // callsBindingSource
+            // 
+            this.callsBindingSource.AllowNew = false;
+            this.callsBindingSource.DataSource = typeof(SDRSharp.Tetra.CallsDisplay);
+            // 
+            // callsTextBox
+            // 
+            this.callsTextBox.AcceptsReturn = true;
+            this.callsTextBox.AcceptsTab = true;
+            this.callsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.callsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.callsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.callsTextBox.Location = new System.Drawing.Point(0, 0);
+            this.callsTextBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.callsTextBox.Multiline = true;
+            this.callsTextBox.Name = "callsTextBox";
+            this.callsTextBox.ReadOnly = true;
+            this.callsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.callsTextBox.Size = new System.Drawing.Size(614, 178);
+            this.callsTextBox.TabIndex = 23;
+            this.callsTextBox.WordWrap = false;
+            // 
+            // groupTabPage
+            // 
+            this.groupTabPage.Controls.Add(this.groupDataGridView);
+            this.groupTabPage.Location = new System.Drawing.Point(4, 24);
+            this.groupTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupTabPage.Name = "groupTabPage";
+            this.groupTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupTabPage.Size = new System.Drawing.Size(624, 464);
+            this.groupTabPage.TabIndex = 3;
+            this.groupTabPage.Text = "Groups";
+            this.groupTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupDataGridView
+            // 
+            this.groupDataGridView.AutoGenerateColumns = false;
+            this.groupDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.groupDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gSSIDataGridViewTextBoxColumn1,
+            this.priorityDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1});
+            this.groupDataGridView.DataSource = this.groupBindingSource;
+            this.groupDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupDataGridView.Location = new System.Drawing.Point(4, 3);
+            this.groupDataGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupDataGridView.Name = "groupDataGridView";
+            this.groupDataGridView.RowHeadersVisible = false;
+            this.groupDataGridView.Size = new System.Drawing.Size(616, 458);
+            this.groupDataGridView.TabIndex = 0;
+            // 
+            // gSSIDataGridViewTextBoxColumn1
+            // 
+            this.gSSIDataGridViewTextBoxColumn1.DataPropertyName = "GSSI";
+            this.gSSIDataGridViewTextBoxColumn1.HeaderText = "GSSI";
+            this.gSSIDataGridViewTextBoxColumn1.Name = "gSSIDataGridViewTextBoxColumn1";
+            // 
+            // priorityDataGridViewTextBoxColumn1
+            // 
+            this.priorityDataGridViewTextBoxColumn1.DataPropertyName = "Priority";
+            this.priorityDataGridViewTextBoxColumn1.HeaderText = "Priority";
+            this.priorityDataGridViewTextBoxColumn1.Name = "priorityDataGridViewTextBoxColumn1";
+            this.priorityDataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            // 
+            // groupBindingSource
+            // 
+            this.groupBindingSource.AllowNew = false;
+            this.groupBindingSource.DataSource = typeof(SDRSharp.Tetra.GroupDisplay);
+            // 
+            // cellTabPage
+            // 
+            this.cellTabPage.Controls.Add(this.cellDataGridView);
+            this.cellTabPage.Location = new System.Drawing.Point(4, 24);
+            this.cellTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cellTabPage.Name = "cellTabPage";
+            this.cellTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cellTabPage.Size = new System.Drawing.Size(624, 464);
+            this.cellTabPage.TabIndex = 2;
+            this.cellTabPage.Text = "Current cell";
+            this.cellTabPage.UseVisualStyleBackColor = true;
+            // 
+            // cellDataGridView
+            // 
+            this.cellDataGridView.AutoGenerateColumns = false;
+            this.cellDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cellDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.parameterDataGridViewTextBoxColumn,
+            this.valueDataGridViewTextBoxColumn,
+            this.commentDataGridViewTextBoxColumn});
+            this.cellDataGridView.DataSource = this.cellBindingSource;
+            this.cellDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cellDataGridView.Location = new System.Drawing.Point(4, 3);
+            this.cellDataGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cellDataGridView.Name = "cellDataGridView";
+            this.cellDataGridView.RowHeadersVisible = false;
+            this.cellDataGridView.Size = new System.Drawing.Size(616, 458);
+            this.cellDataGridView.TabIndex = 0;
+            // 
+            // parameterDataGridViewTextBoxColumn
+            // 
+            this.parameterDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.parameterDataGridViewTextBoxColumn.DataPropertyName = "Parameter";
+            this.parameterDataGridViewTextBoxColumn.HeaderText = "Parameter";
+            this.parameterDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.parameterDataGridViewTextBoxColumn.Name = "parameterDataGridViewTextBoxColumn";
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.MinimumWidth = 40;
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            // 
+            // cellBindingSource
+            // 
+            this.cellBindingSource.AllowNew = false;
+            this.cellBindingSource.DataSource = typeof(SDRSharp.Tetra.CellDisplay);
+            // 
+            // neighbourTabPage
+            // 
+            this.neighbourTabPage.Controls.Add(this.neighbourDataGridView);
+            this.neighbourTabPage.Location = new System.Drawing.Point(4, 24);
+            this.neighbourTabPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.neighbourTabPage.Name = "neighbourTabPage";
+            this.neighbourTabPage.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.neighbourTabPage.Size = new System.Drawing.Size(624, 464);
+            this.neighbourTabPage.TabIndex = 1;
+            this.neighbourTabPage.Text = "Neighbour cell";
+            this.neighbourTabPage.UseVisualStyleBackColor = true;
+            // 
+            // neighbourDataGridView
+            // 
+            this.neighbourDataGridView.AllowDrop = true;
+            this.neighbourDataGridView.AutoGenerateColumns = false;
+            this.neighbourDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.neighbourDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.parameterDataGridViewTextBoxColumn2,
+            this.cell1DataGridViewTextBoxColumn,
+            this.cell2DataGridViewTextBoxColumn,
+            this.cell3DataGridViewTextBoxColumn,
+            this.cell4DataGridViewTextBoxColumn,
+            this.cell5DataGridViewTextBoxColumn,
+            this.cell6DataGridViewTextBoxColumn,
+            this.cell7DataGridViewTextBoxColumn,
+            this.cell8DataGridViewTextBoxColumn,
+            this.cell9DataGridViewTextBoxColumn,
+            this.cell10DataGridViewTextBoxColumn,
+            this.cell11DataGridViewTextBoxColumn,
+            this.cell12DataGridViewTextBoxColumn,
+            this.cell13DataGridViewTextBoxColumn,
+            this.cell14DataGridViewTextBoxColumn,
+            this.cell15DataGridViewTextBoxColumn,
+            this.cell16DataGridViewTextBoxColumn,
+            this.cell17DataGridViewTextBoxColumn,
+            this.cell18DataGridViewTextBoxColumn,
+            this.cell19DataGridViewTextBoxColumn,
+            this.cell20DataGridViewTextBoxColumn,
+            this.cell21DataGridViewTextBoxColumn,
+            this.cell22DataGridViewTextBoxColumn,
+            this.cell23DataGridViewTextBoxColumn,
+            this.cell24DataGridViewTextBoxColumn,
+            this.cell25DataGridViewTextBoxColumn,
+            this.cell26DataGridViewTextBoxColumn,
+            this.cell27DataGridViewTextBoxColumn,
+            this.cell28DataGridViewTextBoxColumn,
+            this.cell29DataGridViewTextBoxColumn,
+            this.cell30DataGridViewTextBoxColumn,
+            this.cell31DataGridViewTextBoxColumn,
+            this.cell32DataGridViewTextBoxColumn});
+            this.neighbourDataGridView.DataSource = this.neighbourBindingSource;
+            this.neighbourDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.neighbourDataGridView.Location = new System.Drawing.Point(4, 3);
+            this.neighbourDataGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.neighbourDataGridView.Name = "neighbourDataGridView";
+            this.neighbourDataGridView.RowHeadersVisible = false;
+            this.neighbourDataGridView.Size = new System.Drawing.Size(616, 458);
+            this.neighbourDataGridView.TabIndex = 0;
+            // 
+            // parameterDataGridViewTextBoxColumn2
+            // 
+            this.parameterDataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.parameterDataGridViewTextBoxColumn2.DataPropertyName = "Parameter";
+            this.parameterDataGridViewTextBoxColumn2.HeaderText = "";
+            this.parameterDataGridViewTextBoxColumn2.Name = "parameterDataGridViewTextBoxColumn2";
+            this.parameterDataGridViewTextBoxColumn2.Width = 19;
+            // 
+            // cell1DataGridViewTextBoxColumn
+            // 
+            this.cell1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell1DataGridViewTextBoxColumn.DataPropertyName = "Cell1";
+            this.cell1DataGridViewTextBoxColumn.HeaderText = "1";
+            this.cell1DataGridViewTextBoxColumn.Name = "cell1DataGridViewTextBoxColumn";
+            this.cell1DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell2DataGridViewTextBoxColumn
+            // 
+            this.cell2DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell2DataGridViewTextBoxColumn.DataPropertyName = "Cell2";
+            this.cell2DataGridViewTextBoxColumn.HeaderText = "2";
+            this.cell2DataGridViewTextBoxColumn.Name = "cell2DataGridViewTextBoxColumn";
+            this.cell2DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell3DataGridViewTextBoxColumn
+            // 
+            this.cell3DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell3DataGridViewTextBoxColumn.DataPropertyName = "Cell3";
+            this.cell3DataGridViewTextBoxColumn.HeaderText = "3";
+            this.cell3DataGridViewTextBoxColumn.Name = "cell3DataGridViewTextBoxColumn";
+            this.cell3DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell4DataGridViewTextBoxColumn
+            // 
+            this.cell4DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell4DataGridViewTextBoxColumn.DataPropertyName = "Cell4";
+            this.cell4DataGridViewTextBoxColumn.HeaderText = "4";
+            this.cell4DataGridViewTextBoxColumn.Name = "cell4DataGridViewTextBoxColumn";
+            this.cell4DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell5DataGridViewTextBoxColumn
+            // 
+            this.cell5DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell5DataGridViewTextBoxColumn.DataPropertyName = "Cell5";
+            this.cell5DataGridViewTextBoxColumn.HeaderText = "5";
+            this.cell5DataGridViewTextBoxColumn.Name = "cell5DataGridViewTextBoxColumn";
+            this.cell5DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell6DataGridViewTextBoxColumn
+            // 
+            this.cell6DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell6DataGridViewTextBoxColumn.DataPropertyName = "Cell6";
+            this.cell6DataGridViewTextBoxColumn.HeaderText = "6";
+            this.cell6DataGridViewTextBoxColumn.Name = "cell6DataGridViewTextBoxColumn";
+            this.cell6DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell7DataGridViewTextBoxColumn
+            // 
+            this.cell7DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell7DataGridViewTextBoxColumn.DataPropertyName = "Cell7";
+            this.cell7DataGridViewTextBoxColumn.HeaderText = "7";
+            this.cell7DataGridViewTextBoxColumn.Name = "cell7DataGridViewTextBoxColumn";
+            this.cell7DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell8DataGridViewTextBoxColumn
+            // 
+            this.cell8DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell8DataGridViewTextBoxColumn.DataPropertyName = "Cell8";
+            this.cell8DataGridViewTextBoxColumn.HeaderText = "8";
+            this.cell8DataGridViewTextBoxColumn.Name = "cell8DataGridViewTextBoxColumn";
+            this.cell8DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell9DataGridViewTextBoxColumn
+            // 
+            this.cell9DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell9DataGridViewTextBoxColumn.DataPropertyName = "Cell9";
+            this.cell9DataGridViewTextBoxColumn.HeaderText = "9";
+            this.cell9DataGridViewTextBoxColumn.Name = "cell9DataGridViewTextBoxColumn";
+            this.cell9DataGridViewTextBoxColumn.Width = 38;
+            // 
+            // cell10DataGridViewTextBoxColumn
+            // 
+            this.cell10DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell10DataGridViewTextBoxColumn.DataPropertyName = "Cell10";
+            this.cell10DataGridViewTextBoxColumn.HeaderText = "10";
+            this.cell10DataGridViewTextBoxColumn.Name = "cell10DataGridViewTextBoxColumn";
+            this.cell10DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell11DataGridViewTextBoxColumn
+            // 
+            this.cell11DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell11DataGridViewTextBoxColumn.DataPropertyName = "Cell11";
+            this.cell11DataGridViewTextBoxColumn.HeaderText = "11";
+            this.cell11DataGridViewTextBoxColumn.Name = "cell11DataGridViewTextBoxColumn";
+            this.cell11DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell12DataGridViewTextBoxColumn
+            // 
+            this.cell12DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell12DataGridViewTextBoxColumn.DataPropertyName = "Cell12";
+            this.cell12DataGridViewTextBoxColumn.HeaderText = "12";
+            this.cell12DataGridViewTextBoxColumn.Name = "cell12DataGridViewTextBoxColumn";
+            this.cell12DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell13DataGridViewTextBoxColumn
+            // 
+            this.cell13DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell13DataGridViewTextBoxColumn.DataPropertyName = "Cell13";
+            this.cell13DataGridViewTextBoxColumn.HeaderText = "13";
+            this.cell13DataGridViewTextBoxColumn.Name = "cell13DataGridViewTextBoxColumn";
+            this.cell13DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell14DataGridViewTextBoxColumn
+            // 
+            this.cell14DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell14DataGridViewTextBoxColumn.DataPropertyName = "Cell14";
+            this.cell14DataGridViewTextBoxColumn.HeaderText = "14";
+            this.cell14DataGridViewTextBoxColumn.Name = "cell14DataGridViewTextBoxColumn";
+            this.cell14DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell15DataGridViewTextBoxColumn
+            // 
+            this.cell15DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell15DataGridViewTextBoxColumn.DataPropertyName = "Cell15";
+            this.cell15DataGridViewTextBoxColumn.HeaderText = "15";
+            this.cell15DataGridViewTextBoxColumn.Name = "cell15DataGridViewTextBoxColumn";
+            this.cell15DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell16DataGridViewTextBoxColumn
+            // 
+            this.cell16DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell16DataGridViewTextBoxColumn.DataPropertyName = "Cell16";
+            this.cell16DataGridViewTextBoxColumn.HeaderText = "16";
+            this.cell16DataGridViewTextBoxColumn.Name = "cell16DataGridViewTextBoxColumn";
+            this.cell16DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell17DataGridViewTextBoxColumn
+            // 
+            this.cell17DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell17DataGridViewTextBoxColumn.DataPropertyName = "Cell17";
+            this.cell17DataGridViewTextBoxColumn.HeaderText = "17";
+            this.cell17DataGridViewTextBoxColumn.Name = "cell17DataGridViewTextBoxColumn";
+            this.cell17DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell18DataGridViewTextBoxColumn
+            // 
+            this.cell18DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell18DataGridViewTextBoxColumn.DataPropertyName = "Cell18";
+            this.cell18DataGridViewTextBoxColumn.HeaderText = "18";
+            this.cell18DataGridViewTextBoxColumn.Name = "cell18DataGridViewTextBoxColumn";
+            this.cell18DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell19DataGridViewTextBoxColumn
+            // 
+            this.cell19DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell19DataGridViewTextBoxColumn.DataPropertyName = "Cell19";
+            this.cell19DataGridViewTextBoxColumn.HeaderText = "19";
+            this.cell19DataGridViewTextBoxColumn.Name = "cell19DataGridViewTextBoxColumn";
+            this.cell19DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell20DataGridViewTextBoxColumn
+            // 
+            this.cell20DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell20DataGridViewTextBoxColumn.DataPropertyName = "Cell20";
+            this.cell20DataGridViewTextBoxColumn.HeaderText = "20";
+            this.cell20DataGridViewTextBoxColumn.Name = "cell20DataGridViewTextBoxColumn";
+            this.cell20DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell21DataGridViewTextBoxColumn
+            // 
+            this.cell21DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell21DataGridViewTextBoxColumn.DataPropertyName = "Cell21";
+            this.cell21DataGridViewTextBoxColumn.HeaderText = "21";
+            this.cell21DataGridViewTextBoxColumn.Name = "cell21DataGridViewTextBoxColumn";
+            this.cell21DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell22DataGridViewTextBoxColumn
+            // 
+            this.cell22DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell22DataGridViewTextBoxColumn.DataPropertyName = "Cell22";
+            this.cell22DataGridViewTextBoxColumn.HeaderText = "22";
+            this.cell22DataGridViewTextBoxColumn.Name = "cell22DataGridViewTextBoxColumn";
+            this.cell22DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell23DataGridViewTextBoxColumn
+            // 
+            this.cell23DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell23DataGridViewTextBoxColumn.DataPropertyName = "Cell23";
+            this.cell23DataGridViewTextBoxColumn.HeaderText = "23";
+            this.cell23DataGridViewTextBoxColumn.Name = "cell23DataGridViewTextBoxColumn";
+            this.cell23DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell24DataGridViewTextBoxColumn
+            // 
+            this.cell24DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell24DataGridViewTextBoxColumn.DataPropertyName = "Cell24";
+            this.cell24DataGridViewTextBoxColumn.HeaderText = "24";
+            this.cell24DataGridViewTextBoxColumn.Name = "cell24DataGridViewTextBoxColumn";
+            this.cell24DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell25DataGridViewTextBoxColumn
+            // 
+            this.cell25DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell25DataGridViewTextBoxColumn.DataPropertyName = "Cell25";
+            this.cell25DataGridViewTextBoxColumn.HeaderText = "25";
+            this.cell25DataGridViewTextBoxColumn.Name = "cell25DataGridViewTextBoxColumn";
+            this.cell25DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell26DataGridViewTextBoxColumn
+            // 
+            this.cell26DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell26DataGridViewTextBoxColumn.DataPropertyName = "Cell26";
+            this.cell26DataGridViewTextBoxColumn.HeaderText = "26";
+            this.cell26DataGridViewTextBoxColumn.Name = "cell26DataGridViewTextBoxColumn";
+            this.cell26DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell27DataGridViewTextBoxColumn
+            // 
+            this.cell27DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell27DataGridViewTextBoxColumn.DataPropertyName = "Cell27";
+            this.cell27DataGridViewTextBoxColumn.HeaderText = "27";
+            this.cell27DataGridViewTextBoxColumn.Name = "cell27DataGridViewTextBoxColumn";
+            this.cell27DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell28DataGridViewTextBoxColumn
+            // 
+            this.cell28DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell28DataGridViewTextBoxColumn.DataPropertyName = "Cell28";
+            this.cell28DataGridViewTextBoxColumn.HeaderText = "28";
+            this.cell28DataGridViewTextBoxColumn.Name = "cell28DataGridViewTextBoxColumn";
+            this.cell28DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell29DataGridViewTextBoxColumn
+            // 
+            this.cell29DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell29DataGridViewTextBoxColumn.DataPropertyName = "Cell29";
+            this.cell29DataGridViewTextBoxColumn.HeaderText = "29";
+            this.cell29DataGridViewTextBoxColumn.Name = "cell29DataGridViewTextBoxColumn";
+            this.cell29DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell30DataGridViewTextBoxColumn
+            // 
+            this.cell30DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell30DataGridViewTextBoxColumn.DataPropertyName = "Cell30";
+            this.cell30DataGridViewTextBoxColumn.HeaderText = "30";
+            this.cell30DataGridViewTextBoxColumn.Name = "cell30DataGridViewTextBoxColumn";
+            this.cell30DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell31DataGridViewTextBoxColumn
+            // 
+            this.cell31DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell31DataGridViewTextBoxColumn.DataPropertyName = "Cell31";
+            this.cell31DataGridViewTextBoxColumn.HeaderText = "31";
+            this.cell31DataGridViewTextBoxColumn.Name = "cell31DataGridViewTextBoxColumn";
+            this.cell31DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // cell32DataGridViewTextBoxColumn
+            // 
+            this.cell32DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cell32DataGridViewTextBoxColumn.DataPropertyName = "Cell32";
+            this.cell32DataGridViewTextBoxColumn.HeaderText = "32";
+            this.cell32DataGridViewTextBoxColumn.Name = "cell32DataGridViewTextBoxColumn";
+            this.cell32DataGridViewTextBoxColumn.Width = 44;
+            // 
+            // neighbourBindingSource
+            // 
+            this.neighbourBindingSource.AllowNew = false;
+            this.neighbourBindingSource.DataSource = typeof(SDRSharp.Tetra.NeighbourDisplay);
+            // 
+            // parameterDataGridViewTextBoxColumn1
+            // 
+            this.parameterDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.parameterDataGridViewTextBoxColumn1.DataPropertyName = "Parameter";
+            this.parameterDataGridViewTextBoxColumn1.HeaderText = "Parameter";
+            this.parameterDataGridViewTextBoxColumn1.Name = "parameterDataGridViewTextBoxColumn1";
+            this.parameterDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.parameterDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cell1
+            // 
+            this.Cell1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell1.DataPropertyName = "Cell1";
+            this.Cell1.HeaderText = "Cell1";
+            this.Cell1.Name = "Cell1";
+            this.Cell1.ReadOnly = true;
+            // 
+            // Cell2
+            // 
+            this.Cell2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell2.DataPropertyName = "Cell2";
+            this.Cell2.HeaderText = "Cell2";
+            this.Cell2.Name = "Cell2";
+            this.Cell2.ReadOnly = true;
+            // 
+            // Cell3
+            // 
+            this.Cell3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell3.DataPropertyName = "Cell3";
+            this.Cell3.HeaderText = "Cell3";
+            this.Cell3.Name = "Cell3";
+            this.Cell3.ReadOnly = true;
+            // 
+            // Cell4
+            // 
+            this.Cell4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell4.DataPropertyName = "Cell4";
+            this.Cell4.HeaderText = "Cell4";
+            this.Cell4.Name = "Cell4";
+            this.Cell4.ReadOnly = true;
+            // 
+            // Cell5
+            // 
+            this.Cell5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell5.DataPropertyName = "Cell5";
+            this.Cell5.HeaderText = "Cell5";
+            this.Cell5.Name = "Cell5";
+            this.Cell5.ReadOnly = true;
+            // 
+            // Cell6
+            // 
+            this.Cell6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell6.DataPropertyName = "Cell6";
+            this.Cell6.HeaderText = "Cell6";
+            this.Cell6.Name = "Cell6";
+            this.Cell6.ReadOnly = true;
+            // 
+            // Cell7
+            // 
+            this.Cell7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell7.DataPropertyName = "Cell7";
+            this.Cell7.HeaderText = "Cell7";
+            this.Cell7.Name = "Cell7";
+            this.Cell7.ReadOnly = true;
+            // 
+            // Cell8
+            // 
+            this.Cell8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell8.DataPropertyName = "Cell8";
+            this.Cell8.HeaderText = "Cell8";
+            this.Cell8.Name = "Cell8";
+            this.Cell8.ReadOnly = true;
+            // 
+            // Cell9
+            // 
+            this.Cell9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell9.DataPropertyName = "Cell9";
+            this.Cell9.HeaderText = "Cell9";
+            this.Cell9.Name = "Cell9";
+            this.Cell9.ReadOnly = true;
+            // 
+            // Cell10
+            // 
+            this.Cell10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell10.DataPropertyName = "Cell10";
+            this.Cell10.HeaderText = "Cell10";
+            this.Cell10.Name = "Cell10";
+            this.Cell10.ReadOnly = true;
+            // 
+            // Cell11
+            // 
+            this.Cell11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell11.DataPropertyName = "Cell11";
+            this.Cell11.HeaderText = "Cell11";
+            this.Cell11.Name = "Cell11";
+            this.Cell11.ReadOnly = true;
+            // 
+            // Cell12
+            // 
+            this.Cell12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell12.DataPropertyName = "Cell12";
+            this.Cell12.HeaderText = "Cell12";
+            this.Cell12.Name = "Cell12";
+            this.Cell12.ReadOnly = true;
+            // 
+            // Cell13
+            // 
+            this.Cell13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell13.DataPropertyName = "Cell13";
+            this.Cell13.HeaderText = "Cell13";
+            this.Cell13.Name = "Cell13";
+            this.Cell13.ReadOnly = true;
+            // 
+            // Cell14
+            // 
+            this.Cell14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell14.DataPropertyName = "Cell14";
+            this.Cell14.HeaderText = "Cell14";
+            this.Cell14.Name = "Cell14";
+            this.Cell14.ReadOnly = true;
+            // 
+            // Cell15
+            // 
+            this.Cell15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell15.DataPropertyName = "Cell15";
+            this.Cell15.HeaderText = "Cell15";
+            this.Cell15.Name = "Cell15";
+            this.Cell15.ReadOnly = true;
+            // 
+            // Cell16
+            // 
+            this.Cell16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell16.DataPropertyName = "Cell16";
+            this.Cell16.HeaderText = "Cell16";
+            this.Cell16.Name = "Cell16";
+            this.Cell16.ReadOnly = true;
+            // 
+            // Cell17
+            // 
+            this.Cell17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell17.DataPropertyName = "Cell17";
+            this.Cell17.HeaderText = "Cell17";
+            this.Cell17.Name = "Cell17";
+            this.Cell17.ReadOnly = true;
+            // 
+            // Cell18
+            // 
+            this.Cell18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell18.DataPropertyName = "Cell18";
+            this.Cell18.HeaderText = "Cell18";
+            this.Cell18.Name = "Cell18";
+            this.Cell18.ReadOnly = true;
+            // 
+            // Cell19
+            // 
+            this.Cell19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell19.DataPropertyName = "Cell19";
+            this.Cell19.HeaderText = "Cell19";
+            this.Cell19.Name = "Cell19";
+            this.Cell19.ReadOnly = true;
+            // 
+            // Cell20
+            // 
+            this.Cell20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell20.DataPropertyName = "Cell20";
+            this.Cell20.HeaderText = "Cell20";
+            this.Cell20.Name = "Cell20";
+            this.Cell20.ReadOnly = true;
+            // 
+            // Cell21
+            // 
+            this.Cell21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell21.DataPropertyName = "Cell21";
+            this.Cell21.HeaderText = "Cell21";
+            this.Cell21.Name = "Cell21";
+            this.Cell21.ReadOnly = true;
+            // 
+            // Cell22
+            // 
+            this.Cell22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell22.DataPropertyName = "Cell22";
+            this.Cell22.HeaderText = "Cell22";
+            this.Cell22.Name = "Cell22";
+            this.Cell22.ReadOnly = true;
+            // 
+            // Cell23
+            // 
+            this.Cell23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell23.DataPropertyName = "Cell23";
+            this.Cell23.HeaderText = "Cell23";
+            this.Cell23.Name = "Cell23";
+            this.Cell23.ReadOnly = true;
+            // 
+            // Cell24
+            // 
+            this.Cell24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell24.DataPropertyName = "Cell24";
+            this.Cell24.HeaderText = "Cell24";
+            this.Cell24.Name = "Cell24";
+            this.Cell24.ReadOnly = true;
+            // 
+            // Cell25
+            // 
+            this.Cell25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell25.DataPropertyName = "Cell25";
+            this.Cell25.HeaderText = "Cell25";
+            this.Cell25.Name = "Cell25";
+            this.Cell25.ReadOnly = true;
+            // 
+            // Cell26
+            // 
+            this.Cell26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell26.DataPropertyName = "Cell26";
+            this.Cell26.HeaderText = "Cell26";
+            this.Cell26.Name = "Cell26";
+            this.Cell26.ReadOnly = true;
+            // 
+            // Cell27
+            // 
+            this.Cell27.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell27.DataPropertyName = "Cell27";
+            this.Cell27.HeaderText = "Cell27";
+            this.Cell27.Name = "Cell27";
+            this.Cell27.ReadOnly = true;
+            // 
+            // Cell28
+            // 
+            this.Cell28.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell28.DataPropertyName = "Cell28";
+            this.Cell28.HeaderText = "Cell28";
+            this.Cell28.Name = "Cell28";
+            this.Cell28.ReadOnly = true;
+            // 
+            // Cell29
+            // 
+            this.Cell29.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell29.DataPropertyName = "Cell29";
+            this.Cell29.HeaderText = "Cell29";
+            this.Cell29.Name = "Cell29";
+            this.Cell29.ReadOnly = true;
+            // 
+            // Cell30
+            // 
+            this.Cell30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell30.DataPropertyName = "Cell30";
+            this.Cell30.HeaderText = "Cell30";
+            this.Cell30.Name = "Cell30";
+            this.Cell30.ReadOnly = true;
+            // 
+            // Cell31
+            // 
+            this.Cell31.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell31.DataPropertyName = "Cell31";
+            this.Cell31.HeaderText = "Cell31";
+            this.Cell31.Name = "Cell31";
+            this.Cell31.ReadOnly = true;
+            // 
+            // Cell32
+            // 
+            this.Cell32.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Cell32.DataPropertyName = "Cell32";
+            this.Cell32.HeaderText = "Cell32";
+            this.Cell32.Name = "Cell32";
+            this.Cell32.ReadOnly = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(575, 13);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(63, 19);
+            this.checkBox1.TabIndex = 27;
+            this.checkBox1.Text = "On top";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            // 
+            // NetInfoWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(660, 519);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.tabControl1);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
+            this.Name = "NetInfoWindow";
+            this.Text = "Network Info";
+            this.tabControl1.ResumeLayout(false);
+            this.callsTabPage.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.callsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.callsBindingSource)).EndInit();
+            this.groupTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).EndInit();
+            this.cellTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cellDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cellBindingSource)).EndInit();
+            this.neighbourTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.neighbourDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.neighbourBindingSource)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
     }
   }
 }

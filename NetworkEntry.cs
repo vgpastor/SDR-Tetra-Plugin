@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace SDRSharp.Tetra
 {
-  public class NetworkEntry
-  {
-    public Dictionary<int, GroupsEntry> KnowGroups { get; set; }
-  }
+    public class NetworkEntry
+    {
+        public Dictionary<int, GroupsEntry> KnowGroups { get; set; }
+    }
 }

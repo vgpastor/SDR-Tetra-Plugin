@@ -8,33 +8,33 @@ using SDRSharp.Radio;
 
 namespace SDRSharp.Tetra
 {
-  public class AudioProcessor : IRealProcessor, IStreamProcessor, IBaseProcessor
-  {
-    private double _sampleRate;
-    private bool _enabled;
-
-    public event AudioProcessor.AudioReadyDelegate AudioReady;
-
-    public double SampleRate
+    public class AudioProcessor : IRealProcessor, IStreamProcessor, IBaseProcessor
     {
-      get => this._sampleRate;
-      set => this._sampleRate = value;
-    }
+        private double _sampleRate;
+        private bool _enabled;
 
-    public bool Enabled
-    {
-      get => this._enabled;
-      set => this._enabled = value;
-    }
+        public event AudioProcessor.AudioReadyDelegate AudioReady;
 
-    public unsafe void Process(float* buffer, int length)
-    {
-      AudioProcessor.AudioReadyDelegate audioReady = this.AudioReady;
-      if (audioReady == null)
-        return;
-      audioReady(buffer, this._sampleRate, length);
-    }
+        public double SampleRate
+        {
+            get => this._sampleRate;
+            set => this._sampleRate = value;
+        }
 
-    public unsafe delegate void AudioReadyDelegate(float* buffer, double samplerate, int length);
-  }
+        public bool Enabled
+        {
+            get => this._enabled;
+            set => this._enabled = value;
+        }
+
+        public unsafe void Process(float* buffer, int length)
+        {
+            AudioProcessor.AudioReadyDelegate audioReady = this.AudioReady;
+            if (audioReady == null)
+                return;
+            audioReady(buffer, this._sampleRate, length);
+        }
+
+        public unsafe delegate void AudioReadyDelegate(float* buffer, double samplerate, int length);
+    }
 }

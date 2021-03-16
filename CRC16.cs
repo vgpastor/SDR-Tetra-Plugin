@@ -6,31 +6,31 @@
 
 namespace SDRSharp.Tetra
 {
-  internal class CRC16
-  {
-    private const int GenPoly = 33800;
-    private const int GoodCRC = 61624;
-
-    public unsafe int CalcBuffer(byte* buffer, int length)
+    internal class CRC16
     {
-      int maxValue = (int) ushort.MaxValue;
-      for (int index = 0; index < length; ++index)
-      {
-        int num = (int) (ushort) ((uint) buffer[index] ^ (uint) (maxValue & 1));
-        maxValue >>= 1;
-        if (num != 0)
-          maxValue ^= 33800;
-      }
-      return maxValue;
-    }
+        private const int GenPoly = 33800;
+        private const int GoodCRC = 61624;
 
-    public unsafe bool Process(byte* source, byte* dest, int sourceLength)
-    {
-      int num = this.CalcBuffer(source, sourceLength);
-      sourceLength -= 16;
-      for (int index = 0; index < sourceLength; ++index)
-        dest[index] = source[index];
-      return num == 61624;
+        public unsafe int CalcBuffer(byte* buffer, int length)
+        {
+            int maxValue = (int)ushort.MaxValue;
+            for (int index = 0; index < length; ++index)
+            {
+                int num = (int)(ushort)((uint)buffer[index] ^ (uint)(maxValue & 1));
+                maxValue >>= 1;
+                if (num != 0)
+                    maxValue ^= 33800;
+            }
+            return maxValue;
+        }
+
+        public unsafe bool Process(byte* source, byte* dest, int sourceLength)
+        {
+            int num = this.CalcBuffer(source, sourceLength);
+            sourceLength -= 16;
+            for (int index = 0; index < sourceLength; ++index)
+                dest[index] = source[index];
+            return num == 61624;
+        }
     }
-  }
 }

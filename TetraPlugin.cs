@@ -9,22 +9,39 @@ using System.Windows.Forms;
 
 namespace SDRSharp.Tetra
 {
-  public class TetraPlugin : ISharpPlugin
-  {
-    private const string _displayName = "TETRA Demodulator";
-    private ISharpControl _controlInterface;
-    private TetraPanel _qpskPanel;
-
-    public UserControl Gui => (UserControl) this._qpskPanel;
-
-    public string DisplayName => "TETRA Demodulator";
-
-    public void Initialize(ISharpControl control)
+    public class TetraPlugin : ISharpPlugin
     {
-      this._controlInterface = control;
-      this._qpskPanel = new TetraPanel(this._controlInterface);
-    }
+        private const string _displayName = "TETRA Demodulator";
+        private ISharpControl _controlInterface;
+        private TetraPanel _qpskPanel;
 
-    public void Close() => this._qpskPanel.SaveSettings();
-  }
+        public UserControl Gui => (UserControl)this._qpskPanel;
+
+        public string DisplayName => "TETRA Demodulator";
+
+        public void Initialize(ISharpControl control)
+        {
+            this._controlInterface = control;
+            this._qpskPanel = new TetraPanel(this._controlInterface);
+        }
+
+        public void Close() => this._qpskPanel.SaveSettings();
+
+        public static void Logger(string message)
+        {
+            TextFile textFile = new TextFile();
+            string path = "debug_tetra.log";
+            try
+            {
+                textFile.Write(System.DateTime.Now + "->" + message, path);
+            }
+            catch
+            {
+                if (MessageBox.Show("Unable to open file " + path, "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand) != DialogResult.OK)
+                    return;
+            }
+
+        }
+
+    }
 }

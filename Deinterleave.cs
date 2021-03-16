@@ -6,24 +6,24 @@
 
 namespace SDRSharp.Tetra
 {
-  internal class Deinterleave
-  {
-    public unsafe void Process(byte* source, byte* dest, uint destLength, uint a)
+    internal class Deinterleave
     {
-      for (uint index = 1; index <= destLength; ++index)
-      {
-        uint num = 1U + a * index % destLength;
-        dest[index - 1U] = source[num - 1U];
-      }
-    }
+        public unsafe void Process(byte* source, byte* dest, uint destLength, uint a)
+        {
+            for (uint index = 1; index <= destLength; ++index)
+            {
+                uint num = 1U + a * index % destLength;
+                dest[index - 1U] = source[num - 1U];
+            }
+        }
 
-    public unsafe void MatrixProcess(byte* source, byte* dest, uint lines, uint columns)
-    {
-      for (uint index1 = 0; index1 < columns; ++index1)
-      {
-        for (uint index2 = 0; index2 < lines; ++index2)
-          dest[index2 * columns + lines] = source[index1 * lines + columns];
-      }
+        public unsafe void MatrixProcess(byte* source, byte* dest, uint lines, uint columns)
+        {
+            for (uint index1 = 0; index1 < columns; ++index1)
+            {
+                for (uint index2 = 0; index2 < lines; ++index2)
+                    dest[index2 * columns + lines] = source[index1 * lines + columns];
+            }
+        }
     }
-  }
 }
