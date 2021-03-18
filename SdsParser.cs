@@ -5,6 +5,7 @@
 // Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
 
 using System;
+using System.Linq;
 using System.Text;
 
 namespace SDRSharp.Tetra
@@ -279,86 +280,89 @@ namespace SDRSharp.Tetra
             int textEncoding = result.Value(GlobalNames.Text_coding_scheme);
             Encoding encoding = Encoding.GetEncoding("iso-8859-1");
             int length1 = 8;
-            switch (textEncoding)
-            {
-                case 1:
-                    encoding = Encoding.GetEncoding("iso-8859-1");
-                    break;
-                case 2:
-                    encoding = Encoding.GetEncoding("iso-8859-2");
-                    break;
-                case 3:
-                    encoding = Encoding.GetEncoding("iso-8859-3");
-                    break;
-                case 4:
-                    encoding = Encoding.GetEncoding("iso-8859-4");
-                    break;
-                case 5:
-                    encoding = Encoding.GetEncoding("iso-8859-5");
-                    break;
-                case 6:
-                    encoding = Encoding.GetEncoding("iso-8859-6");
-                    break;
-                case 7:
-                    encoding = Encoding.GetEncoding("iso-8859-7");
-                    break;
-                case 8:
-                    encoding = Encoding.GetEncoding("iso-8859-8");
-                    break;
-                case 9:
-                    encoding = Encoding.GetEncoding("iso-8859-9");
-                    break;
-                case 10:
-                    encoding = Encoding.GetEncoding("iso-8859-10");
-                    break;
-                case 11:
-                    encoding = Encoding.GetEncoding("iso-8859-13");
-                    break;
-                case 12:
-                    encoding = Encoding.GetEncoding("iso-8859-14");
-                    break;
-                case 13:
-                    encoding = Encoding.GetEncoding("iso-8859-15");
-                    break;
-                case 14:
-                    encoding = Encoding.GetEncoding(437);
-                    break;
-                case 15:
-                    encoding = Encoding.GetEncoding(737);
-                    break;
-                case 16:
-                    encoding = Encoding.GetEncoding(850);
-                    break;
-                case 17:
-                    encoding = Encoding.GetEncoding(852);
-                    break;
-                case 18:
-                    encoding = Encoding.GetEncoding(855);
-                    break;
-                case 19:
-                    encoding = Encoding.GetEncoding(857);
-                    break;
-                case 20:
-                    encoding = Encoding.GetEncoding(860);
-                    break;
-                case 21:
-                    encoding = Encoding.GetEncoding(861);
-                    break;
-                case 22:
-                    encoding = Encoding.GetEncoding(863);
-                    break;
-                case 23:
-                    encoding = Encoding.GetEncoding(865);
-                    break;
-                case 24:
-                    encoding = Encoding.GetEncoding(866);
-                    break;
-                case 25:
-                    encoding = Encoding.GetEncoding(869);
-                    break;
-            }
+            //switch (textEncoding)
+            //{
+            //    case 1:
+            //        encoding = Encoding.GetEncoding("iso-8859-1");
+            //        break;
+            //    case 2:
+            //        encoding = Encoding.GetEncoding("iso-8859-2");
+            //        break;
+            //    case 3:
+            //        encoding = Encoding.GetEncoding("iso-8859-3");
+            //        break;
+            //    case 4:
+            //        encoding = Encoding.GetEncoding("iso-8859-4");
+            //        break;
+            //    case 5:
+            //        encoding = Encoding.GetEncoding("iso-8859-5");
+            //        break;
+            //    case 6:
+            //        encoding = Encoding.GetEncoding("iso-8859-6");
+            //        break;
+            //    case 7:
+            //        encoding = Encoding.GetEncoding("iso-8859-7");
+            //        break;
+            //    case 8:
+            //        encoding = Encoding.GetEncoding("iso-8859-8");
+            //        break;
+            //    case 9:
+            //        encoding = Encoding.GetEncoding("iso-8859-9");
+            //        break;
+            //    case 10:
+            //        encoding = Encoding.GetEncoding("iso-8859-10");
+            //        break;
+            //    case 11:
+            //        encoding = Encoding.GetEncoding("iso-8859-13");
+            //        break;
+            //    case 12:
+            //        encoding = Encoding.GetEncoding("iso-8859-14");
+            //        break;
+            //    case 13:
+            //        encoding = Encoding.GetEncoding("iso-8859-15");
+            //        break;
+            //    case 14:
+            //        encoding = Encoding.GetEncoding(437);
+            //        break;
+            //    case 15:
+            //        encoding = Encoding.GetEncoding(737);
+            //        break;
+            //    case 16:
+            //        encoding = Encoding.GetEncoding(850);
+            //        break;
+            //    case 17:
+            //        encoding = Encoding.GetEncoding(852);
+            //        break;
+            //    case 18:
+            //        encoding = Encoding.GetEncoding(855);
+            //        break;
+            //    case 19:
+            //        encoding = Encoding.GetEncoding(857);
+            //        break;
+            //    case 20:
+            //        encoding = Encoding.GetEncoding(860);
+            //        break;
+            //    case 21:
+            //        encoding = Encoding.GetEncoding(861);
+            //        break;
+            //    case 22:
+            //        encoding = Encoding.GetEncoding(863);
+            //        break;
+            //    case 23:
+            //        encoding = Encoding.GetEncoding(865);
+            //        break;
+            //    case 24:
+            //        encoding = Encoding.GetEncoding(866);
+            //        break;
+            //    case 25:
+            //        encoding = Encoding.GetEncoding(869);
+            //        break;
+            //}
             encoding.GetDecoder();
             int length2 = (channelData.Length - offset) / length1;
+
+            TetraPlugin.Logger(channelData.Ptr, offset, length2*length1);
+
             if (length2 < 0)
                 return null;
             byte[] bytes = new byte[length2];
@@ -368,6 +372,8 @@ namespace SDRSharp.Tetra
                 bytes[num2++] = TetraUtils.BitsToByte(channelData.Ptr, offset, length1);
                 offset += length1;
             }
+            string bitString = BitConverter.ToString(bytes).Replace("-", string.Empty);
+            TetraPlugin.Logger("Origin " + bitString);
             return encoding.GetString(bytes);
         }
 

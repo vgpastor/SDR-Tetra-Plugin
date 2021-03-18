@@ -351,6 +351,7 @@ namespace SDRSharp.Tetra
         private bool CheckConditions()
         {
             this._ifProcessor.SampleRate = 25000;
+            this._controlInterface.Frequency = 390087500;
             this._controlInterface.StartRadio();
             this._controlInterface.DetectorType = DetectorType.WFM;
             this._controlInterface.FrequencyShift = 28000;
@@ -431,6 +432,10 @@ namespace SDRSharp.Tetra
             this._controlInterface.AudioIsMuted = false;
         }
 
+        /**
+         * Thread que espera a que se cargue el radiobuffer y luego lo procesa.
+         * Buffer de 510 Bits
+         */
         private unsafe void DecodingThread()
         {
             this._iqBuffer = UnsafeBuffer.Create(510, sizeof(Complex));
@@ -459,8 +464,10 @@ namespace SDRSharp.Tetra
                     if (burst.Type != BurstType.WaitBurst)
                     {
                         this.AutomaticFrequencyControl(this._symbolsBufferPtr, (int)byte.MaxValue);
+                        //Send Bit to udp
                         if (this._tetraSettings.UdpEnabled)
                             udpClient.SendAsync(this.ConvertAngleToDiBits(this._symbolsBufferPtr, (int)byte.MaxValue), 510);
+
                         int num = this._decoder.Process(burst, this._outAudioBufferPtr);
                         this._tetraMode = this._decoder.TetraMode;
                         if (this._needDisplayBufferUpdate)

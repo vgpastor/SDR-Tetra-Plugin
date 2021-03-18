@@ -43,5 +43,15 @@ namespace SDRSharp.Tetra
 
         }
 
+        public unsafe static void Logger(byte* bitsBuffer, int offset, int length)
+        {
+            string str = "";
+            for(int i = offset; i < offset+length; i++)
+            {
+                str += bitsBuffer[i];
+            }
+            TetraPlugin.Logger("Origin Bits " + str);
+        }
+
     }
 }

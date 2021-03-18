@@ -82,6 +82,9 @@ namespace SDRSharp.Tetra
         {
         }
 
+        /**
+         * I think that this is the entry point from SDR#
+         */
         public unsafe int Process(Burst burst, float* audioOut)
         {
             int num = 0;
