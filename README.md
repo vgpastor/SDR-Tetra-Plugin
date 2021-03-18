@@ -25,5 +25,10 @@ Please if you like this plugin don't remember start it and give us feedback abou
 
 # --- Disclaimer ---
 
-The program is licenced under MIT (license text is also included in the file LICENSE). 
-I may not be held responsible for anything associated with the use of this tool.
+* The program is licenced under MIT (license text is also included in the file LICENSE).
+* NO guarantees or warranty for any damage or similar!!
+* I may not be held responsible for anything associated with the use of this tool.
+* Usage at your own risk !!
+* Check laws of your country first! Some Frequencies are prohibited/illegal or need a HAM-Licenses!
+* Listening / Spying & Decoding on encrypted frequencies/channels without permission is illegal!
+
