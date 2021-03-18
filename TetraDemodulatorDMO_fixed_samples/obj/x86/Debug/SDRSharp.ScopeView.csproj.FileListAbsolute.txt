@@ -1,0 +1,15 @@
+C:\Users\boni\YandexDisk\sdrsharp\trunk\Debug\SDRSharp.ScopeView.dll
+C:\Users\boni\YandexDisk\sdrsharp\trunk\Debug\SDRSharp.ScopeView.pdb
+C:\Users\boni\YandexDisk\sdrsharp\trunk\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\sdrsharp\trunk\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.ScopeViewPanel.resources
+C:\Users\boni\YandexDisk\sdrsharp\trunk\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\sdrsharp\trunk\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.dll
+C:\Users\boni\YandexDisk\sdrsharp\trunk\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\Debug\SDRSharp.ScopeView.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\Debug\SDRSharp.ScopeView.pdb
+C:\sdrsharp\SDRSharp.ScopeView.dll
+C:\sdrsharp\SDRSharp.ScopeView.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.ScopeViewPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\x86\Debug\SDRSharp.ScopeView.pdb

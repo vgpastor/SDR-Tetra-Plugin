@@ -1,0 +1,26 @@
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.PSKPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.pdb
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.Display.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.PSKPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.Properties.Resources.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\PSKDemodulator\obj\x86\Release\SDRSharp.PSK.pdb
+C:\sdrsharp\SDRSharp.PSK.dll
+C:\sdrsharp\SDRSharp.PSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.PSKPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.PSK.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.PSK.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.PSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.PSK.csprojResolveAssemblyReference.cache

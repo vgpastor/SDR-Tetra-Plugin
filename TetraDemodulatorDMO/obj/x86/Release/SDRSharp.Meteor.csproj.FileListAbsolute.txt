@@ -1,0 +1,83 @@
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.5\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.6\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\sdrsharp\SDRSharp.Meteor.dll
+C:\sdrsharp\SDRSharp.Meteor.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.7\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.ConfigPanel.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.csproj.CoreCompileInputs.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\MeteorDemodulator v1.8\obj\x86\Release\SDRSharp.Meteor.pdb
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.csprojResolveAssemblyReference.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.Display.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.MeteorPanel.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.Properties.Resources.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.csproj.GenerateResource.Cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.csproj.CoreCompileInputs.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.dll
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\x86\Release\SDRSharp.Meteor.pdb

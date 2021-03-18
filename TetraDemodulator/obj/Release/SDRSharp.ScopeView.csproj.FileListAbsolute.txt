@@ -1,0 +1,2 @@
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\Release\SDRSharp.ScopeView.ScopeViewPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\ScopeView\obj\Release\SDRSharp.ScopeView.csproj.GenerateResource.Cache

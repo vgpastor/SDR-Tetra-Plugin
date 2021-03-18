@@ -1,0 +1,31 @@
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.QPSKPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.QPSKPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK — копия\obj\x86\Release\SDRSharp.QPSK.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.QPSKPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.pdb
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.csprojResolveAssemblyReference.cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.ConfigPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.QPSKPanel.resources
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.csproj.GenerateResource.Cache
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.dll
+C:\Users\mozg\YandexDisk\SDRSharp-plugins\QPSK\obj\x86\Release\SDRSharp.QPSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.QPSK.csprojResolveAssemblyReference.cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.QPSK.csproj.GenerateResource.Cache
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.OQPSK.ConfigPanel.resources
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.OQPSK.OQPSKPanel.resources
+C:\sdrsharp\SDRSharp.OQPSK.dll
+C:\sdrsharp\SDRSharp.OQPSK.pdb
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.OQPSK.dll
+C:\Users\boni\YandexDisk\SDRSharp-plugins\OQPSK\obj\x86\Release\SDRSharp.OQPSK.pdb

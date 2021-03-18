@@ -1,0 +1,11 @@
+C:\sdrsharp\SDRSharp.Tetra.dll
+C:\sdrsharp\SDRSharp.Tetra.pdb
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.Display.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.TetraPanel.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.Properties.Resources.resources
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.csproj.GenerateResource.Cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.csproj.CoreCompileInputs.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.dll
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.pdb
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.csprojResolveAssemblyReference.cache
+C:\Users\User\YandexDisk\SDRSharp-plugins_4.6\TetraDemodulator\obj\Release\SDRSharp.Tetra.NetInfoWindow.resources
