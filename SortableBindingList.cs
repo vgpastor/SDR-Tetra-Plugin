@@ -1,42 +1,87 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SDRSharp.Tetra.SortableBindingList`1
-// Assembly: SDRSharp.Tetra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: C3C6F0AC-F9E4-4213-8F19-E6F878CA40B0
-// Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
-
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace SDRSharp.Tetra
 {
     public class SortableBindingList<T> : BindingList<T>
     {
-        private bool _isSorted;
+        private bool _isSorted = false;
         private PropertyDescriptor _sortProperty;
         private ListSortDirection _sortDirection;
 
-        protected override bool SupportsSortingCore => true;
+        protected override bool SupportsSortingCore
+        {
+            get { return true; }
+        }
 
-        protected override ListSortDirection SortDirectionCore => this._sortDirection;
+        protected override ListSortDirection SortDirectionCore
+        {
+            get { return _sortDirection; }
+        }
 
-        protected override PropertyDescriptor SortPropertyCore => this._sortProperty;
+        protected override PropertyDescriptor SortPropertyCore
+        {
+            get { return _sortProperty; }
+        }
 
-        protected override bool IsSortedCore => this._isSorted;
+        protected override bool IsSortedCore
+        {
+            get { return _isSorted; }
+        }
 
         protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction)
         {
-            List<T> items = (List<T>)this.Items;
+
+            var items = (List<T>)this.Items;
+
             if (items != null)
             {
-                SortableBindingListComparer<T> bindingListComparer = new SortableBindingListComparer<T>(property.Name, direction);
-                items.Sort((IComparer<T>)bindingListComparer);
-                this._isSorted = true;
+                var pc = new SortableBindingListComparer<T>(property.Name, direction);
+
+                items.Sort(pc);
+
+                _isSorted = true;
+
             }
             else
-                this._isSorted = false;
-            this._sortProperty = property;
-            this._sortDirection = direction;
-            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+            {
+                _isSorted = false;
+            }
+
+            _sortProperty = property;
+            _sortDirection = direction;
+
+
+            OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
         }
+
+
+    }
+
+    public class SortableBindingListComparer<T> : IComparer<T>
+    {
+        private PropertyInfo _sortProperty;
+        private ListSortDirection _sortDirection;
+
+        public SortableBindingListComparer(string sortProperty, ListSortDirection sortDirection)
+        {
+            _sortProperty = typeof(T).GetProperty(sortProperty);
+            _sortDirection = sortDirection;
+        }
+
+        public int Compare(T x, T y)
+        {
+            IComparable oX = (IComparable)_sortProperty.GetValue(x, null);
+            IComparable oY = (IComparable)_sortProperty.GetValue(y, null);
+
+            if (_sortDirection == ListSortDirection.Ascending)
+                return oX.CompareTo(oY);
+            else
+                return oY.CompareTo(oX);
+
+        }
+
     }
 }

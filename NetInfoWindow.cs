@@ -14,634 +14,634 @@ using System.Windows.Forms;
 
 namespace SDRSharp.Tetra
 {
-  [DesignTimeVisible(true)]
-  public class NetInfoWindow : Form
-  {
-    private const double LatitudeToDegrees = 1.07288360595703E-05;
-    private const double LatitudeCenter = 8388608.0;
-    private const double LongitudeToDegrees = 1.07288360595703E-05;
-    private const double LongitudeCenter = 16777216.0;
-    private Dictionary<int, ReceivedData> _neighbourList = new Dictionary<int, ReceivedData>();
-    private readonly SortableBindingList<NeighbourDisplay> _neighbourEntries = new SortableBindingList<NeighbourDisplay>();
-    private readonly SortableBindingList<CallsDisplay> _callsEntries = new SortableBindingList<CallsDisplay>();
-    private readonly SortableBindingList<GroupDisplay> _groupEntries = new SortableBindingList<GroupDisplay>();
-    private readonly SortableBindingList<CellDisplay> _cellEntries = new SortableBindingList<CellDisplay>();
-    private IContainer components;
-    private Timer timeOutTimer;
-    private TabControl tabControl1;
-    private TabPage callsTabPage;
-    private TabPage neighbourTabPage;
-    private TabPage cellTabPage;
-    private CheckBox checkBox1;
-    private BindingSource callsBindingSource;
-    private BindingSource neighbourBindingSource;
-    private BindingSource cellBindingSource;
-    private TabPage groupTabPage;
-    private BindingSource groupBindingSource;
-    private SplitContainer splitContainer2;
-    private DataGridViewEx callsDataGridView;
-    private TextBox callsTextBox;
-    private DataGridViewTextBoxColumn callIDDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn Type;
-    private DataGridViewTextBoxColumn From;
-    private DataGridViewTextBoxColumn To;
-    private DataGridViewTextBoxColumn Carrier;
-    private DataGridViewTextBoxColumn assignedSlotDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn encryptedDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn duplexDataGridViewTextBoxColumn;
-    private DataGridView cellDataGridView;
-    private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn1;
-    private DataGridViewTextBoxColumn Cell1;
-    private DataGridViewTextBoxColumn Cell2;
-    private DataGridViewTextBoxColumn Cell3;
-    private DataGridViewTextBoxColumn Cell4;
-    private DataGridViewTextBoxColumn Cell5;
-    private DataGridViewTextBoxColumn Cell6;
-    private DataGridViewTextBoxColumn Cell7;
-    private DataGridViewTextBoxColumn Cell8;
-    private DataGridViewTextBoxColumn Cell9;
-    private DataGridViewTextBoxColumn Cell10;
-    private DataGridViewTextBoxColumn Cell11;
-    private DataGridViewTextBoxColumn Cell12;
-    private DataGridViewTextBoxColumn Cell13;
-    private DataGridViewTextBoxColumn Cell14;
-    private DataGridViewTextBoxColumn Cell15;
-    private DataGridViewTextBoxColumn Cell16;
-    private DataGridViewTextBoxColumn Cell17;
-    private DataGridViewTextBoxColumn Cell18;
-    private DataGridViewTextBoxColumn Cell19;
-    private DataGridViewTextBoxColumn Cell20;
-    private DataGridViewTextBoxColumn Cell21;
-    private DataGridViewTextBoxColumn Cell22;
-    private DataGridViewTextBoxColumn Cell23;
-    private DataGridViewTextBoxColumn Cell24;
-    private DataGridViewTextBoxColumn Cell25;
-    private DataGridViewTextBoxColumn Cell26;
-    private DataGridViewTextBoxColumn Cell27;
-    private DataGridViewTextBoxColumn Cell28;
-    private DataGridViewTextBoxColumn Cell29;
-    private DataGridViewTextBoxColumn Cell30;
-    private DataGridViewTextBoxColumn Cell31;
-    private DataGridViewTextBoxColumn Cell32;
-    private DataGridViewEx groupDataGridView;
-    private DataGridViewTextBoxColumn gSSIDataGridViewTextBoxColumn1;
-    private DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn1;
-    private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-    private DataGridViewEx neighbourDataGridView;
-    private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn2;
-    private DataGridViewTextBoxColumn cell1DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell2DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell3DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell4DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell5DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell6DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell7DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell8DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell9DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell10DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell11DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell12DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell13DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell14DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell15DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell16DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell17DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell18DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell19DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell20DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell21DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell22DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell23DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell24DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell25DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell26DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell27DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell28DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell29DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell30DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell31DataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn cell32DataGridViewTextBoxColumn;
-
-    public bool GroupsChanged { get; set; }
-
-    public NetInfoWindow()
+    [DesignTimeVisible(true)]
+    public class NetInfoWindow : Form
     {
-      this.InitializeComponent();
-      this.VisibleChanged += new EventHandler(this.NetInfoWindow_VisibleChanged);
-      this.neighbourBindingSource.DataSource = (object) this._neighbourEntries;
-      this.callsBindingSource.DataSource = (object) this._callsEntries;
-      this.groupBindingSource.DataSource = (object) this._groupEntries;
-      this.cellBindingSource.DataSource = (object) this._cellEntries;
-      this.groupDataGridView.CellEndEdit += new DataGridViewCellEventHandler(this.GroupsDataGridView_CellEndEdit);
-      this.groupDataGridView.Sorted += new EventHandler(this.GroupsDataGridView_Sorted);
-    }
+        private const double LatitudeToDegrees = 1.07288360595703E-05;
+        private const double LatitudeCenter = 8388608.0;
+        private const double LongitudeToDegrees = 1.07288360595703E-05;
+        private const double LongitudeCenter = 16777216.0;
+        private Dictionary<int, ReceivedData> _neighbourList = new Dictionary<int, ReceivedData>();
+        private readonly SortableBindingList<NeighbourDisplay> _neighbourEntries = new SortableBindingList<NeighbourDisplay>();
+        private readonly SortableBindingList<CallsDisplay> _callsEntries = new SortableBindingList<CallsDisplay>();
+        private readonly SortableBindingList<GroupDisplay> _groupEntries = new SortableBindingList<GroupDisplay>();
+        private readonly SortableBindingList<CellDisplay> _cellEntries = new SortableBindingList<CellDisplay>();
+        private IContainer components;
+        private Timer timeOutTimer;
+        private TabControl tabControl1;
+        private TabPage callsTabPage;
+        private TabPage neighbourTabPage;
+        private TabPage cellTabPage;
+        private CheckBox checkBox1;
+        private BindingSource callsBindingSource;
+        private BindingSource neighbourBindingSource;
+        private BindingSource cellBindingSource;
+        private TabPage groupTabPage;
+        private BindingSource groupBindingSource;
+        private SplitContainer splitContainer2;
+        private DataGridViewEx callsDataGridView;
+        private TextBox callsTextBox;
+        private DataGridViewTextBoxColumn callIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Type;
+        private DataGridViewTextBoxColumn From;
+        private DataGridViewTextBoxColumn To;
+        private DataGridViewTextBoxColumn Carrier;
+        private DataGridViewTextBoxColumn assignedSlotDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn encryptedDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn duplexDataGridViewTextBoxColumn;
+        private DataGridView cellDataGridView;
+        private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn Cell1;
+        private DataGridViewTextBoxColumn Cell2;
+        private DataGridViewTextBoxColumn Cell3;
+        private DataGridViewTextBoxColumn Cell4;
+        private DataGridViewTextBoxColumn Cell5;
+        private DataGridViewTextBoxColumn Cell6;
+        private DataGridViewTextBoxColumn Cell7;
+        private DataGridViewTextBoxColumn Cell8;
+        private DataGridViewTextBoxColumn Cell9;
+        private DataGridViewTextBoxColumn Cell10;
+        private DataGridViewTextBoxColumn Cell11;
+        private DataGridViewTextBoxColumn Cell12;
+        private DataGridViewTextBoxColumn Cell13;
+        private DataGridViewTextBoxColumn Cell14;
+        private DataGridViewTextBoxColumn Cell15;
+        private DataGridViewTextBoxColumn Cell16;
+        private DataGridViewTextBoxColumn Cell17;
+        private DataGridViewTextBoxColumn Cell18;
+        private DataGridViewTextBoxColumn Cell19;
+        private DataGridViewTextBoxColumn Cell20;
+        private DataGridViewTextBoxColumn Cell21;
+        private DataGridViewTextBoxColumn Cell22;
+        private DataGridViewTextBoxColumn Cell23;
+        private DataGridViewTextBoxColumn Cell24;
+        private DataGridViewTextBoxColumn Cell25;
+        private DataGridViewTextBoxColumn Cell26;
+        private DataGridViewTextBoxColumn Cell27;
+        private DataGridViewTextBoxColumn Cell28;
+        private DataGridViewTextBoxColumn Cell29;
+        private DataGridViewTextBoxColumn Cell30;
+        private DataGridViewTextBoxColumn Cell31;
+        private DataGridViewTextBoxColumn Cell32;
+        private DataGridViewEx groupDataGridView;
+        private DataGridViewTextBoxColumn gSSIDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private DataGridViewEx neighbourDataGridView;
+        private DataGridViewTextBoxColumn parameterDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn cell1DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell2DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell3DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell4DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell5DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell6DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell7DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell8DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell9DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell10DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell11DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell12DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell13DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell14DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell15DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell16DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell17DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell18DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell19DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell20DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell21DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell22DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell23DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell24DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell25DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell26DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell27DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell28DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell29DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell30DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell31DataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cell32DataGridViewTextBoxColumn;
 
-    private void GroupsDataGridView_Sorted(object sender, EventArgs e) => this.GroupsChanged = true;
+        public bool GroupsChanged { get; set; }
 
-    private void GroupsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) => this.GroupsChanged = true;
-
-    private void NetInfoWindow_VisibleChanged(object sender, EventArgs e)
-    {
-      if (!this.Visible)
-        return;
-      this.checkBox1.Checked = this.TopMost;
-    }
-
-    public int TimeOut { get; set; }
-
-    public void UpdateCalls(SortedDictionary<int, CallsEntry> calls)
-    {
-      if (this.tabControl1.SelectedTab.Name != "callsTabPage")
-        return;
-      this.UpdateCallsGrid(calls.ToDictionary<KeyValuePair<int, CallsEntry>, int, CallsEntry>((Func<KeyValuePair<int, CallsEntry>, int>) (entry => entry.Key), (Func<KeyValuePair<int, CallsEntry>, CallsEntry>) (entry => entry.Value)));
-    }
-
-    public void UpdateSysInfo(ReceivedData syncInfo, ReceivedData sysInfo)
-    {
-      if (this.tabControl1.SelectedTab.Name != "cellTabPage")
-        return;
-      syncInfo.SetValue(GlobalNames.Repeater_Master_slave_link_flag, -1);
-      syncInfo.SetValue(GlobalNames.Repeater_Frame, -1);
-      syncInfo.SetValue(GlobalNames.Repeater_TimeSlot, -1);
-      syncInfo.SetValue(GlobalNames.Repeater_Frame_countdown, -1);
-      syncInfo.SetValue(GlobalNames.SYNC_PDU_type, -1);
-      syncInfo.SetValue(GlobalNames.Master_slave_link_flag, -1);
-      syncInfo.SetValue(GlobalNames.Fill_bit, -1);
-      syncInfo.SetValue(GlobalNames.Fragmentation_flag, -1);
-      syncInfo.SetValue(GlobalNames.Frame_countdown, -1);
-      syncInfo.SetValue(GlobalNames.Gateway_generated_message_flag, -1);
-      syncInfo.SetValue(GlobalNames.Message_type, -1);
-      syncInfo.SetValue(GlobalNames.Frame, -1);
-      syncInfo.SetValue(GlobalNames.MultiFrame, -1);
-      syncInfo.SetValue(GlobalNames.TimeSlot, -1);
-      sysInfo.SetValue(GlobalNames.Frame, -1);
-      sysInfo.SetValue(GlobalNames.MultiFrame, -1);
-      sysInfo.SetValue(GlobalNames.TimeSlot, -1);
-      syncInfo.SetValue(GlobalNames.MAC_PDU_Type, -1);
-      syncInfo.SetValue(GlobalNames.MAC_Broadcast_Type, -1);
-      sysInfo.SetValue(GlobalNames.MAC_PDU_Type, -1);
-      sysInfo.SetValue(GlobalNames.MAC_Broadcast_Type, -1);
-      sysInfo.SetValue(GlobalNames.CurrTimeSlot, -1);
-      syncInfo.SetValue(GlobalNames.CurrTimeSlot, -1);
-      for (int index = 0; index < syncInfo.Data.Length; ++index)
-      {
-        GlobalNames name = (GlobalNames) index;
-        if (syncInfo.Contains(name))
+        public NetInfoWindow()
         {
-          int num = syncInfo.Value(name);
-          bool flag = false;
-          foreach (CellDisplay cellEntry in (Collection<CellDisplay>) this._cellEntries)
-          {
-            if (cellEntry.Parameter == name)
-            {
-              flag = true;
-              if (cellEntry.Value != num)
-              {
-                cellEntry.Value = num;
-                this.cellBindingSource.ResetItem(this._cellEntries.IndexOf(cellEntry));
-                break;
-              }
-              break;
-            }
-          }
-          if (!flag)
-            this._cellEntries.Add(new CellDisplay()
-            {
-              Parameter = name,
-              Value = num,
-              Comment = string.Empty
-            });
+            this.InitializeComponent();
+            this.VisibleChanged += new EventHandler(this.NetInfoWindow_VisibleChanged);
+            this.neighbourBindingSource.DataSource = (object)this._neighbourEntries;
+            this.callsBindingSource.DataSource = (object)this._callsEntries;
+            this.groupBindingSource.DataSource = (object)this._groupEntries;
+            this.cellBindingSource.DataSource = (object)this._cellEntries;
+            this.groupDataGridView.CellEndEdit += new DataGridViewCellEventHandler(this.GroupsDataGridView_CellEndEdit);
+            this.groupDataGridView.Sorted += new EventHandler(this.GroupsDataGridView_Sorted);
         }
-      }
-      for (int index = 0; index < sysInfo.Data.Length; ++index)
-      {
-        GlobalNames name = (GlobalNames) index;
-        if (sysInfo.Contains(name))
-        {
-          int num = sysInfo.Value(name);
-          bool flag = false;
-          foreach (CellDisplay cellEntry in (Collection<CellDisplay>) this._cellEntries)
-          {
-            if (cellEntry.Parameter == name)
-            {
-              flag = true;
-              if (cellEntry.Value != num)
-              {
-                cellEntry.Value = num;
-                this.cellBindingSource.ResetItem(this._cellEntries.IndexOf(cellEntry));
-                break;
-              }
-              break;
-            }
-          }
-          if (!flag)
-            this._cellEntries.Add(new CellDisplay()
-            {
-              Parameter = name,
-              Value = num,
-              Comment = string.Empty
-            });
-        }
-      }
-    }
 
-    public void UpdateNeighBour()
-    {
-      if (this.tabControl1.SelectedTab.Name != "neighbourTabPage" || GlobalFunction.NeighbourList.Count == 0)
-        return;
-      while (GlobalFunction.NeighbourList.Count > 0)
-      {
-        ReceivedData neighbour = GlobalFunction.NeighbourList[0];
-        int cellId = neighbour.Value(GlobalNames.Cell_identifier);
-        for (int index = 0; index < neighbour.Data.Length; ++index)
+        private void GroupsDataGridView_Sorted(object sender, EventArgs e) => this.GroupsChanged = true;
+
+        private void GroupsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) => this.GroupsChanged = true;
+
+        private void NetInfoWindow_VisibleChanged(object sender, EventArgs e)
         {
-          GlobalNames name = (GlobalNames) index;
-          if (neighbour.Contains(name))
-          {
-            int num = neighbour.Value(name);
-            bool flag = false;
-            foreach (NeighbourDisplay neighbourEntry in (Collection<NeighbourDisplay>) this._neighbourEntries)
+            if (!this.Visible)
+                return;
+            this.checkBox1.Checked = this.TopMost;
+        }
+
+        public int TimeOut { get; set; }
+
+        public void UpdateCalls(SortedDictionary<int, CallsEntry> calls)
+        {
+            if (this.tabControl1.SelectedTab.Name != "callsTabPage")
+                return;
+            this.UpdateCallsGrid(calls.ToDictionary<KeyValuePair<int, CallsEntry>, int, CallsEntry>((Func<KeyValuePair<int, CallsEntry>, int>)(entry => entry.Key), (Func<KeyValuePair<int, CallsEntry>, CallsEntry>)(entry => entry.Value)));
+        }
+
+        public void UpdateSysInfo(ReceivedData syncInfo, ReceivedData sysInfo)
+        {
+            if (this.tabControl1.SelectedTab.Name != "cellTabPage")
+                return;
+            syncInfo.SetValue(GlobalNames.Repeater_Master_slave_link_flag, -1);
+            syncInfo.SetValue(GlobalNames.Repeater_Frame, -1);
+            syncInfo.SetValue(GlobalNames.Repeater_TimeSlot, -1);
+            syncInfo.SetValue(GlobalNames.Repeater_Frame_countdown, -1);
+            syncInfo.SetValue(GlobalNames.SYNC_PDU_type, -1);
+            syncInfo.SetValue(GlobalNames.Master_slave_link_flag, -1);
+            syncInfo.SetValue(GlobalNames.Fill_bit, -1);
+            syncInfo.SetValue(GlobalNames.Fragmentation_flag, -1);
+            syncInfo.SetValue(GlobalNames.Frame_countdown, -1);
+            syncInfo.SetValue(GlobalNames.Gateway_generated_message_flag, -1);
+            syncInfo.SetValue(GlobalNames.Message_type, -1);
+            syncInfo.SetValue(GlobalNames.Frame, -1);
+            syncInfo.SetValue(GlobalNames.MultiFrame, -1);
+            syncInfo.SetValue(GlobalNames.TimeSlot, -1);
+            sysInfo.SetValue(GlobalNames.Frame, -1);
+            sysInfo.SetValue(GlobalNames.MultiFrame, -1);
+            sysInfo.SetValue(GlobalNames.TimeSlot, -1);
+            syncInfo.SetValue(GlobalNames.MAC_PDU_Type, -1);
+            syncInfo.SetValue(GlobalNames.MAC_Broadcast_Type, -1);
+            sysInfo.SetValue(GlobalNames.MAC_PDU_Type, -1);
+            sysInfo.SetValue(GlobalNames.MAC_Broadcast_Type, -1);
+            sysInfo.SetValue(GlobalNames.CurrTimeSlot, -1);
+            syncInfo.SetValue(GlobalNames.CurrTimeSlot, -1);
+            for (int index = 0; index < syncInfo.Data.Length; ++index)
             {
-              if (neighbourEntry.Parameter == name)
-              {
-                flag = true;
-                object cellValue = this.GetCellValue(neighbourEntry, cellId);
-                if (cellValue != null)
+                GlobalNames name = (GlobalNames)index;
+                if (syncInfo.Contains(name))
                 {
-                  if ((int) cellValue == num)
+                    int num = syncInfo.Value(name);
+                    bool flag = false;
+                    foreach (CellDisplay cellEntry in (Collection<CellDisplay>)this._cellEntries)
+                    {
+                        if (cellEntry.Parameter == name)
+                        {
+                            flag = true;
+                            if (cellEntry.Value != num)
+                            {
+                                cellEntry.Value = num;
+                                this.cellBindingSource.ResetItem(this._cellEntries.IndexOf(cellEntry));
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                    if (!flag)
+                        this._cellEntries.Add(new CellDisplay()
+                        {
+                            Parameter = name,
+                            Value = num,
+                            Comment = string.Empty
+                        });
+                }
+            }
+            for (int index = 0; index < sysInfo.Data.Length; ++index)
+            {
+                GlobalNames name = (GlobalNames)index;
+                if (sysInfo.Contains(name))
+                {
+                    int num = sysInfo.Value(name);
+                    bool flag = false;
+                    foreach (CellDisplay cellEntry in (Collection<CellDisplay>)this._cellEntries)
+                    {
+                        if (cellEntry.Parameter == name)
+                        {
+                            flag = true;
+                            if (cellEntry.Value != num)
+                            {
+                                cellEntry.Value = num;
+                                this.cellBindingSource.ResetItem(this._cellEntries.IndexOf(cellEntry));
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                    if (!flag)
+                        this._cellEntries.Add(new CellDisplay()
+                        {
+                            Parameter = name,
+                            Value = num,
+                            Comment = string.Empty
+                        });
+                }
+            }
+        }
+
+        public void UpdateNeighBour()
+        {
+            if (this.tabControl1.SelectedTab.Name != "neighbourTabPage" || Global.NeighbourList.Count == 0)
+                return;
+            while (Global.NeighbourList.Count > 0)
+            {
+                ReceivedData neighbour = Global.NeighbourList[0];
+                int cellId = neighbour.Value(GlobalNames.Cell_identifier);
+                for (int index = 0; index < neighbour.Data.Length; ++index)
+                {
+                    GlobalNames name = (GlobalNames)index;
+                    if (neighbour.Contains(name))
+                    {
+                        int num = neighbour.Value(name);
+                        bool flag = false;
+                        foreach (NeighbourDisplay neighbourEntry in (Collection<NeighbourDisplay>)this._neighbourEntries)
+                        {
+                            if (neighbourEntry.Parameter == name)
+                            {
+                                flag = true;
+                                object cellValue = this.GetCellValue(neighbourEntry, cellId);
+                                if (cellValue != null)
+                                {
+                                    if ((int)cellValue == num)
+                                        break;
+                                }
+                                this.SetCellValue(neighbourEntry, cellId, (object)num);
+                                break;
+                            }
+                        }
+                        if (!flag)
+                        {
+                            NeighbourDisplay entry = new NeighbourDisplay()
+                            {
+                                Parameter = name
+                            };
+                            this.SetCellValue(entry, cellId, (object)num);
+                            this._neighbourEntries.Add(entry);
+                        }
+                    }
+                }
+                Global.NeighbourList.RemoveAt(0);
+            }
+            this._neighbourEntries.ResetBindings();
+        }
+
+        private void SetCellValue(NeighbourDisplay entry, int cellId, object value)
+        {
+            switch (cellId)
+            {
+                case 1:
+                    entry.Cell1 = value;
                     break;
-                }
-                this.SetCellValue(neighbourEntry, cellId, (object) num);
-                break;
-              }
+                case 2:
+                    entry.Cell2 = value;
+                    break;
+                case 3:
+                    entry.Cell3 = value;
+                    break;
+                case 4:
+                    entry.Cell4 = value;
+                    break;
+                case 5:
+                    entry.Cell5 = value;
+                    break;
+                case 6:
+                    entry.Cell6 = value;
+                    break;
+                case 7:
+                    entry.Cell7 = value;
+                    break;
+                case 8:
+                    entry.Cell8 = value;
+                    break;
+                case 9:
+                    entry.Cell9 = value;
+                    break;
+                case 10:
+                    entry.Cell10 = value;
+                    break;
+                case 11:
+                    entry.Cell11 = value;
+                    break;
+                case 12:
+                    entry.Cell12 = value;
+                    break;
+                case 13:
+                    entry.Cell13 = value;
+                    break;
+                case 14:
+                    entry.Cell14 = value;
+                    break;
+                case 15:
+                    entry.Cell15 = value;
+                    break;
+                case 16:
+                    entry.Cell16 = value;
+                    break;
+                case 17:
+                    entry.Cell17 = value;
+                    break;
+                case 18:
+                    entry.Cell18 = value;
+                    break;
+                case 19:
+                    entry.Cell19 = value;
+                    break;
+                case 20:
+                    entry.Cell20 = value;
+                    break;
+                case 21:
+                    entry.Cell21 = value;
+                    break;
+                case 22:
+                    entry.Cell22 = value;
+                    break;
+                case 23:
+                    entry.Cell23 = value;
+                    break;
+                case 24:
+                    entry.Cell24 = value;
+                    break;
+                case 25:
+                    entry.Cell25 = value;
+                    break;
+                case 26:
+                    entry.Cell26 = value;
+                    break;
+                case 27:
+                    entry.Cell27 = value;
+                    break;
+                case 28:
+                    entry.Cell28 = value;
+                    break;
+                case 29:
+                    entry.Cell29 = value;
+                    break;
+                case 30:
+                    entry.Cell30 = value;
+                    break;
+                case 31:
+                    entry.Cell31 = value;
+                    break;
+                default:
+                    entry.Cell32 = value;
+                    break;
             }
-            if (!flag)
+        }
+
+        private object GetCellValue(NeighbourDisplay parameter, int cellId)
+        {
+            switch (cellId)
             {
-              NeighbourDisplay entry = new NeighbourDisplay()
-              {
-                Parameter = name
-              };
-              this.SetCellValue(entry, cellId, (object) num);
-              this._neighbourEntries.Add(entry);
+                case 1:
+                    return parameter.Cell1;
+                case 2:
+                    return parameter.Cell2;
+                case 3:
+                    return parameter.Cell3;
+                case 4:
+                    return parameter.Cell4;
+                case 5:
+                    return parameter.Cell5;
+                case 6:
+                    return parameter.Cell6;
+                case 7:
+                    return parameter.Cell7;
+                case 8:
+                    return parameter.Cell8;
+                case 9:
+                    return parameter.Cell9;
+                case 10:
+                    return parameter.Cell10;
+                case 11:
+                    return parameter.Cell11;
+                case 12:
+                    return parameter.Cell12;
+                case 13:
+                    return parameter.Cell13;
+                case 14:
+                    return parameter.Cell14;
+                case 15:
+                    return parameter.Cell15;
+                case 16:
+                    return parameter.Cell16;
+                case 17:
+                    return parameter.Cell17;
+                case 18:
+                    return parameter.Cell18;
+                case 19:
+                    return parameter.Cell19;
+                case 20:
+                    return parameter.Cell20;
+                case 21:
+                    return parameter.Cell21;
+                case 22:
+                    return parameter.Cell22;
+                case 23:
+                    return parameter.Cell23;
+                case 24:
+                    return parameter.Cell24;
+                case 25:
+                    return parameter.Cell25;
+                case 26:
+                    return parameter.Cell26;
+                case 27:
+                    return parameter.Cell27;
+                case 28:
+                    return parameter.Cell28;
+                case 29:
+                    return parameter.Cell29;
+                case 30:
+                    return parameter.Cell30;
+                case 31:
+                    return parameter.Cell31;
+                default:
+                    return (object)(int)parameter.Cell32;
             }
-          }
         }
-        GlobalFunction.NeighbourList.RemoveAt(0);
-      }
-      this._neighbourEntries.ResetBindings();
-    }
 
-    private void SetCellValue(NeighbourDisplay entry, int cellId, object value)
-    {
-      switch (cellId)
-      {
-        case 1:
-          entry.Cell1 = value;
-          break;
-        case 2:
-          entry.Cell2 = value;
-          break;
-        case 3:
-          entry.Cell3 = value;
-          break;
-        case 4:
-          entry.Cell4 = value;
-          break;
-        case 5:
-          entry.Cell5 = value;
-          break;
-        case 6:
-          entry.Cell6 = value;
-          break;
-        case 7:
-          entry.Cell7 = value;
-          break;
-        case 8:
-          entry.Cell8 = value;
-          break;
-        case 9:
-          entry.Cell9 = value;
-          break;
-        case 10:
-          entry.Cell10 = value;
-          break;
-        case 11:
-          entry.Cell11 = value;
-          break;
-        case 12:
-          entry.Cell12 = value;
-          break;
-        case 13:
-          entry.Cell13 = value;
-          break;
-        case 14:
-          entry.Cell14 = value;
-          break;
-        case 15:
-          entry.Cell15 = value;
-          break;
-        case 16:
-          entry.Cell16 = value;
-          break;
-        case 17:
-          entry.Cell17 = value;
-          break;
-        case 18:
-          entry.Cell18 = value;
-          break;
-        case 19:
-          entry.Cell19 = value;
-          break;
-        case 20:
-          entry.Cell20 = value;
-          break;
-        case 21:
-          entry.Cell21 = value;
-          break;
-        case 22:
-          entry.Cell22 = value;
-          break;
-        case 23:
-          entry.Cell23 = value;
-          break;
-        case 24:
-          entry.Cell24 = value;
-          break;
-        case 25:
-          entry.Cell25 = value;
-          break;
-        case 26:
-          entry.Cell26 = value;
-          break;
-        case 27:
-          entry.Cell27 = value;
-          break;
-        case 28:
-          entry.Cell28 = value;
-          break;
-        case 29:
-          entry.Cell29 = value;
-          break;
-        case 30:
-          entry.Cell30 = value;
-          break;
-        case 31:
-          entry.Cell31 = value;
-          break;
-        default:
-          entry.Cell32 = value;
-          break;
-      }
-    }
-
-    private object GetCellValue(NeighbourDisplay parameter, int cellId)
-    {
-      switch (cellId)
-      {
-        case 1:
-          return parameter.Cell1;
-        case 2:
-          return parameter.Cell2;
-        case 3:
-          return parameter.Cell3;
-        case 4:
-          return parameter.Cell4;
-        case 5:
-          return parameter.Cell5;
-        case 6:
-          return parameter.Cell6;
-        case 7:
-          return parameter.Cell7;
-        case 8:
-          return parameter.Cell8;
-        case 9:
-          return parameter.Cell9;
-        case 10:
-          return parameter.Cell10;
-        case 11:
-          return parameter.Cell11;
-        case 12:
-          return parameter.Cell12;
-        case 13:
-          return parameter.Cell13;
-        case 14:
-          return parameter.Cell14;
-        case 15:
-          return parameter.Cell15;
-        case 16:
-          return parameter.Cell16;
-        case 17:
-          return parameter.Cell17;
-        case 18:
-          return parameter.Cell18;
-        case 19:
-          return parameter.Cell19;
-        case 20:
-          return parameter.Cell20;
-        case 21:
-          return parameter.Cell21;
-        case 22:
-          return parameter.Cell22;
-        case 23:
-          return parameter.Cell23;
-        case 24:
-          return parameter.Cell24;
-        case 25:
-          return parameter.Cell25;
-        case 26:
-          return parameter.Cell26;
-        case 27:
-          return parameter.Cell27;
-        case 28:
-          return parameter.Cell28;
-        case 29:
-          return parameter.Cell29;
-        case 30:
-          return parameter.Cell30;
-        case 31:
-          return parameter.Cell31;
-        default:
-          return (object) (int) parameter.Cell32;
-      }
-    }
-
-    public void UpdateTextBox(List<ReceivedData> rawData)
-    {
-      string empty1 = string.Empty;
-      int num1 = 0;
-      while (rawData.Count > 0)
-      {
-        ReceivedData receivedData = rawData[0];
-        if (!receivedData.Contains(GlobalNames.CMCE_Primitives_Type))
+        public void UpdateTextBox(List<ReceivedData> rawData)
         {
-          rawData.RemoveAt(0);
-        }
-        else
-        {
-          string str1 = string.Empty;
-          if (receivedData.TryGetValue(GlobalNames.Encryption_mode, ref num1) && num1 != 0)
-            str1 = str1 + "PDU encrypted:" + num1.ToString() + " Data incorrect!";
-          if (receivedData.TryGetValue(GlobalNames.Carrier_number, ref num1))
-            str1 = str1 + " Carrier:" + num1.ToString();
-          if (receivedData.TryGetValue(GlobalNames.Timeslot_assigned, ref num1))
-          {
-            string str2 = str1 + " TimeSlot:";
-            str1 = num1 != 0 ? str2 + ((num1 & 8) != 0 ? "1" : "") + ((num1 & 4) != 0 ? "2" : "") + ((num1 & 2) != 0 ? "3" : "") + ((num1 & 1) != 0 ? "4" : "") : str2 + "0";
-          }
-          if (receivedData.TryGetValue(GlobalNames.SSI, ref num1))
-            str1 = str1 + " SSI:" + num1.ToString();
-          if (receivedData.TryGetValue(GlobalNames.Call_identifier, ref num1))
-            str1 = str1 + " Call ID:" + num1.ToString();
-          if (receivedData.TryGetValue(GlobalNames.Encryption_control, ref num1))
-            str1 = str1 + " Encrypt:" + (num1 == 0 ? "Clear" : "E2EE");
-          if (receivedData.TryGetValue(GlobalNames.CMCE_Primitives_Type, ref num1))
-            str1 = str1 + " " + ((CmcePrimitivesType) num1).ToString();
-          if (receivedData.TryGetValue(GlobalNames.Transmission_grant, ref num1))
-            str1 = str1 + " Transmission " + ((TransmissionGranted) num1).ToString();
-          if (receivedData.TryGetValue(GlobalNames.Calling_party_address_SSI, ref num1))
-            str1 = str1 + " Party_SSI:" + num1.ToString();
-          if (receivedData.TryGetValue(GlobalNames.Transmitting_party_address_SSI, ref num1))
-            str1 = str1 + " Party_SSI:" + num1.ToString();
-          if (receivedData.TryGetValue(GlobalNames.Basic_service_Communication_type, ref num1))
-            str1 = str1 + " Basic_service:" + ((CommunicationType) num1).ToString();
-          if (receivedData.TryGetValue(GlobalNames.Basic_service_Encryption_flag, ref num1))
-            str1 += num1 == 0 ? " Clear" : " E2EE";
-          if (receivedData.TryGetValue(GlobalNames.Basic_service_Circuit_mode_type, ref num1))
-            str1 = str1 + " " + ((CircuitModeType) num1).ToString();
-          if (receivedData.TryGetValue(GlobalNames.Short_data_type_identifier, ref num1))
-          {
-            str1 = str1 + " Type:" + num1.ToString();
-            string empty2 = string.Empty;
-            switch (num1)
+            string empty1 = string.Empty;
+            int num1 = 0;
+            while (rawData.Count > 0)
             {
-              case 0:
-                int num2 = 16;
-                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_16, ref num1))
-                  empty2 = num1.ToString();
-                str1 = str1 + " Length:" + num2.ToString() + " Data:" + empty2;
-                break;
-              case 1:
-                int num3 = 32;
-                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_32, ref num1))
-                  empty2 = ((uint) num1).ToString();
-                str1 = str1 + " Length:" + num3.ToString() + " Data:" + empty2;
-                break;
-              case 2:
-                int num4 = 64;
-                ulong num5 = 0;
-                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_64_1, ref num1))
+                ReceivedData receivedData = rawData[0];
+                if (!receivedData.Contains(GlobalNames.CMCE_Primitives_Type))
                 {
-                  num5 = (ulong) num1 << 32;
-                  empty2 = num5.ToString();
+                    rawData.RemoveAt(0);
                 }
-                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_64_2, ref num1))
+                else
                 {
-                  num5 = (ulong) num1;
-                  empty2 = num5.ToString();
+                    string str1 = string.Empty;
+                    if (receivedData.TryGetValue(GlobalNames.Encryption_mode, ref num1) && num1 != 0)
+                        str1 = str1 + "PDU encrypted:" + num1.ToString() + " Data incorrect!";
+                    if (receivedData.TryGetValue(GlobalNames.Carrier_number, ref num1))
+                        str1 = str1 + " Carrier:" + num1.ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Timeslot_assigned, ref num1))
+                    {
+                        string str2 = str1 + " TimeSlot:";
+                        str1 = num1 != 0 ? str2 + ((num1 & 8) != 0 ? "1" : "") + ((num1 & 4) != 0 ? "2" : "") + ((num1 & 2) != 0 ? "3" : "") + ((num1 & 1) != 0 ? "4" : "") : str2 + "0";
+                    }
+                    if (receivedData.TryGetValue(GlobalNames.SSI, ref num1))
+                        str1 = str1 + " SSI:" + num1.ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Call_identifier, ref num1))
+                        str1 = str1 + " Call ID:" + num1.ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Encryption_control, ref num1))
+                        str1 = str1 + " Encrypt:" + (num1 == 0 ? "Clear" : "E2EE");
+                    if (receivedData.TryGetValue(GlobalNames.CMCE_Primitives_Type, ref num1))
+                        str1 = str1 + " " + ((CmcePrimitivesType)num1).ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Transmission_grant, ref num1))
+                        str1 = str1 + " Transmission " + ((TransmissionGranted)num1).ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Calling_party_address_SSI, ref num1))
+                        str1 = str1 + " Party_SSI:" + num1.ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Transmitting_party_address_SSI, ref num1))
+                        str1 = str1 + " Party_SSI:" + num1.ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Basic_service_Communication_type, ref num1))
+                        str1 = str1 + " Basic_service:" + ((CommunicationType)num1).ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Basic_service_Encryption_flag, ref num1))
+                        str1 += num1 == 0 ? " Clear" : " E2EE";
+                    if (receivedData.TryGetValue(GlobalNames.Basic_service_Circuit_mode_type, ref num1))
+                        str1 = str1 + " " + ((CircuitModeType)num1).ToString();
+                    if (receivedData.TryGetValue(GlobalNames.Short_data_type_identifier, ref num1))
+                    {
+                        str1 = str1 + " Type:" + num1.ToString();
+                        string empty2 = string.Empty;
+                        switch (num1)
+                        {
+                            case 0:
+                                int num2 = 16;
+                                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_16, ref num1))
+                                    empty2 = num1.ToString();
+                                str1 = str1 + " Length:" + num2.ToString() + " Data:" + empty2;
+                                break;
+                            case 1:
+                                int num3 = 32;
+                                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_32, ref num1))
+                                    empty2 = ((uint)num1).ToString();
+                                str1 = str1 + " Length:" + num3.ToString() + " Data:" + empty2;
+                                break;
+                            case 2:
+                                int num4 = 64;
+                                ulong num5 = 0;
+                                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_64_1, ref num1))
+                                {
+                                    num5 = (ulong)num1 << 32;
+                                    empty2 = num5.ToString();
+                                }
+                                if (receivedData.TryGetValue(GlobalNames.User_Defined_Data_64_2, ref num1))
+                                {
+                                    num5 = (ulong)num1;
+                                    empty2 = num5.ToString();
+                                }
+                                str1 = str1 + " Length:" + num4.ToString() + " Data:" + empty2;
+                                break;
+                        }
+                        if (receivedData.TryGetValue(GlobalNames.Protocol_identifier, ref num1))
+                            str1 = str1 + " Protocol:" + ((SdsProtocolIdent)num1).ToString();
+                        if (receivedData.TryGetValue(GlobalNames.Location_PDU_type_extension, ref num1))
+                            str1 = str1 + " SubType:" + ((LocationTypeExtension)num1).ToString();
+                        if (receivedData.TryGetValue(GlobalNames.Latitude, ref num1))
+                        {
+                            double num6 = (double)num1 * 1.07288360595703E-05;
+                            if (num6 >= 90.0)
+                                num6 -= 180.0;
+                            str1 += string.Format(" Lat:{0:0.000000}°", (object)num6);
+                        }
+                        if (receivedData.TryGetValue(GlobalNames.Longitude, ref num1))
+                        {
+                            double num6 = (double)num1 * 1.07288360595703E-05;
+                            if (num6 >= 180.0)
+                                num6 -= 360.0;
+                            str1 += string.Format(" Long:{0:0.000000}°", (object)num6);
+                        }
+                        if (receivedData.TryGetValue(GlobalNames.Position_error, ref num1))
+                            str1 = str1 + " Accuracy:" + (num1 * 10 * 2).ToString() + "m";
+                        if (receivedData.TryGetValue(GlobalNames.Horizontal_velocity, ref num1))
+                        {
+                            double num6 = num1 <= 28 ? (double)num1 : 16.0 * Math.Pow(1.038, (double)(num1 - 13));
+                            str1 += string.Format(" Velocity:{0:0.0}km/h", (object)num6);
+                        }
+                        if (receivedData.TryGetValue(GlobalNames.Direction_of_travel, ref num1))
+                            str1 = str1 + " Dir:" + ((double)num1 * 22.5).ToString() + "°";
+                    }
+                    this.callsTextBox.AppendText(str1 + Environment.NewLine);
+                    rawData.RemoveAt(0);
                 }
-                str1 = str1 + " Length:" + num4.ToString() + " Data:" + empty2;
-                break;
             }
-            if (receivedData.TryGetValue(GlobalNames.Protocol_identifier, ref num1))
-              str1 = str1 + " Protocol:" + ((SdsProtocolIdent) num1).ToString();
-            if (receivedData.TryGetValue(GlobalNames.Location_PDU_type_extension, ref num1))
-              str1 = str1 + " SubType:" + ((LocationTypeExtension) num1).ToString();
-            if (receivedData.TryGetValue(GlobalNames.Latitude, ref num1))
-            {
-              double num6 = (double) num1 * 1.07288360595703E-05;
-              if (num6 >= 90.0)
-                num6 -= 180.0;
-              str1 += string.Format(" Lat:{0:0.000000}°", (object) num6);
-            }
-            if (receivedData.TryGetValue(GlobalNames.Longitude, ref num1))
-            {
-              double num6 = (double) num1 * 1.07288360595703E-05;
-              if (num6 >= 180.0)
-                num6 -= 360.0;
-              str1 += string.Format(" Long:{0:0.000000}°", (object) num6);
-            }
-            if (receivedData.TryGetValue(GlobalNames.Position_error, ref num1))
-              str1 = str1 + " Accuracy:" + (num1 * 10 * 2).ToString() + "m";
-            if (receivedData.TryGetValue(GlobalNames.Horizontal_velocity, ref num1))
-            {
-              double num6 = num1 <= 28 ? (double) num1 : 16.0 * Math.Pow(1.038, (double) (num1 - 13));
-              str1 += string.Format(" Velocity:{0:0.0}km/h", (object) num6);
-            }
-            if (receivedData.TryGetValue(GlobalNames.Direction_of_travel, ref num1))
-              str1 = str1 + " Dir:" + ((double) num1 * 22.5).ToString() + "°";
-          }
-          this.callsTextBox.AppendText(str1 + Environment.NewLine);
-          rawData.RemoveAt(0);
         }
-      }
-    }
 
-    public void UpdateGroupGrid(List<GroupDisplay> groups)
-    {
-      this._groupEntries.Clear();
-      foreach (GroupDisplay group in groups)
-        this._groupEntries.Add(group);
-    }
-
-    public List<GroupDisplay> GetUpdatedGroups() => this._groupEntries.ToList<GroupDisplay>();
-
-    public void ResetInfo()
-    {
-      this._neighbourList.Clear();
-      this._cellEntries.Clear();
-      this._groupEntries.Clear();
-      this._neighbourEntries.Clear();
-      this._callsEntries.Clear();
-      this.callsTextBox.Clear();
-      GlobalFunction.NeighbourList.Clear();
-    }
-
-    private void UpdateCallsGrid(Dictionary<int, CallsEntry> calls)
-    {
-      this._callsEntries.Clear();
-      Dictionary<int, CallsEntry>.KeyCollection keys = calls.Keys;
-      foreach (KeyValuePair<int, CallsEntry> call in calls)
-      {
-        CallsDisplay callsDisplay = new CallsDisplay();
-        int to = call.Value.To;
-        string str = string.Empty + ((call.Value.AssignedSlot & 8) != 0 ? " 1" : "") + ((call.Value.AssignedSlot & 4) != 0 ? " 2" : "") + ((call.Value.AssignedSlot & 2) != 0 ? " 3" : "") + ((call.Value.AssignedSlot & 1) != 0 ? " 4" : "");
-        callsDisplay.AssignedSlot = str;
-        callsDisplay.CallID = call.Value.CallID;
-        callsDisplay.Carrier = call.Value.Carrier;
-        callsDisplay.Type = ((CommunicationType) call.Value.Type).ToString();
-        callsDisplay.Encrypted = call.Value.IsClear == 1 ? " Clear" : " Encrypted";
-        callsDisplay.Duplex = call.Value.Duplex == 0 ? " Simplex" : " Duplex";
-        callsDisplay.From = call.Value.From;
-        callsDisplay.To = to.ToString();
-        if (this._groupEntries != null && this._groupEntries.Count > 0)
+        public void UpdateGroupGrid(List<GroupDisplay> groups)
         {
-          foreach (GroupDisplay groupEntry in (Collection<GroupDisplay>) this._groupEntries)
-          {
-            if (groupEntry.GSSI == to && groupEntry.Name != "")
-            {
-              callsDisplay.To = groupEntry.Name;
-              break;
-            }
-          }
+            this._groupEntries.Clear();
+            foreach (GroupDisplay group in groups)
+                this._groupEntries.Add(group);
         }
-        this._callsEntries.Add(callsDisplay);
-      }
-    }
 
-    private void CheckBox1_CheckedChanged(object sender, EventArgs e) => this.TopMost = this.checkBox1.Checked;
+        public List<GroupDisplay> GetUpdatedGroups() => this._groupEntries.ToList<GroupDisplay>();
 
-    protected override void Dispose(bool disposing)
-    {
-      if (disposing && this.components != null)
-        this.components.Dispose();
-      base.Dispose(disposing);
-    }
+        public void ResetInfo()
+        {
+            this._neighbourList.Clear();
+            this._cellEntries.Clear();
+            this._groupEntries.Clear();
+            this._neighbourEntries.Clear();
+            this._callsEntries.Clear();
+            this.callsTextBox.Clear();
+            Global.NeighbourList.Clear();
+        }
 
-    private void InitializeComponent()
-    {
+        private void UpdateCallsGrid(Dictionary<int, CallsEntry> calls)
+        {
+            this._callsEntries.Clear();
+            Dictionary<int, CallsEntry>.KeyCollection keys = calls.Keys;
+            foreach (KeyValuePair<int, CallsEntry> call in calls)
+            {
+                CallsDisplay callsDisplay = new CallsDisplay();
+                int to = call.Value.To;
+                string str = string.Empty + ((call.Value.AssignedSlot & 8) != 0 ? " 1" : "") + ((call.Value.AssignedSlot & 4) != 0 ? " 2" : "") + ((call.Value.AssignedSlot & 2) != 0 ? " 3" : "") + ((call.Value.AssignedSlot & 1) != 0 ? " 4" : "");
+                callsDisplay.AssignedSlot = str;
+                callsDisplay.CallID = call.Value.CallID;
+                callsDisplay.Carrier = call.Value.Carrier;
+                callsDisplay.Type = ((CommunicationType)call.Value.Type).ToString();
+                callsDisplay.Encrypted = call.Value.IsClear == 1 ? " Clear" : " Encrypted";
+                callsDisplay.Duplex = call.Value.Duplex == 0 ? " Simplex" : " Duplex";
+                callsDisplay.From = call.Value.From;
+                callsDisplay.To = to.ToString();
+                if (this._groupEntries != null && this._groupEntries.Count > 0)
+                {
+                    foreach (GroupDisplay groupEntry in (Collection<GroupDisplay>)this._groupEntries)
+                    {
+                        if (groupEntry.GSSI == to && groupEntry.Name != "")
+                        {
+                            callsDisplay.To = groupEntry.Name;
+                            break;
+                        }
+                    }
+                }
+                this._callsEntries.Add(callsDisplay);
+            }
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e) => this.TopMost = this.checkBox1.Checked;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && this.components != null)
+                this.components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -768,8 +768,8 @@ namespace SDRSharp.Tetra
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.callsTabPage);
             this.tabControl1.Controls.Add(this.groupTabPage);
@@ -1715,6 +1715,89 @@ namespace SDRSharp.Tetra
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
     }
-  }
+    public class CallsEntry
+    {
+        public int Carrier { get; set; }
+        public int CallID { get; set; }
+        public int Type { get; set; }
+        public int From { get; set; }
+        public int To { get; set; }
+        public int IsClear { get; set; }
+        public int Duplex { get; set; }
+        public int WatchDog { get; set; }
+        public int AssignedSlot { get; set; }
+    }
+
+    public class CallsDisplay
+    {
+        public int Carrier { get; set; }
+        public string AssignedSlot { get; set; }
+        public int CallID { get; set; }
+        public string Type { get; set; }
+        public int From { get; set; }
+        public string To { get; set; }
+        public string Encrypted { get; set; }
+        public string Duplex { get; set; }
+    }
+
+    public class CellDisplay
+    {
+        public GlobalNames Parameter { get; set; }
+        public int Value { get; set; }
+        public string Comment { get; set; }
+    }
+
+    public class NeighbourDisplay
+    {
+        public GlobalNames Parameter { get; set; }
+        public object Cell1 { get; set; }
+        public object Cell2 { get; set; }
+        public object Cell3 { get; set; }
+        public object Cell4 { get; set; }
+        public object Cell5 { get; set; }
+        public object Cell6 { get; set; }
+        public object Cell7 { get; set; }
+        public object Cell8 { get; set; }
+        public object Cell9 { get; set; }
+        public object Cell10 { get; set; }
+        public object Cell11 { get; set; }
+        public object Cell12 { get; set; }
+        public object Cell13 { get; set; }
+        public object Cell14 { get; set; }
+        public object Cell15 { get; set; }
+        public object Cell16 { get; set; }
+        public object Cell17 { get; set; }
+        public object Cell18 { get; set; }
+        public object Cell19 { get; set; }
+        public object Cell20 { get; set; }
+        public object Cell21 { get; set; }
+        public object Cell22 { get; set; }
+        public object Cell23 { get; set; }
+        public object Cell24 { get; set; }
+        public object Cell25 { get; set; }
+        public object Cell26 { get; set; }
+        public object Cell27 { get; set; }
+        public object Cell28 { get; set; }
+        public object Cell29 { get; set; }
+        public object Cell30 { get; set; }
+        public object Cell31 { get; set; }
+        public object Cell32 { get; set; }
+    }
+    public class GroupDisplay
+    {
+        public int GSSI { get; set; }
+        public string Name { get; set; }
+        public int Priority { get; set; }
+    }
+
+    public class DataGridViewEx : DataGridView
+    {
+        public DataGridViewEx()
+            : base()
+        {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+        }
+    }
 }

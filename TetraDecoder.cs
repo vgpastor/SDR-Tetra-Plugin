@@ -1,32 +1,36 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SDRSharp.Tetra.TetraDecoder
-// Assembly: SDRSharp.Tetra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: C3C6F0AC-F9E4-4213-8F19-E6F878CA40B0
-// Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
-
-using SDRSharp.Radio;
+﻿using SDRSharp.Radio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace SDRSharp.Tetra
 {
-    internal class TetraDecoder
+    unsafe class TetraDecoder
     {
+        public delegate void DataReadyDelegate(List<ReceivedData> data);
+        public event DataReadyDelegate DataReady;
+
+        public delegate void SyncInfoReadyDelegate(ReceivedData syncInfo);
+        public event SyncInfoReadyDelegate SyncInfoReady;
+
         private PhyLevel _phyLevel = new PhyLevel();
         private LowerMacLevel _lowerMac = new LowerMacLevel();
         private MacLevel _parse = new MacLevel();
+
         private UnsafeBuffer _bbBuffer;
-        private unsafe byte* _bbBufferPtr;
+        private byte* _bbBufferPtr;
         private UnsafeBuffer _bkn1Buffer;
-        private unsafe byte* _bkn1BufferPtr;
+        private byte* _bkn1BufferPtr;
         private UnsafeBuffer _bkn2Buffer;
-        private unsafe byte* _bkn2BufferPtr;
+        private byte* _bkn2BufferPtr;
         private UnsafeBuffer _sb1Buffer;
-        private unsafe byte* _sb1BufferPtr;
+        private byte* _sb1BufferPtr;
+
         private LogicChannel _logicChannel = new LogicChannel();
         private NetworkTime _networkTime = new NetworkTime();
+
         private ReceivedData _syncInfo = new ReceivedData();
         private List<ReceivedData> _data = new List<ReceivedData>();
         private int _timeCounter;
@@ -38,294 +42,388 @@ namespace SDRSharp.Tetra
         private unsafe void* _ch2InitStruct;
         private unsafe void* _ch3InitStruct;
         private unsafe void* _ch4InitStruct;
-        private short[] _cdc = new short[276];
-        private short[] _sdc = new short[480];
+
+        short[] _cdc = new short[276];
+        short[] _sdc = new short[480];
         private bool _haveErrors;
 
-        public event TetraDecoder.DataReadyDelegate DataReady;
-
-        public event TetraDecoder.SyncInfoReadyDelegate SyncInfoReady;
 
         public int NetworkTimeTN { get; internal set; }
-
         public int NetworkTimeFN { get; internal set; }
-
         public int NetworkTimeMN { get; internal set; }
 
         public long DownFrequency { get; private set; }
-
         public bool BurstReceived { get; internal set; }
-
         public float Ber { get; internal set; }
+        public bool HaveErrors { get { return _haveErrors; } }
 
-        public bool HaveErrors => this._haveErrors;
 
-        public unsafe TetraDecoder(Control owner)
+        public TetraDecoder(Control owner)
         {
-            this._bbBuffer = UnsafeBuffer.Create(30);
-            this._bbBufferPtr = (byte*)(void*)this._bbBuffer;
-            this._bkn1Buffer = UnsafeBuffer.Create(216);
-            this._bkn1BufferPtr = (byte*)(void*)this._bkn1Buffer;
-            this._bkn2Buffer = UnsafeBuffer.Create(216);
-            this._bkn2BufferPtr = (byte*)(void*)this._bkn2Buffer;
-            this._sb1Buffer = UnsafeBuffer.Create(120);
-            this._sb1BufferPtr = (byte*)(void*)this._sb1Buffer;
-            this._owner = owner;
-            this._fpass = 1;
-            this._ch1InitStruct = NativeMethods.tetra_decode_init();
-            this._ch2InitStruct = NativeMethods.tetra_decode_init();
-            this._ch3InitStruct = NativeMethods.tetra_decode_init();
-            this._ch4InitStruct = NativeMethods.tetra_decode_init();
+            _bbBuffer = UnsafeBuffer.Create(30);
+            _bbBufferPtr = (byte*)_bbBuffer;
+            _bkn1Buffer = UnsafeBuffer.Create(216);
+            _bkn1BufferPtr = (byte*)_bkn1Buffer;
+            _bkn2Buffer = UnsafeBuffer.Create(216);
+            _bkn2BufferPtr = (byte*)_bkn2Buffer;
+            _sb1Buffer = UnsafeBuffer.Create(120);
+            _sb1BufferPtr = (byte*)_sb1Buffer;
+
+            _owner = owner;
+
+            _fpass = 1;
+
+            _ch1InitStruct = NativeMethods.tetra_decode_init();
+            _ch2InitStruct = NativeMethods.tetra_decode_init();
+            _ch3InitStruct = NativeMethods.tetra_decode_init();
+            _ch4InitStruct = NativeMethods.tetra_decode_init();
         }
 
         public void Dispose()
         {
+
         }
 
-        public unsafe int Process(Burst burst, float* audioOut)
+        public int Process(Burst burst, float* audioOut)
         {
-            int num = 0;
-            this.BurstReceived = (uint)burst.Type > 0U;
-            ++this._timeCounter;
-            this.Ber = this._averageBer;
-            if (this._timeCounter > 100)
+            var trafficChannel = 0;
+
+            BurstReceived = (burst.Type != BurstType.None);
+
+            _timeCounter++;
+            Ber = _averageBer;
+            if (_timeCounter > 100)
             {
-                this.Mer = (float)((double)this._badBurstCounter / (double)this._timeCounter * 100.0);
-                this._timeCounter = 0;
-                this._badBurstCounter = 0.0f;
+                Mer = (_badBurstCounter / _timeCounter) * 100.0f;
+
+                _timeCounter = 0;
+                _badBurstCounter = 0;
             }
-            this._networkTime.AddTimeSlot();
+
+            _networkTime.AddTimeSlot();
+
             if (burst.Type == BurstType.None)
             {
-                this._haveErrors = true;
-                if (this.TetraMode == Mode.TMO)
-                    ++this._badBurstCounter;
-                return num;
+                _haveErrors = true;
+                if (TetraMode == Mode.TMO)
+                {
+                    _badBurstCounter++;
+                    //Debug.WriteLine("burst err");
+                    //Debug.Write(string.Format("ts:{0:0} fr:{1:00} Burst_Err", _networkTime.TimeSlot, _networkTime.Frame));
+                }
+                return trafficChannel;
             }
-            this._haveErrors = false;
-            this._parse.ResetAACH();
-            this._data.Clear();
-            this._syncInfo.Clear();
+
+            _haveErrors = false;
+
+            //Debug.WriteLine("");
+            //Debug.Write(string.Format("ts:{0:0} fr:{1:00}", _networkTime.TimeSlot, _networkTime.Frame));
+            //Debug.Write(" " + burst.Type.ToString());
+
+            _parse.ResetAACH();
+
+            _data.Clear();
+            _syncInfo.Clear();
+
+            #region Sync burst
+
             if (burst.Type == BurstType.SYNC)
             {
-                this._phyLevel.ExtractSBChannels(burst, this._sb1BufferPtr);
-                this._logicChannel = this._lowerMac.ExtractLogicChannelFromSB(this._sb1BufferPtr, this._sb1Buffer.Length);
-                this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.5f;
-                this._haveErrors |= !this._logicChannel.CrcIsOk;
-                this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                if (this._logicChannel.CrcIsOk)
+                _phyLevel.ExtractSBChannels(burst, _sb1BufferPtr);
+
+                _logicChannel = _lowerMac.ExtractLogicChannelFromSB(_sb1BufferPtr, _sb1Buffer.Length);
+                _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.5f;
+                _haveErrors |= !_logicChannel.CrcIsOk;
+                _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                //Debug.Write(" slot 1:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                if (_logicChannel.CrcIsOk)
                 {
-                    this._parse.SyncPDU(this._logicChannel, this._syncInfo);
-                    if (this._syncInfo.Value(GlobalNames.SystemCode) < 8)
+                    _parse.SyncPDU(_logicChannel, _syncInfo);
+
+                    if (_syncInfo.Value(GlobalNames.SystemCode) < 8)
                     {
-                        this.TetraMode = Mode.TMO;
-                        this._lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(this._syncInfo.Value(GlobalNames.MCC), this._syncInfo.Value(GlobalNames.MNC), this._syncInfo.Value(GlobalNames.ColorCode));
-                        this._networkTime.Synchronize(this._syncInfo.Value(GlobalNames.TimeSlot), this._syncInfo.Value(GlobalNames.Frame), this._syncInfo.Value(GlobalNames.MultiFrame));
+                        TetraMode = Mode.TMO;
+                        _lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(_syncInfo.Value(GlobalNames.MCC), _syncInfo.Value(GlobalNames.MNC), _syncInfo.Value(GlobalNames.ColorCode));
+                        _networkTime.Synchronize(_syncInfo.Value(GlobalNames.TimeSlot), _syncInfo.Value(GlobalNames.Frame), _syncInfo.Value(GlobalNames.MultiFrame));
                     }
                     else
                     {
-                        this.TetraMode = Mode.DMO;
-                        if (this._syncInfo.Value(GlobalNames.SYNC_PDU_type) == 0)
+                        TetraMode = Mode.DMO;
+
+                        if (_syncInfo.Value(GlobalNames.SYNC_PDU_type) == 0)
                         {
-                            if (this._syncInfo.Value(GlobalNames.Master_slave_link_flag) == 1 || this._syncInfo.Value(GlobalNames.Communication_type) == 0)
-                                this._networkTime.SynchronizeMaster(this._syncInfo.Value(GlobalNames.TimeSlot), this._syncInfo.Value(GlobalNames.Frame));
+                            //Debug.Write(_syncInfo.Value(GlobalNames.Master_slave_link_flag) == 1 ? " Master" : " Slave");
+
+                            if (_syncInfo.Value(GlobalNames.Master_slave_link_flag) == 1 || _syncInfo.Value(GlobalNames.Communication_type) == 0)
+                            {
+                                _networkTime.SynchronizeMaster(_syncInfo.Value(GlobalNames.TimeSlot), _syncInfo.Value(GlobalNames.Frame));
+                            }
                             else
-                                this._networkTime.SynchronizeSlave(this._syncInfo.Value(GlobalNames.TimeSlot), this._syncInfo.Value(GlobalNames.Frame));
+                            {
+                                _networkTime.SynchronizeSlave(_syncInfo.Value(GlobalNames.TimeSlot), _syncInfo.Value(GlobalNames.Frame));
+                            }
                         }
                     }
-                }
-                this._phyLevel.ExtractPhyChannels(this.TetraMode, burst, this._bbBufferPtr, this._bkn1BufferPtr, this._bkn2BufferPtr);
-                if (this.TetraMode == Mode.TMO)
-                {
-                    this._logicChannel = this._lowerMac.ExtractLogicChannelFromBKN(this._bkn2BufferPtr, this._bkn2Buffer.Length);
-                    this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                    this._logicChannel.Frame = this._networkTime.Frame;
-                    this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.5f;
-                    this._haveErrors |= !this._logicChannel.CrcIsOk;
-                    this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                    if (this._logicChannel.CrcIsOk)
-                        this._parse.TmoParseMacPDU(this._logicChannel, this._data);
                 }
                 else
                 {
-                    this._logicChannel = this._lowerMac.ExtractLogicChannelFromBKN2(this._bkn2BufferPtr, this._bkn2Buffer.Length);
-                    this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                    this._logicChannel.Frame = this._networkTime.Frame;
-                    this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.5f;
-                    this._haveErrors |= !this._logicChannel.CrcIsOk;
-                    this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                    if (this._logicChannel.CrcIsOk)
+                    //Debug.WriteLine("Sync SB crc error");
+                }
+
+                _phyLevel.ExtractPhyChannels(TetraMode, burst, _bbBufferPtr, _bkn1BufferPtr, _bkn2BufferPtr);
+
+                if (TetraMode == Mode.TMO)
+                {
+                    _logicChannel = _lowerMac.ExtractLogicChannelFromBKN(_bkn2BufferPtr, _bkn2Buffer.Length);
+                    _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                    _logicChannel.Frame = _networkTime.Frame;
+
+                    _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.5f;
+                    _haveErrors |= !_logicChannel.CrcIsOk;
+                    _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                    //Debug.Write(" slot 2:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                    if (_logicChannel.CrcIsOk)
                     {
-                        this._parse.SyncPDUHalfSlot(this._logicChannel, this._syncInfo);
-                        if (this._syncInfo.Value(GlobalNames.Communication_type) == 0)
-                        {
-                            if (this._syncInfo.Contains(GlobalNames.MNC) && this._syncInfo.Contains(GlobalNames.Source_address))
-                                this._lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(this._syncInfo.Value(GlobalNames.MNC), this._syncInfo.Value(GlobalNames.Source_address));
-                        }
-                        else if (this._syncInfo.Value(GlobalNames.Communication_type) == 1 && this._syncInfo.Contains(GlobalNames.Repeater_address) && this._syncInfo.Contains(GlobalNames.Source_address))
-                            this._lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(this._syncInfo.Value(GlobalNames.Repeater_address), this._syncInfo.Value(GlobalNames.Source_address));
+                        _parse.TmoParseMacPDU(_logicChannel, _data);
+                    }
+                    else
+                    {
+                        //Debug.WriteLine("Sync BKN2 crc error");
                     }
                 }
-                this.UpdateSyncInfo(this._syncInfo);
+                else
+                {
+                    _logicChannel = _lowerMac.ExtractLogicChannelFromBKN2(_bkn2BufferPtr, _bkn2Buffer.Length);
+                    _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                    _logicChannel.Frame = _networkTime.Frame;
+
+                    _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.5f;
+                    _haveErrors |= !_logicChannel.CrcIsOk;
+                    _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                    //Debug.Write(" slot 2:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                    if (_logicChannel.CrcIsOk)
+                    {
+                        _parse.SyncPDUHalfSlot(_logicChannel, _syncInfo);
+
+                        if (_syncInfo.Value(GlobalNames.Communication_type) == 0)
+                        {
+                            if (_syncInfo.Contains(GlobalNames.MNC) && _syncInfo.Contains(GlobalNames.Source_address))
+                                _lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(_syncInfo.Value(GlobalNames.MNC), _syncInfo.Value(GlobalNames.Source_address));
+                        }
+                        else if (_syncInfo.Value(GlobalNames.Communication_type) == 1)
+                        {
+                            if (_syncInfo.Contains(GlobalNames.Repeater_address) && _syncInfo.Contains(GlobalNames.Source_address))
+                                _lowerMac.ScramblerCode = TetraUtils.CreateScramblerCode(_syncInfo.Value(GlobalNames.Repeater_address), _syncInfo.Value(GlobalNames.Source_address));
+                        }
+                    }
+                }
+
+                UpdateSyncInfo(_syncInfo);
             }
-            this.UpdatePublicProp();
+            #endregion
+
+            UpdatePublicProp();
+
+            #region Other burst
+
             if (burst.Type != BurstType.SYNC)
             {
-                this._phyLevel.ExtractPhyChannels(this.TetraMode, burst, this._bbBufferPtr, this._bkn1BufferPtr, this._bkn2BufferPtr);
-                if (this.TetraMode == Mode.TMO)
+                _phyLevel.ExtractPhyChannels(TetraMode, burst, _bbBufferPtr, _bkn1BufferPtr, _bkn2BufferPtr);
+
+                if (TetraMode == Mode.TMO)
                 {
-                    this._logicChannel = this._lowerMac.ExtractLogicChannelFromBB(this._bbBufferPtr, this._bbBuffer.Length);
-                    this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                    this._logicChannel.Frame = this._networkTime.Frame;
-                    this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.2f;
-                    this._haveErrors |= !this._logicChannel.CrcIsOk;
-                    if (this._logicChannel.CrcIsOk)
-                        this._parse.AccessAsignPDU(this._logicChannel);
+                    _logicChannel = _lowerMac.ExtractLogicChannelFromBB(_bbBufferPtr, _bbBuffer.Length);
+                    _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                    _logicChannel.Frame = _networkTime.Frame;
+
+                    _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.2f;
+                    _haveErrors |= !_logicChannel.CrcIsOk;
+                    //Debug.Write(_logicChannel.CrcIsOk ? " BB OK" : " BB Err");
+                    if (_logicChannel.CrcIsOk)
+                    {
+                        _parse.AccessAsignPDU(_logicChannel);
+                    }
+                    else
+                    {
+                        //Debug.WriteLine("BB crc error");
+                    }
+
                 }
+
                 switch (burst.Type)
                 {
                     case BurstType.NDB1:
-                        if (this.TetraMode == Mode.TMO && this._parse.DownLinkChannelType == ChannelType.Traffic || this.TetraMode == Mode.DMO && !this._networkTime.Frame18 && this._networkTime.TimeSlot == 1 || this.TetraMode == Mode.DMO && !this._networkTime.Frame18Slave && this._networkTime.TimeSlotSlave == 1)
+
+                        if (((TetraMode == Mode.TMO) && (_parse.DownLinkChannelType == ChannelType.Traffic))
+                            || ((TetraMode == Mode.DMO) && (!_networkTime.Frame18) && (_networkTime.TimeSlot == 1))
+                            || ((TetraMode == Mode.DMO) && (!_networkTime.Frame18Slave) && (_networkTime.TimeSlotSlave == 1)))
                         {
-                            this._logicChannel = this._lowerMac.ExtractVoiceDataFromBKN1BKN2(this._bkn1BufferPtr, this._bkn2BufferPtr, this._bkn1Buffer.Length);
-                            num = this.DecodeAudio(audioOut, this._logicChannel.Ptr, this._logicChannel.Length, false, this._networkTime.TimeSlot) ? this._networkTime.TimeSlot : 0;
+                            //Debug.Write(" slot 12:voice");
+
+                            _logicChannel = _lowerMac.ExtractVoiceDataFromBKN1BKN2(_bkn1BufferPtr, _bkn2BufferPtr, _bkn1Buffer.Length);
+                            var itsAudio = DecodeAudio(audioOut, _logicChannel.Ptr, _logicChannel.Length, false, _networkTime.TimeSlot);
+                            trafficChannel = itsAudio ? _networkTime.TimeSlot : 0;
                             break;
                         }
-                        this._logicChannel = this._lowerMac.ExtractLogicChannelFromBKN1BKN2(this._bkn1BufferPtr, this._bkn2BufferPtr, this._bkn1Buffer.Length);
-                        this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                        this._logicChannel.Frame = this._networkTime.Frame;
-                        this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.8f;
-                        this._haveErrors |= !this._logicChannel.CrcIsOk;
-                        this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                        if (this._logicChannel.CrcIsOk)
+                        else
                         {
-                            if (this.TetraMode == Mode.TMO)
+                            _logicChannel = _lowerMac.ExtractLogicChannelFromBKN1BKN2(_bkn1BufferPtr, _bkn2BufferPtr, _bkn1Buffer.Length);
+                            _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                            _logicChannel.Frame = _networkTime.Frame;
+
+                            _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.8f;
+                            _haveErrors |= !_logicChannel.CrcIsOk;
+                            _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                            //Debug.Write(" slot 12:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                            if (_logicChannel.CrcIsOk)
                             {
-                                this._parse.TmoParseMacPDU(this._logicChannel, this._data);
-                                break;
+                                if (TetraMode == Mode.TMO) _parse.TmoParseMacPDU(_logicChannel, _data);
+                                else _parse.DmoParseMacPDU(_logicChannel, _data);
                             }
-                            this._parse.DmoParseMacPDU(this._logicChannel, this._data);
-                            break;
+                            else
+                            {
+                                //Debug.WriteLine("BKN1 BKN2 crc error");
+                            }
+
                         }
                         break;
+
                     case BurstType.NDB2:
-                        this._logicChannel = this._lowerMac.ExtractLogicChannelFromBKN(this._bkn1BufferPtr, this._bkn1Buffer.Length);
-                        this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                        this._logicChannel.Frame = this._networkTime.Frame;
-                        this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.4f;
-                        this._haveErrors |= !this._logicChannel.CrcIsOk;
-                        this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                        if (this._logicChannel.CrcIsOk)
+
+                        _logicChannel = _lowerMac.ExtractLogicChannelFromBKN(_bkn1BufferPtr, _bkn1Buffer.Length);
+                        _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                        _logicChannel.Frame = _networkTime.Frame;
+
+                        _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.4f;
+                        _haveErrors |= !_logicChannel.CrcIsOk;
+                        _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                        //Debug.Write(" slot 1:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                        if (_logicChannel.CrcIsOk)
                         {
-                            if (this.TetraMode == Mode.TMO)
-                                this._parse.TmoParseMacPDU(this._logicChannel, this._data);
-                            else
-                                this._parse.DmoParseMacPDU(this._logicChannel, this._data);
+                            if (TetraMode == Mode.TMO) _parse.TmoParseMacPDU(_logicChannel, _data);
+                            else _parse.DmoParseMacPDU(_logicChannel, _data);
                         }
-                        if (this._parse.DownLinkChannelType == ChannelType.Traffic && !this._parse.HalfSlotStolen || this.TetraMode == Mode.DMO && !this._networkTime.Frame18 && (this._networkTime.TimeSlot == 1 && !this._parse.HalfSlotStolen) || this.TetraMode == Mode.DMO && !this._networkTime.Frame18Slave && (this._networkTime.TimeSlotSlave == 1 && !this._parse.HalfSlotStolen))
+                        else
                         {
-                            this._logicChannel = this._lowerMac.ExtractVoiceDataFromBKN2(this._bkn2BufferPtr, this._bkn2Buffer.Length);
-                            num = this.DecodeAudio(audioOut, this._logicChannel.Ptr, this._logicChannel.Length, true, this._networkTime.TimeSlot) ? this._networkTime.TimeSlot : 0;
+                            //Debug.WriteLine("BKN1 crc error");
+                        }
+
+                        if ((_parse.DownLinkChannelType == ChannelType.Traffic && !_parse.HalfSlotStolen)
+                            || ((TetraMode == Mode.DMO) && (!_networkTime.Frame18) && (_networkTime.TimeSlot == 1) && (!_parse.HalfSlotStolen))
+                            || ((TetraMode == Mode.DMO) && (!_networkTime.Frame18Slave) && (_networkTime.TimeSlotSlave == 1) && (!_parse.HalfSlotStolen)))
+                        {
+                            //Debug.Write(" slot 2:voice");
+                            _logicChannel = _lowerMac.ExtractVoiceDataFromBKN2(_bkn2BufferPtr, _bkn2Buffer.Length);
+                            var itsAudio = DecodeAudio(audioOut, _logicChannel.Ptr, _logicChannel.Length, true, _networkTime.TimeSlot);
+                            trafficChannel = itsAudio ? _networkTime.TimeSlot : 0;
                             break;
                         }
-                        this._logicChannel = this._lowerMac.ExtractLogicChannelFromBKN(this._bkn2BufferPtr, this._bkn2Buffer.Length);
-                        this._logicChannel.TimeSlot = this._networkTime.TimeSlot;
-                        this._logicChannel.Frame = this._networkTime.Frame;
-                        this._badBurstCounter += this._logicChannel.CrcIsOk ? 0.0f : 0.4f;
-                        this._haveErrors |= !this._logicChannel.CrcIsOk;
-                        this._averageBer = (float)((double)this._averageBer * 0.5 + (double)this._lowerMac.Ber * 0.5);
-                        if (this._logicChannel.CrcIsOk)
+                        else
                         {
-                            if (this.TetraMode == Mode.TMO)
+                            _logicChannel = _lowerMac.ExtractLogicChannelFromBKN(_bkn2BufferPtr, _bkn2Buffer.Length);
+                            _logicChannel.TimeSlot = _networkTime.TimeSlot;
+                            _logicChannel.Frame = _networkTime.Frame;
+
+                            _badBurstCounter += _logicChannel.CrcIsOk ? 0.0f : 0.4f;
+                            _haveErrors |= !_logicChannel.CrcIsOk;
+                            _averageBer = _averageBer * 0.5f + _lowerMac.Ber * 0.5f;
+                            //Debug.Write(" slot 2:" + (_logicChannel.CrcIsOk ? " OK" : " Err"));
+                            if (_logicChannel.CrcIsOk)
                             {
-                                this._parse.TmoParseMacPDU(this._logicChannel, this._data);
-                                break;
+                                if (TetraMode == Mode.TMO) _parse.TmoParseMacPDU(_logicChannel, _data);
+                                else _parse.DmoParseMacPDU(_logicChannel, _data);
                             }
-                            this._parse.DmoParseMacPDU(this._logicChannel, this._data);
-                            break;
+                            else
+                            {
+                                //Debug.WriteLine("BKN2 crc error");
+                            }
                         }
+                        break;
+
+                    default:
                         break;
                 }
             }
-            if (this._data.Count > 0)
-                this.UpdateData(this._data);
-            return num;
+
+            if (_data.Count > 0) UpdateData(_data);
+
+            #endregion
+
+            return trafficChannel;
         }
 
         private void UpdateSyncInfo(ReceivedData syncInfo)
         {
-            if (this.SyncInfoReady == null)
-                return;
-            this._owner.BeginInvoke((Delegate)this.SyncInfoReady, (object)syncInfo);
+            if (SyncInfoReady != null)
+            {
+                _owner.BeginInvoke(SyncInfoReady, syncInfo);
+            }
         }
+
 
         public void UpdateData(List<ReceivedData> data)
         {
-            if (this.DataReady == null)
-                return;
-            this._owner.BeginInvoke((Delegate)this.DataReady, (object)data.ToList<ReceivedData>());
+            if (DataReady != null)
+            {
+                _owner.BeginInvoke(DataReady, data.ToList());
+            }
         }
 
         private void UpdatePublicProp()
         {
-            if (this._networkTime == null)
-                return;
-            this.NetworkTimeFN = this._networkTime.Frame;
-            this.NetworkTimeTN = this._networkTime.TimeSlot;
-            this.NetworkTimeMN = this._networkTime.SuperFrame;
+            if (_networkTime != null)
+            {
+                NetworkTimeFN = _networkTime.Frame;
+                NetworkTimeTN = _networkTime.TimeSlot;
+                NetworkTimeMN = _networkTime.SuperFrame;
+            }
         }
 
-        private unsafe bool DecodeAudio(
-          float* audioBuffer,
-          byte* buf,
-          int length,
-          bool stolten,
-          int ch)
+        private bool DecodeAudio(float* audioBuffer, byte* buf, int length, bool stolten, int ch)
         {
-            bool flag;
-            fixed (short* numPtr1 = this._cdc)
-            fixed (short* numPtr2 = this._sdc)
+            var noErrors = true;
+
+            fixed (short* cdcPtr = _cdc, sdcPtr = _sdc)
             {
-                NativeMethods.tetra_cdec(this._fpass, buf, numPtr1, stolten ? 1 : 0);
-                this._fpass = 0;
-                flag = numPtr1[0] == (short)0 || numPtr1[138] == (short)0;
-                this._badBurstCounter += numPtr1[0] == (short)0 | stolten ? 0.0f : 0.4f;
-                this._badBurstCounter += numPtr1[138] == (short)0 ? 0.0f : 0.4f;
-                void* chStruct = this._ch1InitStruct;
+                NativeMethods.tetra_cdec(_fpass, buf, cdcPtr, stolten ? 1 : 0);
+                _fpass = 0;
+
+                noErrors = (cdcPtr[0] == 0) || (cdcPtr[138] == 0);
+
+                _badBurstCounter += (cdcPtr[0] == 0 || stolten) ? 0 : 0.4f;
+                _badBurstCounter += cdcPtr[138] == 0 ? 0 : 0.4f;
+
+                //Debug.WriteIf(!stolten, " fr1_" + (cdcPtr[0] == 0 ? "Ok" : "Err"));
+                //Debug.Write(" fr2_" + (cdcPtr[138] == 0 ? "Ok" : "Err"));
+
+                var initStruct = _ch1InitStruct;
                 switch (ch)
                 {
-                    case 1:
-                        chStruct = this._ch1InitStruct;
-                        break;
-                    case 2:
-                        chStruct = this._ch2InitStruct;
-                        break;
-                    case 3:
-                        chStruct = this._ch3InitStruct;
-                        break;
-                    case 4:
-                        chStruct = this._ch4InitStruct;
-                        break;
+                    case 1: initStruct = _ch1InitStruct; break;
+                    case 2: initStruct = _ch2InitStruct; break;
+                    case 3: initStruct = _ch3InitStruct; break;
+                    case 4: initStruct = _ch4InitStruct; break;
                 }
-                NativeMethods.tetra_sdec(numPtr1, numPtr2, chStruct);
-                this.ShortToFloatPtr(numPtr2, audioBuffer, this._sdc.Length);
+
+                NativeMethods.tetra_sdec(cdcPtr, sdcPtr, initStruct);
+                ShortToFloatPtr(sdcPtr, audioBuffer, _sdc.Length);
             }
-            return flag;
+
+            return noErrors;
         }
 
-        private unsafe void ShortToFloatPtr(short* source, float* dest, int length)
+        private void ShortToFloatPtr(short* source, float* dest, int length)
         {
-            float num = 3.051851E-09f;
-            for (int index = 0; index < length; ++index)
-                dest[index] = (float)source[index] * num;
+            var gain = 0.0001f / Int16.MaxValue;
+
+            for (int i = 0; i < length; i++)
+            {
+                dest[i] = source[i] * gain;
+            }
         }
 
         public float Mer { get; set; }
 
         public Mode TetraMode { get; set; }
-
-        public delegate void DataReadyDelegate(List<ReceivedData> data);
-
-        public delegate void SyncInfoReadyDelegate(ReceivedData syncInfo);
     }
 }

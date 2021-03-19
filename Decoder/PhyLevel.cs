@@ -1,14 +1,28 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SDRSharp.Tetra.PhyLevel
-// Assembly: SDRSharp.Tetra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: C3C6F0AC-F9E4-4213-8F19-E6F878CA40B0
-// Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
-
-using SDRSharp.Radio;
+﻿using SDRSharp.Radio;
 using System;
 
 namespace SDRSharp.Tetra
 {
+    public enum BurstType
+    {
+        None,
+        NDB1,
+        NDB2,
+        SYNC,
+        WaitBurst,
+    }
+    public enum Mode
+    {
+        TMO,
+        DMO,
+    }
+    public class Burst
+    {
+        public Mode Mode;
+        public BurstType Type;
+        public unsafe byte* Ptr;
+        public int Length;
+    }
     public class PhyLevel : IDisposable
     {
         public const int BurstLength = 510;
@@ -24,14 +38,17 @@ namespace SDRSharp.Tetra
         public const int bkn_Length = 216;
         public const int bb1_Length = 14;
         public const int bb2_Length = 16;
-        public const int bb_Length = 30;
+        public const int bb_Length = bb1_Length + bb2_Length;
         public const int cb_Length = 84;
         public const int freqCorrection_Length = 80;
         public const int sb_Length = 120;
+
         public const int PossibleError = 2;
-        private const float Pi = 3.141593f;
-        private const float PiDivTwo = 1.570796f;
-        private const float PiDivFor = 0.7853982f;
+
+        private const float Pi = (float)Math.PI;
+        private const float PiDivTwo = (float)(Math.PI / 2.0);
+        private const float PiDivFor = (float)(Math.PI / 4.0);
+
         private static readonly byte[] NormalTrainingSequence1 = new byte[22]
         {
       (byte) 1,
@@ -188,16 +205,18 @@ namespace SDRSharp.Tetra
       (byte) 0,
       (byte) 0
         };
+
         private UnsafeBuffer _tempBuffer;
         private unsafe byte* _tempBufferPtr;
+
         private UnsafeBuffer _outBuffer;
         private unsafe byte* _outBufferPtr;
 
         public unsafe PhyLevel()
         {
-            this._tempBuffer = UnsafeBuffer.Create(1020, 1);
+            this._tempBuffer = UnsafeBuffer.Create(BurstLength * 2, sizeof(byte));
             this._tempBufferPtr = (byte*)(void*)this._tempBuffer;
-            this._outBuffer = UnsafeBuffer.Create(510, 1);
+            this._outBuffer = UnsafeBuffer.Create(BurstLength, sizeof(byte));
             this._outBufferPtr = (byte*)(void*)this._outBuffer;
         }
 
@@ -206,7 +225,7 @@ namespace SDRSharp.Tetra
             Burst burst = new Burst()
             {
                 Type = BurstType.None,
-                Length = 510,
+                Length = BurstLength,
                 Ptr = this._outBufferPtr
             };
             this.ConvertAngleToDiBits(burst.Ptr, inBuffer, length);
@@ -215,11 +234,17 @@ namespace SDRSharp.Tetra
 
         private unsafe void ConvertAngleToDiBits(byte* bitsBuffer, float* angles, int sourceLength)
         {
+            /*
+            delta > PiDivTwo    0 1
+            delta > 0           0 0
+            delta < 0           1 0
+            delta < -PiDivTwo   1 1
+             */
             while (sourceLength-- > 0)
             {
-                float num = *angles++;
-                *bitsBuffer++ = (double)num < 0.0 ? (byte)1 : (byte)0;
-                *bitsBuffer++ = (double)Math.Abs(num) > 1.57079637050629 ? (byte)1 : (byte)0;
+                float delta = *angles++;
+                *bitsBuffer++ = (double)delta < 0.0 ? (byte)1 : (byte)0;
+                *bitsBuffer++ = (double)Math.Abs(delta) > PiDivTwo ? (byte)1 : (byte)0;
             }
         }
 
@@ -230,7 +255,7 @@ namespace SDRSharp.Tetra
           byte* bkn1Buffer,
           byte* bkn2Buffer)
         {
-            int num = 2;
+            int offset = 2;
             switch (mode)
             {
                 case Mode.TMO:
@@ -238,48 +263,61 @@ namespace SDRSharp.Tetra
                     {
                         case BurstType.NDB1:
                         case BurstType.NDB2:
-                            int sourceOffset1 = num + 14;
-                            this.BlockCopy(burst.Ptr, sourceOffset1, bkn1Buffer, 0, 216);
-                            int sourceOffset2 = sourceOffset1 + 216;
-                            this.BlockCopy(burst.Ptr, sourceOffset2, bbBuffer, 0, 14);
-                            int sourceOffset3 = sourceOffset2 + 36;
-                            this.BlockCopy(burst.Ptr, sourceOffset3, bbBuffer, 14, 16);
-                            int sourceOffset4 = sourceOffset3 + 16;
-                            this.BlockCopy(burst.Ptr, sourceOffset4, bkn2Buffer, 0, 216);
-                            return;
+                            offset += nts3_pre_Length + phaseAdjust_Length;
+                            BlockCopy(burst.Ptr, offset, bkn1Buffer, 0, bkn_Length);
+                            offset += bkn_Length;
+                            BlockCopy(burst.Ptr, offset, bbBuffer, 0, bb1_Length);
+                            offset += bb1_Length + nts_Length;
+                            BlockCopy(burst.Ptr, offset, bbBuffer, bb1_Length, bb2_Length);
+                            offset += bb2_Length;
+                            BlockCopy(burst.Ptr, offset, bkn2Buffer, 0, bkn_Length);
+                            break;
+
                         case BurstType.SYNC:
-                            int sourceOffset5 = num + 94 + 158;
-                            this.BlockCopy(burst.Ptr, sourceOffset5, bbBuffer, 0, 30);
-                            int sourceOffset6 = sourceOffset5 + 30;
-                            this.BlockCopy(burst.Ptr, sourceOffset6, bkn2Buffer, 0, 216);
-                            return;
+                            offset += nts3_pre_Length + phaseAdjust_Length + freqCorrection_Length;
+                            offset += sts_Length + sb_Length;
+                            BlockCopy(burst.Ptr, offset, bbBuffer, 0, bb_Length);
+                            offset += bb_Length;
+                            BlockCopy(burst.Ptr, offset, bkn2Buffer, 0, bkn_Length);
+                            break;
+
                         default:
-                            return;
+                            break;
                     }
+                    break;
+
                 case Mode.DMO:
                     switch (burst.Type)
                     {
                         case BurstType.NDB1:
                         case BurstType.NDB2:
-                            int sourceOffset7 = num + 14;
-                            this.BlockCopy(burst.Ptr, sourceOffset7, bkn1Buffer, 0, 216);
-                            int sourceOffset8 = sourceOffset7 + 216 + 22;
-                            this.BlockCopy(burst.Ptr, sourceOffset8, bkn2Buffer, 0, 216);
-                            return;
+                            offset += nts3_pre_Length + phaseAdjust_Length;
+                            BlockCopy(burst.Ptr, offset, bkn1Buffer, 0, bkn_Length);
+                            offset += bkn_Length;
+                            offset += nts_Length;
+                            BlockCopy(burst.Ptr, offset, bkn2Buffer, 0, bkn_Length);
+                            break;
+
                         case BurstType.SYNC:
-                            int sourceOffset9 = num + 94 + 120 + 38;
-                            this.BlockCopy(burst.Ptr, sourceOffset9, bkn2Buffer, 0, 216);
-                            return;
+                            offset += nts3_pre_Length + phaseAdjust_Length + freqCorrection_Length;
+                            offset += sb_Length;
+                            offset += sts_Length;
+                            BlockCopy(burst.Ptr, offset, bkn2Buffer, 0, bkn_Length);
+                            break;
+
                         default:
-                            return;
+                            break;
                     }
+                    break;
             }
         }
 
         public unsafe void ExtractSBChannels(Burst burst, byte* sb1Buffer)
         {
-            int sourceOffset = 2 + 94;
-            this.BlockCopy(burst.Ptr, sourceOffset, sb1Buffer, 0, 120);
+            var offset = 2;
+
+            offset += nts3_pre_Length + phaseAdjust_Length + freqCorrection_Length;
+            BlockCopy(burst.Ptr, offset, sb1Buffer, 0, sb_Length);
         }
 
         private unsafe void BlockCopy(
@@ -292,7 +330,9 @@ namespace SDRSharp.Tetra
             source += sourceOffset;
             dest += destOffset;
             while (length-- > 0)
+            {
                 *dest++ = *source++;
+            }
         }
 
         public void Dispose()

@@ -1,16 +1,11 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SDRSharp.Tetra.NetworkTime
-// Assembly: SDRSharp.Tetra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: C3C6F0AC-F9E4-4213-8F19-E6F878CA40B0
-// Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
-
-namespace SDRSharp.Tetra
+﻿namespace SDRSharp.Tetra
 {
-    internal class NetworkTime
+    class NetworkTime
     {
         private int _tn = 1;
         private int _fn = 1;
         private int _mn = 1;
+
         private bool _isSynchronized;
         private bool _timeBNCH;
         private bool _fn18;
@@ -19,101 +14,150 @@ namespace SDRSharp.Tetra
         private int _tnSlave;
         private int _fnSlave;
 
-        public int TimeSlot => this._tn;
+        public int TimeSlot
+        {
+            get { return _tn; }
+        }
 
-        public int TimeSlotSlave => this._tnSlave;
+        public int TimeSlotSlave
+        {
+            get { return _tnSlave; }
+        }
 
-        public int Frame => this._fn;
+        public int Frame
+        {
+            get { return _fn; }
+        }
 
-        public int FrameSlave => this._fnSlave;
+        public int FrameSlave
+        {
+            get { return _fnSlave; }
+        }
 
-        public int SuperFrame => this._mn;
+        public int SuperFrame
+        {
+            get { return _mn; }
+        }
 
-        public bool IsSynchronized => this._isSynchronized;
+        public bool IsSynchronized
+        {
+            get { return _isSynchronized; }
+        }
 
-        public bool TimeForBSCH => this._timeBSCH;
+        public bool TimeForBSCH
+        {
+            get { return _timeBSCH; }
+        }
 
-        public bool TimeForBNCH => this._timeBNCH;
+        public bool TimeForBNCH
+        {
+            get { return _timeBNCH; }
+        }
 
-        public bool Frame18 => this._fn18;
+        public bool Frame18
+        {
+            get { return _fn18; }
+        }
 
-        public bool Frame18Slave => this._fn18slave;
+        public bool Frame18Slave
+        {
+            get { return _fn18slave; }
+        }
 
         public void Synchronize(int tn, int fn, int mn)
         {
-            ++tn;
-            this._isSynchronized = tn == this._tn && fn == this._fn && mn == this._mn;
-            this._tn = tn < 5 ? (tn > 0 ? tn : 1) : 4;
-            this._fn = fn < 19 ? (fn > 0 ? fn : 1) : 18;
-            this._mn = mn < 61 ? (mn > 0 ? mn : 1) : 60;
-            this.CalculateSlaveTime();
-            this.TimeChecker();
+            tn++;
+
+            _isSynchronized = (tn == _tn) && (fn == _fn) && (mn == _mn);
+
+            _tn = tn < 5 ? (tn > 0 ? tn : 1) : 4;
+            _fn = fn < 19 ? (fn > 0 ? fn : 1) : 18;
+            _mn = mn < 61 ? (mn > 0 ? mn : 1) : 60;
+            CalculateSlaveTime();
+            TimeChecker();
         }
 
         public void SynchronizeMaster(int tn, int fn)
         {
-            ++tn;
-            this._isSynchronized = tn == this._tn && fn == this._fn;
-            this._tn = tn < 5 ? (tn > 0 ? tn : 1) : 4;
-            this._fn = fn < 19 ? (fn > 0 ? fn : 1) : 18;
-            this.CalculateSlaveTime();
-            this.TimeChecker();
+            tn++;
+
+            _isSynchronized = (tn == _tn) && (fn == _fn);
+
+            _tn = tn < 5 ? (tn > 0 ? tn : 1) : 4;
+            _fn = fn < 19 ? (fn > 0 ? fn : 1) : 18;
+
+            CalculateSlaveTime();
+            TimeChecker();
         }
 
         public void SynchronizeSlave(int tn, int fn)
         {
-            ++tn;
-            this._isSynchronized = tn == this._tnSlave && fn == this._fnSlave;
-            this._tn = tn + 3;
-            this._fn = fn;
-            if (this._tn > 4)
+            tn++;
+
+            _isSynchronized = (tn == _tnSlave) && (fn == _fnSlave);
+
+            _tn = tn + 3;
+            _fn = fn;
+
+            if (_tn > 4)
             {
-                this._tn -= 4;
-                ++this._fn;
+                _tn -= 4;
+                _fn += 1;
             }
-            this.CalculateSlaveTime();
-            this.TimeChecker();
+
+            CalculateSlaveTime();
+            TimeChecker();
         }
+
 
         public void AddTimeSlot()
         {
-            ++this._tn;
-            if (this._tn > 4)
+            _tn = _tn + 1;
+            if (_tn > 4)
             {
-                this._tn = 1;
-                ++this._fn;
+                _tn = 1;
+                _fn += 1;
             }
-            if (this._fn > 18)
+
+            if (_fn > 18)
             {
-                this._fn = 1;
-                ++this._mn;
+                _fn = 1;
+                _mn += 1;
             }
-            if (this._mn > 60)
-                this._mn = 1;
-            this.CalculateSlaveTime();
-            this.TimeChecker();
+
+            if (_mn > 60)
+            {
+                _mn = 1;
+            }
+
+            CalculateSlaveTime();
+            TimeChecker();
         }
 
         private void TimeChecker()
         {
-            this._fn18 = this._fn == 18;
-            this._timeBSCH = 4 - (this._mn + 1) % 4 == this._tn && this._fn18;
-            this._timeBNCH = 4 - (this._mn + 3) % 4 == this._tn && this._fn18;
-            this._fn18slave = this._fnSlave == 18;
+            _fn18 = _fn == 18;
+            _timeBSCH = ((4 - (_mn + 1) % 4) == _tn) && _fn18;
+            _timeBNCH = ((4 - (_mn + 3) % 4) == _tn) && _fn18;
+
+            _fn18slave = _fnSlave == 18;
         }
 
         private void CalculateSlaveTime()
         {
-            this._tnSlave = this._tn - 3;
-            this._fnSlave = this._fn;
-            if (this._tnSlave < 1)
+            _tnSlave = _tn - 3;
+            _fnSlave = _fn;
+
+            if (_tnSlave < 1)
             {
-                this._tnSlave += 4;
-                --this._fnSlave;
+                _tnSlave = _tnSlave + 4;
+                _fnSlave--;
             }
-            if (this._fnSlave >= 1)
-                return;
-            this._fnSlave += 18;
+
+            if (_fnSlave < 1)
+            {
+                _fnSlave += 18;
+            }
         }
     }
 }

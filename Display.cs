@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SDRSharp.Tetra.Display
-// Assembly: SDRSharp.Tetra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: C3C6F0AC-F9E4-4213-8F19-E6F878CA40B0
-// Assembly location: E:\RADIO\SdrSharp1810\Plugins\tetra1.0.0.0\SDRSharp.Tetra.dll
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -16,72 +10,73 @@ namespace SDRSharp.Tetra
     [DesignTimeVisible(true)]
     [Category("SDRSharp")]
     [Description("Display Panel")]
-    public class Display : UserControl
+    public unsafe partial class Display : UserControl
     {
         private Bitmap _buffer;
         private Graphics _graphics;
-        private IContainer components;
 
         public Display()
         {
-            Rectangle clientRectangle = this.ClientRectangle;
-            int width = clientRectangle.Width;
-            clientRectangle = this.ClientRectangle;
-            int height = clientRectangle.Height;
-            this._buffer = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-            this._graphics = Graphics.FromImage((Image)this._buffer);
-            this.InitializeComponent();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            this.SetStyle(ControlStyles.DoubleBuffer, true);
-            this.SetStyle(ControlStyles.UserPaint, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.UpdateStyles();
+            _buffer = new Bitmap(ClientRectangle.Width, ClientRectangle.Height, PixelFormat.Format32bppArgb);
+            _graphics = Graphics.FromImage(_buffer);
+
+            InitializeComponent();
+
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            UpdateStyles();
         }
 
-        public unsafe void Perform(float* displayInputBuffer, int length)
+        public void Perform(float* displayInputBuffer, int length)
         {
-            if ((IntPtr)displayInputBuffer == IntPtr.Zero)
-                return;
-            Graphics graphics = this._graphics;
-            Rectangle clientRectangle = this.ClientRectangle;
-            int width1 = clientRectangle.Width;
-            float num1 = (float)clientRectangle.Height * 0.5f;
-            float num2 = num1 / 3.141593f;
-            float num3 = (float)clientRectangle.Width / (float)length;
-            int width2 = clientRectangle.Width;
+            if (displayInputBuffer == null) return;
+
+            var graphics = _graphics;
+            var graphicsRect = ClientRectangle;
+
+            var xCenter = (graphicsRect.Width * 0.5f);
+            var yCenter = (graphicsRect.Height * 0.5f);
+
+            var gainY = (float)(yCenter / Math.PI);
+            var gainX = (float)graphicsRect.Width / length;
+
+            var showLength = graphicsRect.Width;
             graphics.Clear(Color.Black);
-            using (new Pen(Color.Green, 1f))
+
+            using (var spectrumPen = new Pen(Color.Green, 1.0f))
+            using (var linePen = new Pen(Color.LightGreen, 1.0f))
+            using (var gridPen = new Pen(Color.Gray))
+            using (var textFont = new Font("Arial", 8f))
+            using (var textBrush = new SolidBrush(Color.White))
             {
-                using (Pen pen1 = new Pen(Color.LightGreen, 1f))
+                var eyeLength = 1;
+
+                var newX = 0.0f;
+                var newY = (float)yCenter;
+
+                var gridPi2 = (int)(Math.PI * 0.5f * gainY);
+                graphics.DrawLine(gridPen, 0, yCenter + gridPi2, graphicsRect.Width, yCenter + gridPi2);
+                //graphics.DrawString("Pi/2", textFont, textBrush, 0, yCenter - gridPi2);
+                graphics.DrawLine(gridPen, 0, yCenter - gridPi2, graphicsRect.Width, yCenter - gridPi2);
+                //graphics.DrawString("-Pi/2", textFont, textBrush, 0, yCenter + gridPi2);
+                graphics.DrawLine(gridPen, 0, yCenter, graphicsRect.Width, yCenter);
+                //graphics.DrawString("0", textFont, textBrush, 0, yCenter);
+
+                for (int i = 0; i < length; i++)
                 {
-                    using (Pen pen2 = new Pen(Color.Gray))
-                    {
-                        using (new Font("Arial", 8f))
-                        {
-                            using (new SolidBrush(Color.White))
-                            {
-                                int num4 = 1;
-                                int num5 = (int)(Math.PI / 2.0 * (double)num2);
-                                graphics.DrawLine(pen2, 0.0f, num1 + (float)num5, (float)clientRectangle.Width, num1 + (float)num5);
-                                graphics.DrawLine(pen2, 0.0f, num1 - (float)num5, (float)clientRectangle.Width, num1 - (float)num5);
-                                graphics.DrawLine(pen2, 0.0f, num1, (float)clientRectangle.Width, num1);
-                                for (int index = 0; index < length; ++index)
-                                {
-                                    float num6 = num1 - displayInputBuffer[index] * num2;
-                                    float x1 = (float)index * num3;
-                                    if ((double)num6 > (double)clientRectangle.Height)
-                                        num6 = (float)clientRectangle.Height;
-                                    else if ((double)num6 < 0.0)
-                                        num6 = 0.0f;
-                                    if ((double)x1 > (double)clientRectangle.Width)
-                                        x1 = (float)clientRectangle.Width;
-                                    else if ((double)x1 < 0.0)
-                                        x1 = 0.0f;
-                                    graphics.DrawLine(pen1, x1, num6, x1 + (float)num4, num6);
-                                }
-                            }
-                        }
-                    }
+                    newY = (float)(yCenter - (displayInputBuffer[i] * gainY));
+                    newX = i * gainX;
+
+                    if (newY > graphicsRect.Height) newY = graphicsRect.Height;
+                    else if (newY < 0) newY = 0;
+                    if (float.IsNaN(newY)) newY = 0;
+
+                    if (newX > graphicsRect.Width) newX = graphicsRect.Width;
+                    else if (newX < 0) newX = 0;
+
+                    graphics.DrawLine(linePen, newX, newY, newX + eyeLength, newY);
                 }
             }
         }
@@ -97,37 +92,62 @@ namespace SDRSharp.Tetra
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Display.ConfigureGraphics(e.Graphics);
-            e.Graphics.DrawImageUnscaled((Image)this._buffer, 0, 0);
+            ConfigureGraphics(e.Graphics);
+            e.Graphics.DrawImageUnscaled(_buffer, 0, 0);
         }
 
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            if (this.ClientRectangle.Width <= 0 || this.ClientRectangle.Height <= 0)
-                return;
-            this._buffer.Dispose();
-            this._graphics.Dispose();
-            this._buffer = new Bitmap(this.ClientRectangle.Width, this.ClientRectangle.Height, PixelFormat.Format32bppArgb);
-            this._graphics = Graphics.FromImage((Image)this._buffer);
+
+            if (ClientRectangle.Width > 0 && ClientRectangle.Height > 0)
+            {
+                _buffer.Dispose();
+                _graphics.Dispose();
+                _buffer = new Bitmap(ClientRectangle.Width, ClientRectangle.Height, PixelFormat.Format32bppArgb);
+                _graphics = Graphics.FromImage(_buffer);
+            }
         }
 
+        /// <summary> 
+        /// A constructor variable is required.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Free up all used resources.
+        /// </summary>
+        /// <param name="disposing">true if the managed resource should be deleted; otherwise, it is false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this.components != null)
-                this.components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
+        #region Code automatically generated by the component designer
+
+        /// <summary> 
+        /// Required method for constructor support - do not modify
+        /// the contents of this method using a code editor.
+        /// </summary>
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            this.AutoScaleDimensions = new SizeF(6f, 13f);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackgroundImageLayout = ImageLayout.Zoom;
+            // 
+            // Display
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.DoubleBuffered = true;
             this.Name = "Display";
             this.ResumeLayout(false);
+
         }
+
+        #endregion
     }
 }

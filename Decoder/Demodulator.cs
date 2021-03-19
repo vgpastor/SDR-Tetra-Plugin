@@ -235,7 +235,7 @@ namespace SDRSharp.Tetra
                     this._bufferPtr[index + this._tailBufferLength] = index % this._interpolation == 0 ? iqBuffer[num++] : complex;
             }
             else
-                Utils.Memcpy((void*)(this._bufferPtr + this._tailBufferLength), (void*)iqBuffer, this._length * sizeof(Complex));
+                Radio.Utils.Memcpy((void*)(this._bufferPtr + this._tailBufferLength), (void*)iqBuffer, this._length * sizeof(Complex));
             this._matchedFilter.Process(this._bufferPtr + this._tailBufferLength, this._length);
             if (this._writeAddress + this._length < this._tempBuffer.Length)
             {
@@ -340,7 +340,7 @@ namespace SDRSharp.Tetra
             this._writeAddress -= this._offset;
             if (this._writeAddress < 0)
                 this._writeAddress = 0;
-            Utils.Memcpy((void*)this._tempBufferPtr, (void*)(this._tempBufferPtr + this._offset), this._writeAddress * 4);
+            Radio.Utils.Memcpy((void*)this._tempBufferPtr, (void*)(this._tempBufferPtr + this._offset), this._writeAddress * 4);
             this.AngleToSymbol(burst.Ptr, digitalBuffer, (int)byte.MaxValue);
             burst.Length = 510;
         }

@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DataGridViewEx.cs" />
     <Compile Update="DialogConfigure.cs" />
     <Compile Update="Display.cs" />
     <Compile Update="NetInfoWindow.cs" />
