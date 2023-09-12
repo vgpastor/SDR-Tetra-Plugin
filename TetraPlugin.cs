@@ -21,6 +21,7 @@ namespace SDRSharp.Tetra
 
         public void Initialize(ISharpControl control)
         {
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             _controlInterface = control;
             _qpskPanel = new TetraPanel(_controlInterface);
         }
