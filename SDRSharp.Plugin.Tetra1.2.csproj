@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Platforms>AnyCPU</Platforms>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
@@ -16,17 +16,12 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile></DocumentationFile>
     <OutputPath>..\Debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="DialogConfigure.cs" />
@@ -44,22 +39,16 @@
 
   <ItemGroup>
     <Reference Include="SDRSharp.Common">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\SDRSharp.Common.dll</HintPath>
     </Reference>
     <Reference Include="SDRSharp.PanView">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\SDRSharp.PanView.dll</HintPath>
     </Reference>
     <Reference Include="SDRSharp.Radio">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\SDRSharp.Radio.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls">
-      <HintPath>..\lib\Telerik.WinControls.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.UI">
-      <HintPath>..\lib\Telerik.WinControls.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="TelerikCommon">
-      <HintPath>..\lib\TelerikCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -11,7 +11,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Telerik.WinControls.UI;
 
 namespace SDRSharp.Tetra
 {
